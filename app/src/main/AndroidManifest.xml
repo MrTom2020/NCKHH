@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.nckh">
+
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage"/>
+
+    <application
+        android:name=".model.WifiApp"
+        android:allowBackup="true"
+        android:icon="@drawable/iconm"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/iconm"
+        android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.NCKH"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Exportdata"
+            android:theme="@android:style/Theme.Holo.Dialog">
+        </activity>
+        <activity android:name=".model.putnotification" />
+        <activity android:name=".tintuc" />
+        <activity
+            android:name=".danhsachluu"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name=".trangcanhan" />
+        <activity android:name=".trangdangky" />
+        <activity android:name=".tranghai" />
+        <activity android:name=".tranghienthi"></activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".Service.MyFirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".Service.ConnectionReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

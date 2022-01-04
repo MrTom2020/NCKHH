@@ -762,12 +762,12 @@ public class tintuc extends AppCompatActivity {
                     double kk = Double.parseDouble(Aqi);
                     int kq2 = kk > 300 ? R.drawable.rattt : kk >= 201 ? R.drawable.rattt : kk >= 151 ? R.drawable.rattoite : kk >= 101 ? R.drawable.boy : R.drawable.userfuny;
 
-                    String a = kk > 300 ? "Tình trạng không khí Nguy hiểm với con người"
-                            : kk >= 201 ? "Tình trạng không khí rất ô nhiễm"
-                            : kk >= 151 ? "Tình trạng không khí ô nhiễm"
-                            : kk >= 101 ? "Tình trạng không khí không tốt cho nhóm người nhạy cảm"
-                            : kk >= 51 ? "Không khí thoáng"
-                            : "Không khí trong lành";
+                    String a = kk > 300 ? "Dangerous air quality"
+                            : kk >= 201 ? "Very bad air quality"
+                            : kk >= 151 ? "Evil Red air quality"
+                            : kk >= 101 ? "Poor air quality"
+                            : kk >= 51 ? "Average air quality"
+                            : "Good air quality";
 
                     ic = ic.trim();
                     int kq = ic.equals("01d") ? R.drawable.dmot

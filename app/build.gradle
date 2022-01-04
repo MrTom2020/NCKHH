@@ -55,10 +55,16 @@ dependencies
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+            implementation 'com.google.code.gson:gson-parent:2.8.8'
+            implementation 'com.google.code.gson:gson:2.8.8'
+            implementation 'com.google.android.gms:play-services-maps:17.0.1'
+            implementation 'com.google.maps.android:maps-utils-ktx:2.4.0'
+            implementation 'com.google.maps.android:maps-utils-ktx:3.1.0'
     androidTestImplementation 'com.jayway.android.robotium:robotium:5.4.12'
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.5.3'
             implementation fileTree(dir: 'libs', include: ['*.jar'])
             implementation 'org.apache.poi:poi:3.17'
+
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'

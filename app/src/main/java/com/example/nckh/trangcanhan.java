@@ -155,11 +155,11 @@ public class trangcanhan extends AppCompatActivity
             databaseReference.child(id).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String Ma = snapshot.getKey();
-                    String Ten = snapshot.child("Tên").getValue().toString();
-                    String Mk = snapshot.child("Mật khẩu").getValue().toString();
-                    String diachi = snapshot.child("Địa chỉ").getValue().toString();
-                    String ngaysinh = snapshot.child("Ngày sinh").getValue().toString();
+                        String Ma = snapshot.getKey();
+                        String Ten = snapshot.child("Tên").getValue().toString();
+                        String Mk = snapshot.child("Mật khẩu").getValue().toString();
+                        String diachi = snapshot.child("Địa chỉ").getValue().toString();
+                        String ngaysinh = snapshot.child("Ngày sinh").getValue().toString();
                     if (kk == 0)
                     {
                         dl.truyvankhongtrakq("INSERT INTO nguoidung VALUES('" + Ma + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "')");

@@ -21,7 +21,14 @@ public class trangAdp extends BaseAdapter
 
     @Override
     public int getCount() {
-        return list.size();
+        if(list.size() == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return list.size();
+        }
     }
 
     @Override

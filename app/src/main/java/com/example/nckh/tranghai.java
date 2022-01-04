@@ -43,27 +43,31 @@ public class tranghai extends TabActivity {
     private void ax()
     {
         tabSpec = tabHost.newTabSpec ("Info");
-        tabSpec.setIndicator ("Info");
+        tabSpec.setIndicator ("",getDrawable(R.drawable.map));
         intent = new Intent (this, tranghienthi.class);
         tabSpec.setContent (intent);
         tabHost.addTab (tabSpec);
 
         tabSpec = tabHost.newTabSpec ("Account");
-        tabSpec.setIndicator ("Account");
+        tabSpec.setIndicator ("",getDrawable(R.drawable.userrr));
         intent = new Intent (this, trangcanhan.class);
         tabSpec.setContent (intent);
         tabHost.addTab (tabSpec);
 
 
         tabSpec = tabHost.newTabSpec ("News");
-        tabSpec.setIndicator ("News");
+        tabSpec.setIndicator ("",getDrawable(R.drawable.earth));
         intent = new Intent (this, tintuc.class);
         tabSpec.setContent (intent);
         tabHost.addTab (tabSpec);
 
+        tabSpec = tabHost.newTabSpec ("Search");
+        tabSpec.setIndicator ("",getDrawable(R.drawable.search));
+        intent = new Intent (this, tintuc.class);
+        tabSpec.setContent (intent);
+        tabHost.addTab (tabSpec);
 
-
-
+        tabHost.setBackgroundColor(0xff2b0000);
        tabHost.setCurrentTab(1);
 
     }

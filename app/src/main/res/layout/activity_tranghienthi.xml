@@ -19,7 +19,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="133dp"
-        android:background="#dadad9"/>
+        android:background="#dadad9" />
 
     <TextView
         android:id="@+id/txtnd"
@@ -29,10 +29,11 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center"
         android:background="@drawable/tuybiennn"
-        android:textColor="@color/mau3"
-        android:textAlignment="center" />
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textAlignment="center"
+        android:textColor="@color/mau3" />
 
     <TextView
         android:id="@+id/txtda"
@@ -74,36 +75,50 @@
 
             <CheckBox
                 android:id="@+id/c1"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c2"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c3"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c4"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c5"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c6"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/c7"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -149,7 +164,8 @@
         android:layout_height="53dp"
         android:layout_above="@+id/bc"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="-20dp"
+        android:layout_marginEnd="8dp"
+        android:textStyle="bold|italic"
         android:layout_marginBottom="11dp"
         android:background="@drawable/tuybiennn"
         android:textColor="@color/mau3" />
@@ -157,13 +173,14 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="48dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="7dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/broom" />
+        android:src="@drawable/broom"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

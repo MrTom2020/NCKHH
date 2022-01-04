@@ -3,13 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NCKH/app/src/main/res/drawable/btn_login.xml" value="0.2703125" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennut3.xml" value="0.13518518518518519" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybn4.xml" value="0.13518518518518519" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_danhsachluu.xml" value="0.25416666666666665" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_exportdata.xml" value="0.24818840579710144" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_putnotification.xml" value="0.16304347826086957" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_tintuc.xml" value="0.22554347826086957" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangcanhan.xml" value="0.16304347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangdangky.xml" value="0.23550724637681159" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_tranghai.xml" value="0.1765625" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_tranghienthi.xml" value="0.16304347826086957" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/danhsach.xml" value="0.1765625" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

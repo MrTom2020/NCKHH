@@ -1,5 +1,10 @@
 package com.example.nckh;
 
+import static com.example.nckh.R.drawable;
+import static com.example.nckh.R.id;
+import static com.example.nckh.R.layout;
+import static com.example.nckh.model.WifiApp.cb;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,11 +28,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
 import com.example.nckh.Adapter.trangAdp;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.Service.ConnectionReceiver;
@@ -42,6 +49,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -53,11 +61,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
-import static com.example.nckh.R.drawable;
-import static com.example.nckh.R.id;
-import static com.example.nckh.R.layout;
-import static com.example.nckh.model.WifiApp.cb;
 
 public class tranghienthi extends Activity
 {
@@ -585,7 +588,6 @@ public class tranghienthi extends Activity
         {
             arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
         }
-        //arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
         barDataSet = new BarDataSet(arrayList3, " " + time + "            ");
         int kqmau = t > 300 ? 0xfffe0000: t >= 201 ? 0xfffe0000:t >= 101 ? 0xffffbe00: t >= 51 ? 0xffffff01:0xff01b0f1;
 

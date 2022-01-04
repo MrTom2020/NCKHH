@@ -104,7 +104,7 @@ public class trangdangky extends AppCompatActivity {
                     }
                     else
                     {
-                        edtdc.setBackgroundColor(0xfffff000);
+                        edtdc.setBackgroundColor(0xfff0f0f0);
                         edtns.setEnabled(true);
                     }
                 }

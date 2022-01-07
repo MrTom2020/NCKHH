@@ -3,36 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nckh">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission-sdk-23
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28"
-        tools:ignore="ScopedStorage"/>
+        tools:ignore="ScopedStorage" />
 
     <application
         android:name=".model.WifiApp"
         android:allowBackup="true"
         android:icon="@drawable/iconm"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/iconm"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.NCKH"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Exportdata"
-            android:theme="@android:style/Theme.Holo.Dialog">
-        </activity>
-        <activity android:name=".model.putnotification" />
-        <activity android:name=".tintuc" />
+            android:name=".Activity.Address_Us"
+            android:exported="false" />
         <activity
-            android:name=".danhsachluu"
+            android:name=".Activity.Exportdata"
+            android:theme="@android:style/Theme.Holo.Dialog"></activity>
+        <activity android:name=".model.putnotification" />
+        <activity android:name=".Activity.tintuc" />
+        <activity
+            android:name=".Activity.danhsachluu"
             android:theme="@android:style/Theme.Holo.Dialog" />
-        <activity android:name=".trangcanhan" />
-        <activity android:name=".trangdangky" />
-        <activity android:name=".tranghai" />
-        <activity android:name=".tranghienthi"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.trangcanhan" />
+        <activity android:name=".Activity.trangdangky" />
+        <activity android:name=".Activity.tranghai" />
+        <activity android:name=".Activity.tranghienthi" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCCM182LH2JhZbxulRHzrdcwiYIQdwcRns" />
+
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

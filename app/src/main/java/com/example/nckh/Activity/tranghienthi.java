@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import static com.example.nckh.R.drawable;
 import static com.example.nckh.R.id;
@@ -36,6 +36,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.nckh.Adapter.trangAdp;
+import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.Service.ConnectionReceiver;
 import com.example.nckh.model.thongtin;

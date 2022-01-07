@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.example.nckh.R;
 import com.example.nckh.Service.ConnectionReceiver;
 
 public class tranghai extends TabActivity {

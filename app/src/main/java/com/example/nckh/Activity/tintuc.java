@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nckh.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,7 +126,7 @@ public class tintuc extends AppCompatActivity {
         LS_Van_Quan = A1 + "Van%20Quan&state=Tinh%20Lang%20Son" + A2;
         LS_Loc_Binh = A1 + "Loc%20Binh&state=Tinh%20Lang%20Son" + A2;
         LS_Huu_Lung = A1 + "Huu%20Lung&state=Tinh%20Lang%20Son" + A2;
-        Address = new String[]{"Lạng Sơn City", "Huyện Bình Gia", "Huyện Bắc Sơn", "Huyện Văn Quan", "Huyện Lộc Bình", "Huyện Hữu Lũng"};
+        Address = new String[]{"Lạng Sơn City", "Bình Gia District", "Bắc Sơn District", "Văn Quan District", "Lộc Bình District", "Hữu Lũng District"};
     }
 
     private void TayNinh() {
@@ -138,14 +139,14 @@ public class tintuc extends AppCompatActivity {
         TN_Tan_Bien = A1 + "Tan%20Bien&state=Tinh%20Tay%20Ninh" + A2;
         TN_Go_Dau = A1 + "Go%20Dau&state=Tinh%20Tay%20Ninh" + A2;
         TN_Duong_Minh_Chau = A1 + "Duong%20Minh%20Chau&state=Tinh%20Tay%20Ninh" + A2;
-        Address = new String[]{"Tây Ninh City", "Huyện Trảng Bàng", "Huyện châu thành", "Huyện Tân Châu", "Huyện Hòa Thành", "Huyện Bến Cầu", "Huyện Dương Minh Châu",
-                "Huyện Tân Biên", "Huyện Gò Dầu"};
+        Address = new String[]{"Tây Ninh City", "Trảng Bàng District", "Châu thành District", "Tân Châu District", "Hòa Thành District", "Bến Cầu District", "Dương Minh Châu District",
+                "District Tân Biên", "Gò Dầu District"};
     }
 
     private void BaRia_VungTau() {
         BRVT_TP_BRVT = A1 + "Vung%20Tau&state=Tinh%20Ba%20Ria%20Vung%20Tau" + A2;
         BRVT_DatDo = A1 + "Dat%20Do&state=Tinh%20Ba%20Ria%20Vung%20Tau" + A2;
-        Address = new String[]{"Vũng Tàu City", "Huyện Đất Đỏ"};
+        Address = new String[]{"Vũng Tàu City", "Đất Đỏ District"};
     }
 
     private void QuangNinh() {
@@ -157,7 +158,7 @@ public class tintuc extends AppCompatActivity {
         QN_TPUong_Bi = A1 + "Thanh%20Pho%20Uong%20Bi&state=Tinh%20Quang%20Ninh" + A2;
         QNCo_To = A1 + "Co%20To&state=Tinh%20Quang%20Ninh" + A2;
         QN_TT_Troi = A1 + "Troi&state=Tinh%20Quang%20Ninh" + A2;
-        Address = new String[]{"Cẩm Phả City", "Móng Cái City", "Thị xã Quảng Hà", "Thị xã Quảng Yên", "Hạ Long City", "Uông Bí City", "Huyện Cô Tô", "Thị trấn Trời"};
+        Address = new String[]{"Cẩm Phả City", "Móng Cái City", "Thị xã Quảng Hà", "Thị xã Quảng Yên", "Hạ Long City", "Uông Bí City", "Cô Tô District", "Thị trấn Trời"};
     }
 
     private void BacLieu() {
@@ -190,7 +191,7 @@ public class tintuc extends AppCompatActivity {
     private void BacKan() {
         BC_TP_Bac_Kan = A1 + "Bac%20Kan&state=Tinh%20Bac%20Kan" + A2;
         BC_Cho_Moi = A1 + "Cho%20Moi&state=Tinh%20Bac%20Kan" + A2;
-        Address = new String[]{"Bắc Kạn City", "Huyện Chợ Mới"};
+        Address = new String[]{"Bắc Kạn City", "Chợ Mới District"};
     }
 
     private void BacGiang() {
@@ -206,7 +207,7 @@ public class tintuc extends AppCompatActivity {
         BN_TT_Cho = A1 + "Cho&state=Tinh%20Bac%20Ninh" + A2;
         BN_TT_Lim = A1 + "Lim&state=Tinh%20Bac%20Ninh" + A2;
         BN_TT_Pho_Moi = A1 + "Pho%20Moi&state=Tinh%20Bac%20Ninh" + A2;
-        Address = new String[]{"Bắc Ninh City", "Huyện Gia Bình", "City Bắc Ninh", "Thị trấn Chờ", "Thị trấn Lim", "Thị trấn Phố Mới"};
+        Address = new String[]{"Bắc Ninh City", "Gia Bình District", "City Bắc Ninh", "Thị trấn Chờ", "Thị trấn Lim", "Thị trấn Phố Mới"};
     }
 
     private void BenTre() {
@@ -217,8 +218,8 @@ public class tintuc extends AppCompatActivity {
         BT_Binh_Dai = A1 + "Binh%20Dai&state=Tinh%20Ben%20Tre" + A2;
         BT_Ba_Tri = A1 + "Ba%20Tri&state=Tinh%20Ben%20Tre" + A2;
         BT_Thanh_Phu = A1 + "Thanh%20Phu&state=Tinh%20Ben%20Tre" + A2;
-        Address = new String[]{"Bến Tre City", "Huyện Châu thành", "Huyện Chợ Lách", "Huyện Giồng Trôm", "Huyện Bình Đại",
-                "Huyện Ba Tri", "Huyện Thạnh Phú"};
+        Address = new String[]{"Bến Tre City", "Châu thành District", "Chợ Lách District", "Giồng Trôm District", "Bình Đại District",
+                "Ba Tri District", "Thạnh Phú District"};
     }
 
     private void BinhDuong()//
@@ -227,7 +228,7 @@ public class tintuc extends AppCompatActivity {
         BD_DiAn = A1 + "Di%20An&state=Tinh%20Binh%20Duong" + A2;
         BD_BenCat = A1 + "Ben%20Cat&state=Tinh%20Binh%20Duong" + A2;
         BD_DauTieng = A1 + "Dau%20Tieng&state=Tinh%20Binh%20Duong" + A2;
-        Address = new String[]{"Thủ Dầu Một City", "Dĩ An City", "Huyện Bến Cát", "Huyện Dầu Tiếng"};
+        Address = new String[]{"Thủ Dầu Một City", "Dĩ An City", "Bến Cát District", "Dầu Tiếng District"};
     }
 
     private void BinhPhuoc() {
@@ -235,7 +236,7 @@ public class tintuc extends AppCompatActivity {
         BP_Chon_Thanh = A1 + "Chon%20Thanh&state=Tinh%20Binh%20Phuoc" + A2;
         BP_Bu_Dop = A1 + "Bu%20Dop&state=Tinh%20Binh%20Phuoc" + A2;
         ;
-        Address = new String[]{"Thị Xã Bình Long", "Huyện Chơn Thành", "Huyện Bù đốp"};
+        Address = new String[]{"Thị Xã Bình Long", "Chơn Thành District", "Bù đốp District"};
     }
 
     private void BinhThuan() {
@@ -244,7 +245,7 @@ public class tintuc extends AppCompatActivity {
         BTHUAN_Phu_Quy = A1 + "Phu%20Quy&state=Tinh%20Binh%20Thuan" + A2;
         BTHUAN_Tanh_Linh = A1 + "Tanh%20Linh&state=Tinh%20Binh%20Thuan" + A2;
         BTHUAN_La_Gi = A1 + "La%20Gi&state=Tinh%20Binh%20Thuan" + A2;
-        Address = new String[]{"Phan Thiết City", "Thị xã La Gi", "Huyện Phú Quý", "Huyện Tánh Linh", "Huyện La Gi"};
+        Address = new String[]{"Phan Thiết City", "Thị xã La Gi", "Phú Quý District", "Tánh Linh District", "La Gi District"};
     }
 
     private void CaMau() {
@@ -257,8 +258,8 @@ public class tintuc extends AppCompatActivity {
         CM_Phu_Tan = A1 + "Phu%20Tan&state=Tinh%20Ca%20Mau" + A2;
         CM_Ngoc_Hien = A1 + "Ngoc%20Hien&state=Tinh%20Ca%20Mau" + A2;
         ;
-        Address = new String[]{"Cà Mau City", "Huyện U Minh", "Huyện Thới Bình", "Huyện Trần Văn Thời", "Huyện Cái Nước", "Huyện Năm Căn",
-                "Huyện Phú Tân", "Huyện Ngọc Hiển"};
+        Address = new String[]{"Cà Mau City", "U Minh District", "Thới Bình District", "Trần Văn Thời District", "Cái Nước District", "Năm Căn District",
+                "Phú Tân District", "Ngọc Hiển District"};
     }
 
     private void CaoBang() {
@@ -274,7 +275,7 @@ public class tintuc extends AppCompatActivity {
         DB_Muong_Cha = A1 + "Muong%20Cha&state=Tinh%20Dien%20Bien" + A2;
         DB_Muong_Nhe = A1 + "Muong%20Nhe&state=Tinh%20Dien%20Bien" + A2;
         ;
-        Address = new String[]{"Điện Biên Phủ City", "Huyện Điện Biên Đông", "Huyện Mường Ảng", "Huyện Mường Chà", "Huyện Mường Nhé"};
+        Address = new String[]{"Điện Biên Phủ City", "Điện Biên Đông District", "Mường Ảng District", "Mường Chà District", "Mường Nhé District"};
     }
 
     private void DongNai() {
@@ -285,8 +286,8 @@ public class tintuc extends AppCompatActivity {
         DN_Tan_Phu = A1 + "Tan%20Phu&state=Tinh%20Dong%20Nai" + A2;
         DN_Thong_Nhat = A1 + "Thong%20Nhat&state=Tinh%20Dong%20Nai" + A2;
         DN_Trang_Bom = A1 + "Trang%20Bom&state=Tinh%20Dong%20Nai" + A2;
-        Address = new String[]{"Biên Hòa City", "Long Khánh City", "Huyện Long Thành", "Huyện Nhơn Trạch", "Huyện Tân Phú", "Huyện Thống Nhất",
-                "Huyện Trảng Bom"};
+        Address = new String[]{"Biên Hòa City", "Long Khánh City", "Long Thành District", "Nhơn Trạch District", "Tân Phú District", "Thống Nhất District",
+                "Trảng Bom District"};
     }
 
     private void HaTinh() {
@@ -299,8 +300,8 @@ public class tintuc extends AppCompatActivity {
         HT_Thach_Ha = A1 + "Thach%20Ha&state=Tinh%20Ha%20Tinh" + A2;
         HT_Vu_Quang = A1 + "Vu%20Quang&state=Tinh%20Ha%20Tinh" + A2;
         ;
-        Address = new String[]{"Hà Tĩnh City", "Huyện Cẩm Xuyên", "Huyện Đức Thọ", "Huyện Hương Khê",
-                "Huyện Kỳ Anh", "Huyện Nghi Xuân", "Huyện Thạch Hà", "Huyện Vũ Quang"};
+        Address = new String[]{"Hà Tĩnh City", "Cẩm Xuyên District", "Đức Thọ District", "Hương Khê District",
+                "Kỳ Anh District", "Nghi Xuân District", "Thạch Hà District", "Vũ Quang District"};
     }
 
     private void HaiDuong() {
@@ -310,7 +311,7 @@ public class tintuc extends AppCompatActivity {
         HD_Kim_Thanh = A1 + "Phu%20Thai&state=Tinh%20Hai%20Duong" + A2;
         HD_Tu_Ky = A1 + "Tu%20Ky&state=Tinh%20Hai%20Duong" + A2;
         ;
-        Address = new String[]{"Hải Dương City", "Thị xã Kinh Môn", "Huyện Thanh Hà", "Huyện Tứ Kỳ", "Huyện Kim Thành"};
+        Address = new String[]{"Hải Dương City", "Thị xã Kinh Môn", "Thanh Hà District", "Tứ Kỳ District", "Kim Thành District"};
     }
 
     private void HungYen() {
@@ -320,7 +321,7 @@ public class tintuc extends AppCompatActivity {
         HY_Khoai_Chau = A1 + "Khoai%20Chau&state=Tinh%20Hung%20Yen" + A2;
         HY_An_Thi = A1 + "An%20Thi&state=Tinh%20Hung%20Yen" + A2;
         HY_TT_Nhu_Huynh = A1 + "Nhu%20Quynh&state=Tinh%20Hung%20Yen" + A2;
-        Address = new String[]{"Hưng Yên City", "Huyện Yên Mỹ", "Huyện Văn Giang", "Huyện Khoái Châu", "Huyện Ân Thi", "Thị trấn Như Huỳnh"};
+        Address = new String[]{"Hưng Yên City", "Yên Mỹ District", "Văn Giang District", "Khoái Châu District", "Ân Thi District", "Thị trấn Như Huỳnh"};
     }
 
     private void KienGiang() {
@@ -332,8 +333,8 @@ public class tintuc extends AppCompatActivity {
         KG_Go_Quao = A1 + "Go%20Quao&state=Tinh%20Kien%20Giang" + A2;
         KG_An_Bien = A1 + "An%20Bien&state=Tinh%20Kien%20Giang" + A2;
         KG_Vinh_Thuan = A1 + "Vinh%20Thuan&state=Tinh%20Kien%20Giang" + A2;
-        Address = new String[]{"Rạch Giá City", "Hà Tiên City", "Huyện Kiên Lương", "Huyện Tân Hiệp", "Huyện Giồng Riềng",
-                "Huyện Gò Quao", "Huyện An Biên", "Huyện Vĩnh Thuận"};
+        Address = new String[]{"Rạch Giá City", "Hà Tiên City", "Kiên Lương District", "Tân Hiệp District", "Giồng Riềng District",
+                "Gò Quao District", "An Biên District", "Vĩnh Thuận District"};
     }
 
     private void LaiChau() {
@@ -341,7 +342,7 @@ public class tintuc extends AppCompatActivity {
         LC_Tam_Duong = A1 + "Tam%20Duong&state=Tinh%20Lai%20Chau" + A2;
         LC_Phong_Tho = A1 + "Phong%20Tho&state=Tinh%20Lai%20Chau" + A2;
         LC_Than_Uyen = A1 + "Than%20Uyen&state=Tinh%20Lai%20Chau" + A2;
-        Address = new String[]{"Lai Châu City", "Huyện Tam Đường", "Huyện Phong Thổ", "Huyện Than Uyên"};
+        Address = new String[]{"Lai Châu City", "Tam Đường District", "Phong Thổ District", "Than Uyên District"};
     }
 
     private void LaoCai() {
@@ -350,7 +351,7 @@ public class tintuc extends AppCompatActivity {
         LC_Bac_Ha = A1 + "Bac%20Ha&state=Tinh%20Lao%20Cai" + A2;
         LC_Si_Ma_Cai = A1 + "Si%20Ma%20Cai&state=Tinh%20Lao%20Cai" + A2;
         LC_Thi_tran_Pho_Lu = A1 + "Thi%20Tran%20Pho%20Lu&state=Tinh%20Lao%20Cai" + A2;
-        Address = new String[]{"Huyện Sa Pa", "Huyện Bát Xát", "Huyện Bắc Hà", "Huyện Si Ma Cai", "Thị trấn Phố Lu"};
+        Address = new String[]{"Sa Pa District", "Bát Xát District", "Bắc Hà District", "Si Ma Cai District", "Thị trấn Phố Lu"};
     }
 
     private void NgheAn() {
@@ -366,14 +367,17 @@ public class tintuc extends AppCompatActivity {
         NA_Tuong_Duong = A1 + "Tuong%20Duong&state=Tinh%20Nghe%20An" + A2;
         NA_Nam_Dan = A1 + "Nam%20Dan&state=Tinh%20Nghe%20An" + A2;
         NA_Thanh_Chuong = A1 + "Thanh%20Chuong&state=Tinh%20Nghe%20An" + A2;
-        Address = new String[]{"Vinh City", "Huyện Diễn Châu", "Huyện Yên Thành", "Huyện Hưng Nguyên", "Huyện Quỳ Hợp", "Huyện Quỳ Châu", "Huyện Tân Kỳ", "Huyện Anh Sơn", "Huyện Con Cuông", "Huyện Tương Dương", "Huyện Nam Đàn", "Huyện Thanh Chương"};
+        Address = new String[]{"Vinh City", "Diễn Châu District", "Yên Thành District",
+                "Hưng Nguyên District", "Quỳ Hợp District", "Quỳ Châu District",
+                "Tân Kỳ District", "Anh Sơn District", "Con Cuông District", "Tương Dương District"
+                , "Nam Đàn District", "Thanh Chương District"};
     }
 
     private void NinhBinh() {
         NB_TP_Ninh_Binh = A1 + "Thanh%20Pho%20Ninh%20Binh&state=Tinh%20Ninh%20Binh" + A2;
         NB_TP_Tam_Diep = A1 + "Tam%20Diep&state=Tinh%20Ninh%20Binh" + A2;
         NB_Nho_Quan = A1 + "Nho%20Quan&state=Tinh%20Ninh%20Binh" + A2;
-        Address = new String[]{"Ninh Bình City", "Tam Điệp City", "Huyện Nho Quan"};
+        Address = new String[]{"Ninh Bình City", "Tam Điệp City", "Nho Quan District"};
     }
 
     private void QuangNgai()//
@@ -389,8 +393,9 @@ public class tintuc extends AppCompatActivity {
         QN_Son_Tinh = A1 + "Son%20Tinh&state=Tinh%20Quang%20Ngai" + A2;
         QN_Tra_Bong = A1 + "Tra%20Bong&state=Tinh%20Quang%20Ngai" + A2;
         QN_Tu_Nghia = A1 + "Tu%20Nghia&state=Tinh%20Quang%20Ngai" + A2;
-        Address = new String[]{"Quảng Ngãi City", "Huyện Ba Tơ", "Huyện Bình Sơn", "Huyện Lý Sơn", "Huyện Minh Long", "Huyện Mộ Đức",
-                "Huyện Nghĩa Hành", "Huyện Sơn Hà", "Huyện Sơn Tịnh", "Huyện Trà Bồng", "Huyện Tư Nghĩa"};
+        Address = new String[]{"Quảng Ngãi City", "Ba Tơ District", "Bình Sơn District", "Lý Sơn District", "Minh Long District",
+                "Mộ Đức District",
+                "Nghĩa Hành District", "Sơn Hà District", "Sơn Tịnh District", "Trà Bồng District", "Tư Nghĩa District"};
     }
 
     private void SonLa()//
@@ -402,7 +407,7 @@ public class tintuc extends AppCompatActivity {
         SL_Song_Ma = A1 + "Song%20Ma&state=Tinh%20Son%20La" + A2;
         SL_Yen_Chau = A1 + "Yen%20Chau&state=Tinh%20Son%20La" + A2;
         LS_Dinh_Lap = A1 + "Dinh%20Lap&state=Tinh%20Lang%20Son" + A2;
-        Address = new String[]{"Sơn La City", "Huyện Bắc Yên", "Huyện Mộc Châu", "Huyện Phù Yên", "Huyện Sông Mã", "Huyện Yên Châu", "Huyện Đinh Lập"};
+        Address = new String[]{"Sơn La City", "Bắc Yên District", "Mộc Châu District", "Phù Yên District", "Sông Mã District", "Yên Châu District", "Đinh Lập District"};
     }
 
     private void ThaiBinh()//
@@ -412,7 +417,7 @@ public class tintuc extends AppCompatActivity {
         TB_Hung_Ha = A1 + "Hung%20Ha&state=Tinh%20Thai%20Binh" + A2;
         TB_Tien_Hai = A1 + "Tien%20Hai&state=Tinh%20Thai%20Binh" + A2;
         TB_Vu_Thu = A1 + "Vu%20Thu&state=Tinh%20Thai%20Binh" + A2;
-        Address = new String[]{"Thái Bình City", "Huyện Đông Hưng", "Huyện Hưng Hà", "Huyện Tiền Hải", "Huyện Vũ Thư"};
+        Address = new String[]{"Thái Bình City", "Đông Hưng District", "Hưng Hà District", "Tiền Hải District", "Vũ Thư District"};
     }
 
     private void ThaiNguyen()//
@@ -440,9 +445,9 @@ public class tintuc extends AppCompatActivity {
         TH_Quan_Hoa = A1 + "Quan%20Hoa&state=Tinh%20Thanh%20Hoa" + A2;
         TH_Quan_Son = A1 + "Quan%20Son&state=Tinh%20Thanh%20Hoa" + A2;
         TH_Muong_Lat = A1 + "Muong%20Lat&state=Tinh%20Thanh%20Hoa" + A2;
-        Address = new String[]{"Thanh Hóa City", "Thị xã Bỉm Sơn", "Huyện Quảng Xương", "Huyện Hậu Lộc",
-                "Huyện Nga Sơn", "Huyện Triệu Sơn", "Huyện Nông Cống", "Huyện Ngọc Lặc", "Huyện Cẩm Thủy",
-                "Huyện Vĩnh Lộc", "Huyện Thọ Xuân", "Huyện Thường Xuân", "Huyện Lang Chánh", "Huyện Quan Hóa", "Huyện Quan Sơn", "Huyện Mường Lát"};
+        Address = new String[]{"Thanh Hóa City", "Thị xã Bỉm Sơn", "Quảng Xương District", "Hậu Lộc District",
+                "Nga Sơn District", "Triệu Sơn District", "Nông Cống District", "Ngọc Lặc District", "Cẩm Thủy District",
+                "Vĩnh Lộc District", "Thọ Xuân District", "Thường Xuân District", "Lang Chánh District", "Quan Hóa District", "Quan Sơn District", "Mường Lát District"};
     }
 
     private void ThuaThien_Hue()//
@@ -452,13 +457,13 @@ public class tintuc extends AppCompatActivity {
         TTH_Phu_Loc = A1 + "Phu%20Loc&state=Tinh%20Thua%20Thien%20Hue" + A2;
         TTH_A_Luoi = A1 + "A%20Luoi&state=Tinh%20Thua%20Thien%20Hue" + A2;
         TTH_TP_Hue = A1 + "Hue&state=Tinh%20Thua%20Thien-Hue" + A2;
-        Address = new String[]{"Huyện Phong Điền", "Huyện Phú Vang", "Huyện Phú Lộc", "Huyện A Lưới", "Huế City"};
+        Address = new String[]{"Phong Điền District", "Phú Vang District", "Phú Lộc District", "A Lưới District", "Huế City"};
     }
 
     private void TienGiang()//
     {
         TG_Cho_Gao = A1 + "Cho%20Gao&state=Tinh%20Tien%20Giang" + A2;
-        Address = new String[]{"Huyện Chợ Gạo"};
+        Address = new String[]{"Chợ Gạo District"};
     }
 
     private void TraVinh()//
@@ -469,14 +474,15 @@ public class tintuc extends AppCompatActivity {
         TV_Tra_Cu = A1 + "Tra%20Cu&state=Tinh%20Tra%20Vinh" + A2;
         TV_Chau_Thanh = A1 + "Chau%20Thanh&state=Tinh%20Tra%20Vinh" + A2;
         TV_TP_Tra_Vinh = A1 + "Tra%20Vinh&state=Tinh%20Tra%20Vinh" + A2;
-        Address = new String[]{"Huyện Cầu Kè", "Huyện Duyên Hải", "Huyện Tiểu Cần", "Huyện Trà Cú", "Huyện Châu Thành", "Trà Vinh City"};
+        Address = new String[]{"Cầu Kè District", "Duyên Hải District", "Tiểu Cần District", "Trà Cú District", "Châu Thành District"
+                , "Trà Vinh City"};
     }
 
     private void TuyenQuang()//
     {
         TQ_TP_Tuyen_Quang = A1 + "Thanh%20Pho%20Tuyen%20Quang&state=Tinh%20Tuyen%20Quang" + A2;
         TQ_Son_Duong = A1 + "Son%20Duong&state=Tinh%20Tuyen%20Quang" + A2;
-        Address = new String[]{"Tuyên Quang City", "Huyện Sơn Dương"};
+        Address = new String[]{"Tuyên Quang City", "Sơn Dương District"};
     }
 
     private void VinhPhuc()//
@@ -484,7 +490,7 @@ public class tintuc extends AppCompatActivity {
         VP_Lap_Thach = A1 + "Lap%20Thach&state=Tinh%20Vinh%20Phuc" + A2;
         VP_Vinh_Tuong = A1 + "Vinh%20Tuong&state=Tinh%20Vinh%20Phuc" + A2;
         VP_Yen_Lac = A1 + "Yen%20Lac&state=Tinh%20Vinh%20Phuc" + A2;
-        Address = new String[]{"Huyện Lập Thạch", "Huyện Vĩnh Tường", "Huyện Yên Lạc"};
+        Address = new String[]{"Lập Thạch District", "Vĩnh Tường District", "Yên Lạc District"};
     }
 
     private void YenBai()//
@@ -513,8 +519,8 @@ public class tintuc extends AppCompatActivity {
         Quan_Chin = A1 + "Quan%20Chin&state=Ho%20Chi%20Minh%20City" + A2;
         Quan_Muoi = A1 + "Quan%20Muoi&state=Ho%20Chi%20Minh%20City" + A2;
         Quan_Muoi_Mot = A1 + "Quan%20Muoi%20Mot&state=Ho%20Chi%20Minh%20City" + A2;
-        Address = new String[]{"Quận Bình Thạnh", "Huyện Nhà Bè", "Huyện Cần Giờ", "Quận Tân Phú", "Quận Phú Nhuận",
-                "Quận Thủ Đức", "Huyện Củ Chi", "Huyện Hóc Môn", "Hồ Chí Minh City", "Quận 5", "Quận 1", "Quận 2", "Quận 3"
+        Address = new String[]{"Quận Bình Thạnh", "Nhà Bè District", "Cần Giờ District", "Quận Tân Phú", "Quận Phú Nhuận",
+                "Quận Thủ Đức", "Củ Chi District", "Hóc Môn District", "Hồ Chí Minh City", "Quận 5", "Quận 1", "Quận 2", "Quận 3"
                 , "Quận 4", "Quận 6", "Quận 7", "Quận 9", "Quận 10", "Quận 11"};
 
     }
@@ -804,7 +810,7 @@ public class tintuc extends AppCompatActivity {
                     txtkk.setBackgroundColor(0xff333333);
                     img.setImageResource(kq);
                     imgtt.setBackgroundResource(kq2);
-                    txtten.setText("Nước : " + country + "\nTỉnh : " + state + "\nHuyện : " + city);
+                    txtten.setText("Nước : " + country + "\nTỉnh : " + state + "\n : " + city);
                     txtten.setBackgroundColor(0xff333333);
                     txtten.setTextColor(0xffFFFACD);
                 } catch (JSONException e) {
@@ -814,8 +820,8 @@ public class tintuc extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(tintuc.this, "Vui lòng chuyển đổi Server khác", Toast.LENGTH_SHORT).show();
-                Log.d("Lỗi nè", error.toString());
+                Toast.makeText(tintuc.this, "Please switch to another server", Toast.LENGTH_SHORT).show();
+                Log.d("ERROR", error.toString());
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -842,7 +848,7 @@ public class tintuc extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                // Toast.makeText(tintuc.this, "Vui lòng chuyển đổi Server khác", Toast.LENGTH_SHORT).show();
-                Log.d("Lỗi nè", error.toString());
+                Log.d("ERROR", error.toString());
             }
         });
         requestQueue.add(jsonObjectRequest);
@@ -902,16 +908,16 @@ public class tintuc extends AppCompatActivity {
                     case "Dĩ An City":
                         doc(BD_DiAn);
                         break;
-                    case "Huyện Dầu Tiếng":
+                    case "Dầu Tiếng District":
                         doc(BD_DauTieng);
                         break;
-                    case "Huyện Bến Cát":
+                    case "Bến Cát District":
                         doc(BD_BenCat);
                         break;
                     case "Vũng Tàu City":
                         doc(BRVT_TP_BRVT);
                         break;
-                    case "Huyện Đất Đỏ":
+                    case "Đất Đỏ District":
                         doc(BRVT_DatDo);
                         break;
                     case "Bạc Liêu City":
@@ -920,7 +926,7 @@ public class tintuc extends AppCompatActivity {
                     case "Bắc Kạn City":
                         doc(BC_TP_Bac_Kan);
                         break;
-                    case "Huyện Chợ Mới":
+                    case "Chợ Mới District":
                         doc(BC_Cho_Moi);
                         break;
                     case "Bắc Giang City":
@@ -929,34 +935,34 @@ public class tintuc extends AppCompatActivity {
                     case "Bắc Ninh City":
                         doc(BN_TP_BacNinh);
                         break;
-                    case "Huyện Gia Bình":
+                    case "Gia Bình District":
                         doc(BN_Gia_Binh);
                         break;
                     case "Bến Tre City":
                         doc(BT_TP_Ben_Tre);
                         break;
-                    case "Huyện Chợ Lách":
+                    case "Chợ Lách District":
                         doc(BT_Cho_Lach);
                         break;
-                    case "Huyện Giồng Trôm":
+                    case "Giồng Trôm District":
                         doc(BT_Giong_Trom);
                         break;
-                    case "Huyện Bình Đại":
+                    case "Bình Đại District":
                         doc(BT_Binh_Dai);
                         break;
-                    case "Huyện Ba Tri":
+                    case "Ba Tri District":
                         doc(BT_Ba_Tri);
                         break;
-                    case "Huyện Thạnh Phú":
+                    case "Thạnh Phú District":
                         doc(BT_Thanh_Phu);
                         break;
                     case "Thị Xã Bình Long":
                         doc(BP_Binh_Long);
                         break;
-                    case "Huyện Chơn Thành":
+                    case "Chơn Thành District":
                         doc(BP_Chon_Thanh);
                         break;
-                    case "Huyện Bù đốp":
+                    case "Bù đốp District":
                         doc(BP_Bu_Dop);
                         break;
                     case "Phan Thiết City":
@@ -965,34 +971,34 @@ public class tintuc extends AppCompatActivity {
                     case "Thị xã La Gi":
                         doc(BL_TP_BacLieu);
                         break;
-                    case "Huyện Phú Quý":
+                    case "Phú Quý District":
                         doc(BTHUAN_Phu_Quy);
                         break;
-                    case "Huyện Tánh Linh":
+                    case "Tánh Linh District":
                         doc(BTHUAN_Tanh_Linh);
                         break;
                     case "Cà Mau City":
                         doc(CM_TP_Ca_Mau);
                         break;
-                    case "Huyện U Minh":
+                    case "U Minh District":
                         doc(CM_U_Minh);
                         break;
-                    case "Huyện Thới Bình":
+                    case "Thới Bình District":
                         doc(CM_Thoi_Binh);
                         break;
-                    case "Huyện Trần Văn Thời":
+                    case "Trần Văn Thời District":
                         doc(CM_Tran_Van_Thoi);
                         break;
-                    case "Huyện Cái Nước":
+                    case "Cái Nước District":
                         doc(CM_Cai_Nuoc);
                         break;
-                    case "Huyện Năm Căn":
+                    case "Năm Căn District":
                         doc(CM_Nam_Can);
                         break;
-                    case "Huyện Phú Tân":
+                    case "Phú Tân District":
                         doc(CM_Phu_Tan);
                         break;
-                    case "Huyện Ngọc Hiển":
+                    case "Ngọc Hiển District":
                         doc(CM_Ngoc_Hien);
                         break;
                     case "Cao Bằng City":
@@ -1001,16 +1007,16 @@ public class tintuc extends AppCompatActivity {
                     case "Điện Biên Phủ City":
                         doc(DB_TP_Dien_Bien_Phu);
                         break;
-                    case "Huyện Điện Biên Đông":
+                    case "Điện Biên Đông":
                         doc(DB_Dien_Bien_Dong);
                         break;
-                    case "Huyện Mường Ảng":
+                    case "Mường Ảng District":
                         doc(DB_Muong_Ang);
                         break;
-                    case "Huyện Mường Chà":
+                    case "Mường Chà District":
                         doc(DB_Muong_Cha);
                         break;
-                    case "Huyện Mường Nhé":
+                    case "Mường Nhé District":
                         doc(DB_Muong_Nhe);
                         break;
                     case "Biên Hòa City":
@@ -1019,43 +1025,43 @@ public class tintuc extends AppCompatActivity {
                     case "Long Khánh City":
                         doc(DN_TP_Long_Khanh);
                         break;
-                    case "Huyện Long Thành":
+                    case "Long Thành District":
                         doc(DN_Long_Thanh);
                         break;
-                    case "Huyện Nhơn Trạch":
+                    case "Nhơn Trạch District":
                         doc(DN_Nhon_Trach);
                         break;
-                    case "Huyện Tân Phú":
+                    case "Tân Phú District":
                         doc(DN_Tan_Phu);
                         break;
-                    case "Huyện Thống Nhất":
+                    case "Thống Nhất District":
                         doc(DN_Thong_Nhat);
                         break;
-                    case "Huyện Trảng Bom":
+                    case "Trảng Bom District":
                         doc(DN_Trang_Bom);
                         break;
                     case "Hà Tĩnh City":
                         doc(HT_TP_Ha_Tinh);
                         break;
-                    case "Huyện Cẩm Xuyên":
+                    case "Cẩm Xuyên District":
                         doc(HT_Cam_Xuyen);
                         break;
-                    case "Huyện Đức Thọ":
+                    case "Đức Thọ District":
                         doc(HT_Duc_Tho);
                         break;
-                    case "Huyện Hương Khê":
+                    case "Hương Khê District":
                         doc(HT_Huong_Khe);
                         break;
-                    case "Huyện Kỳ Anh":
+                    case "Kỳ Anh District":
                         doc(HT_Ky_Anh);
                         break;
-                    case "Huyện Nghi Xuân":
+                    case "Nghi Xuân District":
                         doc(HT_Nghi_Xuan);
                         break;
-                    case "Huyện Thạch Hà":
+                    case "Thạch Hà District":
                         doc(HT_Thach_Ha);
                         break;
-                    case "Huyện Vũ Quang":
+                    case "Vũ Quang District":
                         doc(HT_Vu_Quang);
                         break;
                     case "Hải Dương City":
@@ -1064,25 +1070,25 @@ public class tintuc extends AppCompatActivity {
                     case "Thị xã Kinh Môn":
                         doc(HD_Kinh_Mon);
                         break;
-                    case "Huyện Thanh Hà":
+                    case "Thanh Hà District":
                         doc(HD_Thanh_Ha);
                         break;
-                    case "Huyện Tứ Kỳ":
+                    case "Tứ Kỳ District":
                         doc(HD_Tu_Ky);
                         break;
                     case "City Hưng Yên":
                         doc(HY_TP_Hung_Yen);
                         break;
-                    case "Huyện Yên Mỹ":
+                    case "Yên Mỹ District":
                         doc(HY_Yen_My);
                         break;
-                    case "Huyện Văn Giang":
+                    case "Văn Giang District":
                         doc(HY_Van_Giang);
                         break;
-                    case "Huyện Khoái Châu":
+                    case "Khoái Châu District":
                         doc(HY_Khoai_Chau);
                         break;
-                    case "Huyện Ân Thi":
+                    case "Ân Thi District":
                         doc(HY_An_Thi);
                         break;
                     case "Rạch Giá City":
@@ -1091,82 +1097,82 @@ public class tintuc extends AppCompatActivity {
                     case "Hà Tiên City":
                         doc(KG_TP_Ha_Tien);
                         break;
-                    case "Huyện Kiên Lương":
+                    case "Kiên Lương District":
                         doc(KG_Kien_Luong);
                         break;
-                    case "Huyện Tân Hiệp":
+                    case "Tân Hiệp District":
                         doc(KG_Tan_Hiep);
                         break;
-                    case "Huyện Giồng Riềng":
+                    case "Giồng Riềng District":
                         doc(KG_Giong_Rieng);
                         break;
-                    case "Huyện Gò Quao":
+                    case "Gò Quao District":
                         doc(KG_Go_Quao);
                         break;
-                    case "Huyện An Biên":
+                    case "An Biên District":
                         doc(KG_An_Bien);
                         break;
-                    case "Huyện Vĩnh Thuận":
+                    case "Vĩnh Thuận District":
                         doc(KG_Vinh_Thuan);
                         break;
                     case "Lai Châu City":
                         doc(LC_TP_Lai_Chau);
                         break;
-                    case "Huyện Tam Đường":
+                    case "Tam Đường District":
                         doc(LC_Tam_Duong);
                         break;
-                    case "Huyện Phong Thổ":
+                    case "Phong Thổ District":
                         doc(LC_Phong_Tho);
                         break;
-                    case "Huyện Than Uyên":
+                    case "Than Uyên District":
                         doc(LC_Than_Uyen);
                         break;
-                    case "Huyện Sa Pa":
+                    case "Sa Pa District":
                         doc(LC_Sa_Pa);
                         break;
-                    case "Huyện Bát Xát":
+                    case "Bát Xát District":
                         doc(LC_Bat_Xat);
                         break;
-                    case "Huyện Bắc Hà":
+                    case "Bắc Hà District":
                         doc(LC_Bac_Ha);
                         break;
-                    case "Huyện Si Ma Cai":
+                    case "Si Ma Cai District":
                         doc(LC_Si_Ma_Cai);
                         break;
                     case "Vinh City":
                         doc(NA_TP_Vinh);
                         break;
-                    case "Huyện Diễn Châu":
+                    case "Diễn Châu District":
                         doc(NA_Dien_Chau);
                         break;
-                    case "Huyện Yên Thành":
+                    case "Yên Thành District":
                         doc(NA_Yen_Thanh);
                         break;
-                    case "Huyện Hưng Nguyên":
+                    case "Hưng Nguyên District":
                         doc(NA_Hung_Nguyen);
                         break;
-                    case "Huyện Quỳ Hợp":
+                    case "Quỳ Hợp District":
                         doc(NA_Quy_Hop);
                         break;
-                    case "Huyện Quỳ Châu":
+                    case "Quỳ Châu District":
                         doc(NA_Quy_Chau);
                         break;
-                    case "Huyện Tân Kỳ":
+                    case "Tân Kỳ District":
                         doc(NA_Tan_Ky);
                         break;
-                    case "Huyện Anh Sơn":
+                    case "Anh Sơn District":
                         doc(NA_Anh_Son);
                         break;
-                    case "Huyện Con Cuông":
+                    case "Con Cuông District":
                         doc(NA_Con_Cuong);
                         break;
-                    case "Huyện Tương Dương":
+                    case "Tương Dương District":
                         doc(NA_Tuong_Duong);
                         break;
-                    case "Huyện Nam Đàn":
+                    case "Nam Đàn District":
                         doc(NA_Nam_Dan);
                         break;
-                    case "Huyện Thanh Chương":
+                    case "Thanh Chương District":
                         doc(NA_Thanh_Chuong);
                         break;
                     case "Ninh Bình City":
@@ -1175,73 +1181,73 @@ public class tintuc extends AppCompatActivity {
                     case "Tam Điệp City":
                         doc(NB_TP_Tam_Diep);
                         break;
-                    case "Huyện Nho Quan":
+                    case "Nho Quan District":
                         doc(NB_Nho_Quan);
                         break;
                     case "Quảng Ngãi City":
                         doc(QN_TP_Quang_Ngai);
                         break;
-                    case "Huyện Ba Tơ":
+                    case "Ba Tơ District":
                         doc(QN_Ba_To);
                         break;
-                    case "Huyện Bình Sơn":
+                    case "Bình Sơn District":
                         doc(QN_Binh_Son);
                         break;
-                    case "Huyện Lý Sơn":
+                    case "Lý Sơn District":
                         doc(QN_Ly_Son);
                         break;
-                    case "Huyện Minh Long":
+                    case "Minh Long District":
                         doc(QN_Minh_Long);
                         break;
-                    case "Huyện Mộ Đức":
+                    case "Mộ Đức District":
                         doc(QN_Mo_Duc);
                         break;
-                    case "Huyện Nghĩa Hành":
+                    case "Nghĩa Hành District":
                         doc(QN_Nghia_Hanh);
                         break;
-                    case "Huyện Sơn Hà":
+                    case "Sơn Hà District":
                         doc(QN_Son_Ha);
                         break;
-                    case "Huyện Sơn Tịnh":
+                    case "Sơn Tịnh District":
                         doc(QN_Son_Tinh);
                         break;
-                    case "Huyện Trà Bồng":
+                    case "Trà Bồng District":
                         doc(QN_Tra_Bong);
                         break;
-                    case "Huyện Tư Nghĩa":
+                    case "Tư Nghĩa District":
                         doc(QN_Tu_Nghia);
                         break;
                     case "Sơn La City":
                         doc(SL_TP_Son_La);
                         break;
-                    case "Huyện Bắc Yên":
+                    case "Bắc Yên District":
                         doc(SL_Bac_Yen);
                         break;
-                    case "Huyện Mộc Châu":
+                    case "Mộc Châu District":
                         doc(SL_Moc_Chau);
                         break;
-                    case "Huyện Phù Yên":
+                    case "Phù Yên District":
                         doc(SL_Phu_Yen);
                         break;
-                    case "Huyện Sông Mã":
+                    case "Sông Mã District":
                         doc(SL_Song_Ma);
                         break;
-                    case "Huyện Yên Châu":
+                    case "Yên Châu District":
                         doc(SL_Yen_Chau);
                         break;
                     case "Thái Bình City":
                         doc(TB_TP_Thai_Binh);
                         break;
-                    case "Huyện Đông Hưng":
+                    case "Đông Hưng District":
                         doc(TB_Dong_Hung);
                         break;
-                    case "Huyện Hưng Hà":
+                    case "Hưng Hà District":
                         doc(TB_Hung_Ha);
                         break;
-                    case "Huyện Tiền Hải":
+                    case "Tiền Hải District":
                         doc(TB_Tien_Hai);
                         break;
-                    case "Huyện Vũ Thư":
+                    case "Vũ Thư District":
                         doc(TB_Vu_Thu);
                         break;
                     case "Thái Nguyên City":
@@ -1253,91 +1259,91 @@ public class tintuc extends AppCompatActivity {
                     case "Thị xã Bỉm Sơn":
                         doc(TH_Bim_Son);
                         break;
-                    case "Huyện Quảng Xương":
+                    case "Quảng Xương District":
                         doc(TH_Quan_Xuong);
                         break;
-                    case "Huyện Hậu Lộc":
+                    case "Hậu Lộc District":
                         doc(TH_Hau_Loc);
                         break;
-                    case "Huyện Nga Sơn":
+                    case "Nga Sơn District":
                         doc(TH_Nga_Son);
                         break;
-                    case "Huyện Triệu Sơn":
+                    case "Triệu Sơn District":
                         doc(TH_Trieu_Son);
                         break;
-                    case "Huyện Nông Cống":
+                    case "Nông Cống District":
                         doc(TH_Nong_Cong);
                         break;
-                    case "Huyện Ngọc Lặc":
+                    case "Ngọc Lặc District":
                         doc(TH_Ngoc_Lac);
                         break;
-                    case "Huyện Cẩm Thủy":
+                    case "Cẩm Thủy District":
                         doc(TH_Cam_Thuy);
                         break;
-                    case "Huyện Vĩnh Lộc":
+                    case "Vĩnh Lộc District":
                         doc(TH_Vinh_Loc);
                         break;
-                    case "Huyện Thọ Xuân":
+                    case "Thọ Xuân District":
                         doc(TH_Tho_Xuan);
                         break;
-                    case "Huyện Thường Xuân":
+                    case "Thường Xuân District":
                         doc(TH_Thuong_Xuan);
                         break;
-                    case "Huyện Lang Chánh":
+                    case "Lang Chánh District":
                         doc(TH_Lang_Chanh);
                         break;
-                    case "Huyện Quan Hóa":
+                    case "Quan Hóa District":
                         doc(TH_Quan_Hoa);
                         break;
-                    case "Huyện Quan Sơn":
+                    case "Quan Sơn District":
                         doc(TH_Quan_Son);
                         break;
-                    case "Huyện Mường Lát":
+                    case "Mường Lát District":
                         doc(TH_Muong_Lat);
                         break;
-                    case "Huyện Phong Điền":
+                    case "Phong Điền District":
                         doc(TTH_Phong_Dien);
                         break;
-                    case "Huyện Phú Vang":
+                    case "Phú Vang District":
                         doc(TTH_Phu_Vang);
                         break;
-                    case "Huyện Phú Lộc":
+                    case "Phú Lộc District":
                         doc(TTH_Phu_Loc);
                         break;
-                    case "Huyện A Lưới":
+                    case "A Lưới District":
                         doc(TTH_A_Luoi);
                         break;
-                    case "Huyện Chợ Gạo":
+                    case "Chợ Gạo District":
                         doc(TG_Cho_Gao);
                         break;
-                    case "Huyện Cầu Kè":
+                    case "Cầu Kè District":
                         doc(TV_Cau_Ke);
                         break;
-                    case "Huyện Châu thành":
+                    case "Châu thành District":
                         doc(BT_Chau_Thanh);
                         break;
-                    case "Huyện Duyên Hải":
+                    case "Duyên Hải District":
                         doc(TV_Duyen_Hai);
                         break;
-                    case "Huyện Tiểu Cần":
+                    case "Tiểu Cần District":
                         doc(TV_Tieu_Can);
                         break;
-                    case "Huyện Trà Cú":
+                    case "Trà Cú District":
                         doc(TV_Tra_Cu);
                         break;
                     case "Tuyên Quang City":
                         doc(TQ_TP_Tuyen_Quang);
                         break;
-                    case "Huyện Sơn Dương":
+                    case "Sơn Dương District":
                         doc(TQ_Son_Duong);
                         break;
-                    case "Huyện Lập Thạch":
+                    case "Lập Thạch District":
                         doc(VP_Lap_Thach);
                         break;
-                    case "Huyện Vĩnh Tường":
+                    case "Vĩnh Tường District":
                         doc(VP_Vinh_Tuong);
                         break;
-                    case "Huyện Yên Lạc":
+                    case "Yên Lạc District":
                         doc(VP_Yen_Lac);
                         break;
                     case "Yên Bái City":
@@ -1349,10 +1355,10 @@ public class tintuc extends AppCompatActivity {
                     case "Quận Bình Thạnh":
                         doc(Quan_Binh_Thanh);
                         break;
-                    case "Huyện Nhà Bè":
+                    case "Nhà Bè District":
                         doc(Huyen_Nha_Be);
                         break;
-                    case "Huyện Cần Giờ":
+                    case "Cần Giờ District":
                         doc(Huyen_Can_Gio);
                         break;
                     case "Quận Tân Phú":
@@ -1364,10 +1370,10 @@ public class tintuc extends AppCompatActivity {
                     case "Quận Thủ Đức":
                         doc(Quan_Thu_Duc);
                         break;
-                    case "Huyện Củ Chi":
+                    case "Củ Chi District":
                         doc(Huyen_Cu_Chi);
                         break;
-                    case "Huyện Hóc Môn":
+                    case "Hóc Môn District":
                         doc(Huyen_Hoc_Mon);
                         break;
                     case "Quận Đông Anh":
@@ -1451,13 +1457,13 @@ public class tintuc extends AppCompatActivity {
                     case "Quận 11":
                         doc(Quan_Muoi_Mot);
                         break;
-                    case "Huyện Châu Thành":
+                    case "Châu Thành District":
                         doc(TV_Chau_Thanh);
                         break;
-                    case "Huyện La Gi":
+                    case "La Gi District":
                         doc(BTHUAN_La_Gi);
                         break;
-                    case "Huyện Kim Thành":
+                    case "Kim Thành District":
                         doc(HD_Kim_Thanh);
                         break;
                     case "Cẩm Phả City":
@@ -1478,37 +1484,37 @@ public class tintuc extends AppCompatActivity {
                     case "Tây Ninh City":
                         doc(TN_Tay_Ninh);
                         break;
-                    case "Huyện Trảng Bàng":
+                    case "Trảng Bàng District":
                         doc(TN_TrangBang);
                         break;
-                    case "Huyện châu thành":
+                    case "châu thành":
                         doc(TN_Chau_Thanh);
                         break;
-                    case "Huyện Tân Châu":
+                    case "Tân Châu District":
                         doc(TN_Tan_Chau);
                         break;
                     case "Uông Bí City":
                         doc(QN_TPUong_Bi);
                         break;
-                    case "Huyện Cô Tô":
+                    case "Cô Tô District":
                         doc(QNCo_To);
                         break;
                     case "Thị xã Quảng Yên":
                         doc(QNQuang_Yen);
                         break;
-                    case "Huyện Hòa Thành":
+                    case "Hòa Thành District":
                         doc(TN_Hoa_Thanh);
                         break;
-                    case "Huyện Bến Cầu":
+                    case "Bến Cầu District":
                         doc(TN_Ben_Cau);
                         break;
-                    case "Huyện Dương Minh Châu":
+                    case "Dương Minh Châu District":
                         doc(TN_Duong_Minh_Chau);
                         break;
-                    case "Huyện Gò Dầu":
+                    case "Gò Dầu District":
                         doc(TN_Go_Dau);
                         break;
-                    case "Huyện Tân Biên":
+                    case "Tân Biên District":
                         doc(TN_Tan_Bien);
                         break;
                     case "Huế City":
@@ -1523,22 +1529,22 @@ public class tintuc extends AppCompatActivity {
                     case "Lạng Sơn City":
                         doc(LS_TP_Lang_Son);
                         break;
-                    case "Huyện Bình Gia":
+                    case "Bình Gia District":
                         doc(LS_Binh_Gia);
                         break;
-                    case "Huyện Bắc Sơn":
+                    case "Bắc Sơn District":
                         doc(LS_Bac_Son);
                         break;
-                    case "Huyện Văn Quan":
+                    case "Văn Quan District":
                         doc(LS_Van_Quan);
                         break;
-                    case "Huyện Lộc Bình":
+                    case "Lộc Bình District":
                         doc(LS_Loc_Binh);
                         break;
-                    case "Huyện Đinh Lập":
+                    case "Đinh Lập District":
                         doc(LS_Dinh_Lap);
                         break;
-                    case "Huyện Hữu Lũng":
+                    case "Hữu Lũng District":
                         doc(LS_Huu_Lung);
                         break;
                     case "Thị trấn Neo":

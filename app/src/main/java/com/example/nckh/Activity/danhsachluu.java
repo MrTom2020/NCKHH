@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.nckh.Adapter.trangAdp;
+import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.model.thongtin;
 

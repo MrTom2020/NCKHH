@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.model.thongtinnguoidung;
 import com.google.android.gms.tasks.OnCompleteListener;

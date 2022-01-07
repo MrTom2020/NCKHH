@@ -11,4 +11,6 @@
     <string name="pm">Pm 2.5:</string>
     <string name="dt">Date</string>
     <string name="aqi">AQI</string>
+    <string name="map_api_key">AIzaSyCCM182LH2JhZbxulRHzrdcwiYIQdwcRns</string>
+    <string name="my_app_id">mystitchapp-qwern</string>
 </resources>

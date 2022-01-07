@@ -1,19 +1,23 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nckh.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,12 +27,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class trangdangky extends AppCompatActivity {
 
-    private EditText edtten,edtmk,edtdc,edtns;
+    private EditText edtten,edtmk,edtns;
+    private TextView txtdc;
     private Button btnthoat,btndy;
     private DatabaseReference databaseReference;
     public FirebaseAuth firebaseAuth;
     public FirebaseDatabase firebaseDatabase;
     public ProgressDialog progressDialog;
+    private Intent intent;
+    private String dcx,dcy;
+    public int key01;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +47,14 @@ public class trangdangky extends AppCompatActivity {
     }
     private void dangkynut()
     {
-        edtdc = findViewById(R.id.edtdiachi);
+        txtdc = findViewById(R.id.edtdiachi);
         edtmk = findViewById(R.id.edtmk);
         edtns = findViewById(R.id.editTextDate);
         edtten = findViewById(R.id.edtten);
         btndy = findViewById(R.id.btndd);
         btnthoat = findViewById(R.id.btnthoat);
         edtns.setEnabled(false);
-        edtdc.setEnabled(false);
+       // edtdc.setFocusable(false);
         edtmk.setEnabled(false);
         btndy.setEnabled(false);
     }
@@ -85,33 +93,13 @@ public class trangdangky extends AppCompatActivity {
                     else
                     {
                         edtmk.setBackgroundColor(0xfff0f0f0);
-                        edtdc.setEnabled(true);
-                    }
-                }
-                return false;
-            }
-        });
-        edtdc.setOnKeyListener(new View.OnKeyListener()
-        {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
-                if(event.getAction() == KeyEvent.ACTION_UP)
-                {
-                    if(edtdc.getText().length() < 1)
-                    {
-                        edtdc.setBackgroundColor(0xfffff000);
-                    }
-                    else
-                    {
-                        edtdc.setBackgroundColor(0xfff0f0f0);
                         edtns.setEnabled(true);
                     }
                 }
-
                 return false;
             }
         });
+
         edtns.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
@@ -155,7 +143,7 @@ public class trangdangky extends AppCompatActivity {
                     DatabaseReference databaseReference2 = databaseReference.child(k);
                     databaseReference2.child("Tên").setValue(taikhoan);
                     databaseReference2.child("Mật khẩu").setValue(mk);
-                    databaseReference2.child("Địa chỉ").setValue(edtdc.getText ().toString());
+                    databaseReference2.child("Địa chỉ").setValue(txtdc.getText ().toString());
                     databaseReference2.child("Ngày sinh").setValue(edtns.getText().toString());
                     progressDialog.dismiss ();
                     finish();
@@ -172,6 +160,7 @@ public class trangdangky extends AppCompatActivity {
     {
         btnthoat.setOnClickListener(new sukiencuatoi());
         btndy.setOnClickListener(new sukiencuatoi());
+        txtdc.setOnClickListener(new sukiencuatoi());
     }
     private void ax()
     {
@@ -211,6 +200,24 @@ public class trangdangky extends AppCompatActivity {
             {
                 ax();
             }
+            if(view.equals(txtdc))
+            {
+               intent = new Intent(trangdangky.this,Address_Us.class);
+                startActivityForResult(intent,key01);
+            }
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        if(requestCode == key01 && resultCode == RESULT_OK && data != null)
+        {
+            Bundle bundle = data.getBundleExtra("dcc");
+            String dc = bundle.getString("dcn");
+            dcx = bundle.getString("dcx");
+            dcy = bundle.getString("dcy");
+            txtdc.setText(dc);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.nckh;
+package com.example.nckh.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.Service.ConnectionReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -183,7 +185,7 @@ public class MainActivity extends Activity {
           }
           if(view.equals(btndk))
           {
-              Intent intent = new Intent(MainActivity.this,trangdangky.class);
+              Intent intent = new Intent(MainActivity.this, trangdangky.class);
               startActivity(intent);
           }
         }

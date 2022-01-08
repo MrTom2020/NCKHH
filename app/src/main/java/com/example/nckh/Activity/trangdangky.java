@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nckh.R;
+import com.example.nckh.SQL.dulieusqllite;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,6 +47,8 @@ public class trangdangky extends AppCompatActivity {
     public FirebaseAuth firebaseAuth;
     public FirebaseDatabase firebaseDatabase;
     public int key01;
+    private Cursor cursor;
+    private dulieusqllite dl;
     public ProgressDialog progressDialog;
     private String _KeyPassWord = "";
     private TextView _txt_List_Password;
@@ -493,6 +497,7 @@ public class trangdangky extends AppCompatActivity {
                     databaseReference2.child("Tình trạng").setValue(false);
                     String td = dcx + ","+ dcy;
                     Readdata(k,taikhoan,edtdc.getText().toString(),_EdtSdt.getText().toString(),_txt_List_Password.getText().toString(),mk,"0",edtns.getText().toString(),td,"...");
+                    taodt(k);
                     progressDialog.dismiss ();
                     finish();
                 }
@@ -503,6 +508,21 @@ public class trangdangky extends AppCompatActivity {
             }
 
         });
+    }
+    private void taodt(String id)
+    {
+        try {
+            dl = new dulieusqllite(trangdangky.this, "dulieunguoidung.sqlite", null, 1);
+            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50),ChuoiBM VARCHAR(500))");
+            dl.truyvancoketqua("INSERT INTO nguoidung VALUES('"+id+"','"+edtten.getText().toString()+"','"+edtmk.getText().toString()+"','"+edtns.getText().toString()+"','"+edtdc.getText().toString()+"','"+_EdtSdt.getText().toString()+"','"+_txt_List_Password.getText().toString()+"')");
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(trangdangky.this,"Error! An error occurred. Please try again later",Toast.LENGTH_SHORT).show();
+            Log.d("AAAAAAAAAAAAAAAAAAA",e.toString());
+            Intent intent = new Intent(trangdangky.this,MainActivity.class);
+            startActivity(intent);
+        }
     }
     private void dangkysukien()
     {

@@ -112,7 +112,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/btn_login"
-            android:text="Tải lại"
+            android:text="Reload"
             android:textColor="#2B0000"
             android:textStyle="bold|italic" />
 

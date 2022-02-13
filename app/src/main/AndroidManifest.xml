@@ -22,11 +22,29 @@
         android:theme="@style/Theme.NCKH"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.show_PM"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.Tutorial_PM"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Tutorial_AQI"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.QMK"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Address_Us"
             android:exported="false" />
         <activity
             android:name=".Activity.Exportdata"
-            android:theme="@android:style/Theme.Holo.Dialog"></activity>
+            android:theme="@android:style/Theme.Holo.Dialog" />
         <activity android:name=".model.putnotification" />
         <activity android:name=".Activity.tintuc" />
         <activity
@@ -42,11 +60,11 @@
             android:value="AIzaSyCCM182LH2JhZbxulRHzrdcwiYIQdwcRns" />
 
         <activity android:name=".Activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <service android:name=".Service.MyFirebaseService">

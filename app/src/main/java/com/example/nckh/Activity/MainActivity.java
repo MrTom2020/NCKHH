@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends Activity {
 
     private EditText edtName,edtmk;
-    private Button btndn,btndk;
+    private Button btndn,btndk,btn_qmk;
     public FirebaseAuth firebaseAuth;
     public Intent intent;
     static String tend,ten1;
@@ -102,9 +102,10 @@ public class MainActivity extends Activity {
        // int kss = findViewById(KeyEvent.KEYCODE_BACK)
         edtmk = findViewById(R.id.pass);
         edtName.setText("tomhumchinvn@gmail.com");
-        edtmk.setText("1234567810");
+        edtmk.setText("12345678 ");
         btndn = findViewById(R.id.button);
         btndk = findViewById(R.id.btndangkytk);
+        btn_qmk = findViewById(R.id.forgot_password);
         edtName.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
@@ -152,6 +153,7 @@ public class MainActivity extends Activity {
     {
         btndn.setOnClickListener(new sukiencuatoi());
         btndk.setOnClickListener(new sukiencuatoi());
+        btn_qmk.setOnClickListener(new sukiencuatoi());
     }
     private void ax(String eMail)
     {
@@ -182,6 +184,11 @@ public class MainActivity extends Activity {
              {
                  IsCheck();
              }
+          }
+          if(view.equals(btn_qmk))
+          {
+              intent = new Intent(MainActivity.this,QMK.class);
+              startActivity(intent);
           }
           if(view.equals(btndk))
           {

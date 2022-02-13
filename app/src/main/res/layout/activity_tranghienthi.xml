@@ -9,6 +9,17 @@
     android:id="@+id/rl"
     android:background="@color/mau3">
 
+<!--    <com.github.mikephil.charting.charts.LineChart-->
+<!--        android:id="@+id/bc"-->
+<!--        android:layout_width="393dp"-->
+<!--        android:layout_height="299dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:layout_marginBottom="133dp"-->
+<!--        android:background="#dadad9" />-->
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bc"
         android:layout_width="393dp"
@@ -19,9 +30,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="133dp"
-        android:background="#dadad9" />
+        android:fontFamily="@font/s"
+        android:background="#dadad9"
+        android:textStyle="italic|bold"/>
 
     <TextView
+        android:fontFamily="@font/s"
         android:id="@+id/txtnd"
         android:layout_width="141dp"
         android:layout_height="133dp"
@@ -31,24 +45,28 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/tuybiennn"
         android:gravity="center"
-        android:textStyle="bold|italic"
         android:textAlignment="center"
-        android:textColor="@color/mau3" />
+        android:textColor="@color/mau3"
+        android:textStyle="bold|italic" />
 
     <TextView
+        android:fontFamily="@font/s"
         android:id="@+id/txtda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bc"
         android:layout_marginStart="17dp"
         android:layout_marginEnd="24dp"
+        android:textStyle="italic|bold"
         android:layout_marginBottom="97dp"
         android:layout_toEndOf="@+id/txtnd"
         android:background="@drawable/tuybiennn"
         android:textColor="@color/mau3"/>
 
     <TextView
+        android:fontFamily="@font/s"
         android:id="@+id/textView9"
+        android:textStyle="italic|bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtda"
@@ -59,12 +77,15 @@
         android:textColor="@color/mau3"/>
 
     <ScrollView
+
         android:layout_width="403dp"
         android:layout_height="139dp"
         android:layout_alignParentStart="true"
+        android:textStyle="italic|bold"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
+        android:fontFamily="@font/s"
         android:layout_marginEnd="9dp"
         android:layout_marginBottom="-6dp">
 
@@ -74,6 +95,7 @@
             android:orientation="vertical">
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c1"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -81,6 +103,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c2"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -88,6 +111,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c3"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -95,6 +119,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c4"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -102,6 +127,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c5"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -109,6 +135,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c6"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -116,6 +143,7 @@
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:fontFamily="@font/s"
                 android:id="@+id/c7"
                 android:textColor="#2b0000"
                 android:textStyle="italic|bold"
@@ -123,6 +151,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
+                android:fontFamily="@font/s"
                 android:id="@+id/btnmdbui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,11 +159,14 @@
                 android:paddingBottom="20sp"
                 android:text="PM 2.5 "
                 android:textColor="#ffffff"
+                android:textStyle="italic|bold"
                 android:textAlignment="center"
                 android:gravity="center"/>
 
             <Button
+                android:fontFamily="@font/s"
                 android:id="@+id/btnmdkk"
+                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tuybiennut2"
@@ -160,6 +192,7 @@
 
     <TextView
         android:id="@+id/txtttht"
+        android:fontFamily="@font/s"
         android:layout_width="183dp"
         android:layout_height="53dp"
         android:layout_above="@+id/bc"

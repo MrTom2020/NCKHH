@@ -6,4 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Activity.show_PM">
 
+<!--    <com.github.anastr.speedviewlib.SpeedView-->
+<!--        android:id="@+id/speedView"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        app:sv_unit="..."-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtPM"-->
+<!--        android:layout_width="128dp"-->
+<!--        android:layout_height="33dp"-->
+<!--        android:layout_marginTop="288dp"-->
+<!--        android:text="TextView"-->
+<!--        android:background="#333333"-->
+<!--        android:textColor="#ffffff"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.395"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <com.anychart.AnyChartView-->
+<!--        android:id="@+id/any_chart"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginStart="44dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <ListView
+        android:id="@+id/ls_pm"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

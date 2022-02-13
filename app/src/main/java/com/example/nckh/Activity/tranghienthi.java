@@ -1,11 +1,9 @@
 package com.example.nckh.Activity;
 
-import static com.example.nckh.R.drawable;
 import static com.example.nckh.R.id;
 import static com.example.nckh.R.layout;
 import static com.example.nckh.model.WifiApp.cb;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,11 +11,13 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,7 +31,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -41,9 +40,15 @@ import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.Service.ConnectionReceiver;
 import com.example.nckh.model.thongtin;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,15 +68,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class tranghienthi extends Activity
+public class tranghienthi extends Activity implements
+        OnChartGestureListener, OnChartValueSelectedListener
 {
-    private  BarChart barChart;
+    private static final String TAG = "MainActivity";
+    private LineChart lineChart;
     private CheckBox c1,c2,c3,c4,c5,c6,c7;
     private Button btnMDBui,btnmdkk;
     private TextView txtnd,txtda,txtmq135,txttt;
     private ImageView imageView;
     private ImageButton imageButton2;
     private FirebaseDatabase database;
+    private Intent intent;
     public DatabaseReference databaseReference,databaseReference1;
     public String tt ="";
     public int nn = 1;
@@ -82,28 +90,36 @@ public class tranghienthi extends Activity
     public Cursor cursor;
     public Dialog dialog;
     public ArrayList<BarEntry> arrayList = new ArrayList<>();
+    //private LineDataSet lineDataSet;
+    private BarChart barChart;
+    private ArrayList<Entry> entryArrayList = new ArrayList<>();
+   // private ArrayList<ILineDataSet> dataSets = new ArrayList<>();
     public ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
     public NotificationManagerCompat notificationManagerCompat;
     public trangAdp adapter;
 
-    public tranghienthi() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_tranghienthi);
-        dangkynut();
-        notificationManagerCompat =NotificationManagerCompat.from(this);
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-        check();
+       dangkynut();
+       // notificationManagerCompat =NotificationManagerCompat.from(this);
+     //  ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+       // check();
         taodt();
-        ax3();
+       ax3();
         registerForContextMenu(imageButton2);
         dangkysukien();
+       // LineChart_AQI();
     }
     private void dangkynut()
     {
+//        lineChart = findViewById(id.bc);
+//        lineChart.setOnChartGestureListener(tranghienthi.this);
+//       lineChart.setOnChartValueSelectedListener(tranghienthi.this);
+//        lineChart.setDragEnabled(true);
+//        lineChart.setSaveEnabled(false);
         barChart = findViewById(id.bc);
         c1 = findViewById(id.c1);
         c2 = findViewById(id.c2);
@@ -147,6 +163,14 @@ public class tranghienthi extends Activity
     {
         switch (item.getItemId())
         {
+            case id.info_about_PM:
+                intent = new Intent(tranghienthi.this,Tutorial_PM.class);
+                startActivity(intent);
+                break;
+            case id.info_about_AQI:
+                intent = new Intent(tranghienthi.this,Tutorial_AQI.class);
+                startActivity(intent);
+                break;
             case id.clear_t:
                 ClearAllData();
                 break;
@@ -183,8 +207,8 @@ public class tranghienthi extends Activity
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference("lichsu");
             databaseReference1 = database.getReference();
-             barChart.clear();
-             barData.clearValues();
+            // barChart.clear();
+            // barData.clearValues();
             databaseReference1.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -196,9 +220,9 @@ public class tranghienthi extends Activity
                     kk = !mdbui.equals("") ? Double.parseDouble(mdbui) : 0;
                     double t = !clkk.equals("") ? Double.parseDouble(clkk) : 0;
                     txtnd.setText(nd + " C ");
-                    txtnd.setCompoundDrawablesWithIntrinsicBounds(drawable.thermometer, 0, 0, 0);
+                    txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                     txtda.setText(" : " + da + " % ");
-                    txtda.setCompoundDrawablesWithIntrinsicBounds(drawable.droplets, 0, 0, 0);
+                    txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
                     txtmq135.setText(" PM  " + mdbui + "μg/m3");
                     GetRults(t,kk);
                 }
@@ -225,10 +249,10 @@ public class tranghienthi extends Activity
                         nn = 1;
                     }
                     doc3(kkk,clkk,tg,dd);
-                    int vt = tg.indexOf(" ");
-                    String time = tg.substring(vt);
-                    String date = tg.substring(0,vt);
-                    arrayList5.add(new thongtin(kkk, nd, da, clkk, mdb, time, date));
+//                    int vt = tg.indexOf(" ");
+//                    String time = tg.substring(vt);
+//                    String date = tg.substring(0,vt);
+//                    arrayList5.add(new thongtin(kkk, nd, da, clkk, mdb, time, date));
                 }
 
                 @Override
@@ -284,9 +308,9 @@ public class tranghienthi extends Activity
                 kk = mdbui != "" ? Double.parseDouble(mdbui) : 0;
                 double t = clkk != "" ? Double.parseDouble(clkk) : 0;
                 txtnd.setText(nd + " C ");
-                txtnd.setCompoundDrawablesWithIntrinsicBounds(drawable.thermometer, 0, 0, 0);
+                txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                 txtda.setText(" : " + da + " % ");
-                txtda.setCompoundDrawablesWithIntrinsicBounds(drawable.droplets, 0, 0, 0);
+                txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
                 txtmq135.setText(" AQI  " + clkk);
                 GetRults(t,kk);
             }
@@ -423,10 +447,228 @@ public class tranghienthi extends Activity
     @Override
     protected void onStart()
     {
+        dangkynut();
         check();
         super.onStart();
     }
 
+//    private void LineChart_AQI()
+//    {
+//        LimitLine limitLineT = new LimitLine(65f,"Danger");
+//        limitLineT.setLineWidth(4f);
+//        limitLineT.enableDashedLine(10f,10f,0f);
+//        limitLineT.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+//        limitLineT.setTextSize(15f);
+//
+//        LimitLine limitLineB = new LimitLine(35f,"Too Low");
+//        limitLineB.setLineWidth(4f);
+//        limitLineB.enableDashedLine(10f,10f,10f);
+//        limitLineB.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+//        limitLineB.setTextSize(15f);
+//
+//        YAxis leftAxis = lineChart.getAxisLeft();
+//        leftAxis.removeAllLimitLines();
+//        leftAxis.addLimitLine(limitLineT);
+//        leftAxis.addLimitLine(limitLineB);
+//        //leftAxis.removeAllLimitLines();Xóa các đường line
+//        leftAxis.setAxisMaximum(100f);
+//        leftAxis.setAxisMinimum(25f);
+//        leftAxis.enableGridDashedLine(10f,10f,0);
+//        leftAxis.setDrawLimitLinesBehindData(true);
+//
+//        lineChart.getAxisRight().setEnabled(false);
+//        entryArrayList.add(new Entry(0,60f));
+//        entryArrayList.add(new Entry(1,50f));
+//        entryArrayList.add(new Entry(2,70f));
+//        entryArrayList.add(new Entry(3,30f));
+//        entryArrayList.add(new Entry(4,50f));
+//        entryArrayList.add(new Entry(5,60f));
+//        entryArrayList.add(new Entry(6,70f));
+//        lineDataSet = new LineDataSet(entryArrayList,"Demo");
+//        lineDataSet.setFillAlpha(130);
+//        lineDataSet.setLineWidth(3f);
+//        lineDataSet.setColor(0xff2b0000);
+//        lineDataSet.setValueTextSize(10f);
+//        lineDataSet.setValueTextColor(0xfff0f0f0);
+//        dataSets.add(lineDataSet);
+//        LineData data = new LineData(dataSets);
+//
+//        lineChart.setData(data);
+//
+//        String[]values = new String[]{"January","February","March", "April", "May", "June",
+//                "July"};//, "August", "September", "October", "November", "December"};
+//
+//
+//        XAxis xAxis = lineChart.getXAxis();
+//        xAxis.setValueFormatter(new IndexAxisValueFormatter(values));
+//        xAxis.setGranularity(1);
+//
+//        c1.setBackgroundColor(0xff00E400);
+//        c2.setBackgroundColor(0xffFFFF00);
+//        c3.setBackgroundColor(0xffFF7E00);
+//        c4.setBackgroundColor(0xffFF0000);
+//        c5.setBackgroundColor(0xff8F3F97);
+//        c6.setBackgroundColor(0xff7E0023);
+//
+//        String gd = "Good";
+//        String Av = "Medium";
+//        String P = "Least";
+//        String B = "Bad";
+//        String VB = "Very bad";
+//        String D = "Dengoures";
+//
+//        c1.setText (gd);
+//        c2.setText (Av);
+//        c3.setText (P);
+//        c4.setText (B);
+//        c5.setText (VB);
+//        c6.setText(D);
+//        //lineChart.
+//       // lineChart.getXAxis().setEnabled(false);
+//
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+//    }
+
+//    private void LineChart_PM()
+//    {
+//        LimitLine limitLineT = new LimitLine(65f,"Danger");
+//        limitLineT.setLineWidth(4f);
+//        limitLineT.enableDashedLine(10f,10f,0f);
+//        limitLineT.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+//        limitLineT.setTextSize(15f);
+//
+//        LimitLine limitLineB = new LimitLine(35f,"Too Low");
+//        limitLineB.setLineWidth(4f);
+//        limitLineB.enableDashedLine(10f,10f,10f);
+//        limitLineB.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+//        limitLineB.setTextSize(15f);
+//
+//        YAxis leftAxis = lineChart.getAxisLeft();
+//        leftAxis.removeAllLimitLines();
+//        leftAxis.addLimitLine(limitLineT);
+//        leftAxis.addLimitLine(limitLineB);
+//        //leftAxis.removeAllLimitLines();Xóa các đường line
+//        leftAxis.setAxisMaximum(100f);
+//        leftAxis.setAxisMinimum(25f);
+//        leftAxis.enableGridDashedLine(10f,10f,0);
+//        leftAxis.setDrawLimitLinesBehindData(true);
+//
+//        lineChart.getAxisRight().setEnabled(false);
+//        entryArrayList.add(new Entry(0,60f));
+//        entryArrayList.add(new Entry(1,50f));
+//        entryArrayList.add(new Entry(2,70f));
+//        entryArrayList.add(new Entry(3,30f));
+//        entryArrayList.add(new Entry(4,50f));
+//        entryArrayList.add(new Entry(5,60f));
+//        entryArrayList.add(new Entry(6,70f));
+//        lineDataSet = new LineDataSet(entryArrayList,"Demo");
+//        lineDataSet.setFillAlpha(130);
+//        lineDataSet.setLineWidth(3f);
+//        lineDataSet.setColor(0xff2b0000);
+//        lineDataSet.setValueTextSize(10f);
+//        lineDataSet.setValueTextColor(0xfff0f0f0);
+//        dataSets.add(lineDataSet);
+//        LineData data = new LineData(dataSets);
+//
+//        lineChart.setData(data);
+//
+//        String[]values = new String[]{"January","February","March", "April", "May", "June",
+//                "July"};//, "August", "September", "October", "November", "December"};
+//
+//
+//        XAxis xAxis = lineChart.getXAxis();
+//        xAxis.setValueFormatter(new IndexAxisValueFormatter(values));
+//        xAxis.setGranularity(1);
+//
+//        c1.setBackgroundColor(0xff00E400);
+//        c2.setBackgroundColor(0xffFFFF00);
+//        c3.setBackgroundColor(0xffFF7E00);
+//        c4.setBackgroundColor(0xffFF0000);
+//        c5.setBackgroundColor(0xff8F3F97);
+//        c6.setBackgroundColor(0xff7E0023);
+//
+//        String gd = "Good";
+//        String Av = "Medium";
+//        String P = "Least";
+//        String B = "Bad";
+//        String VB = "Very bad";
+//        String D = "Dengoures";
+//
+//        c1.setText (gd);
+//        c2.setText (Av);
+//        c3.setText (P);
+//        c4.setText (B);
+//        c5.setText (VB);
+//        c6.setText(D);
+//        //lineChart.
+//        // lineChart.getXAxis().setEnabled(false);
+//
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+//    }
+
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i(TAG,"onChartGestureStart X:" + me.getX() + "Y:" + me.getY());
+    }
+
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i(TAG,"onChartGestureEnd " + lastPerformedGesture);
+    }
+
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+        Log.i(TAG,"onChartLongPressed");
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+        Log.i(TAG,"onChartDoubleTapped");
+    }
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me) {
+        Log.i(TAG,"onChartSingleTapped");
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+        Log.i(TAG,"onChartFling velox :" + velocityX + "veloy :"+ velocityY);
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+        Log.i(TAG,"onChartScale: ScaleX :" +scaleX + "ScaleY :" + scaleY);
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+        Log.i(TAG,"onChartTranslate dX :" + dX + "dY :" + dY);
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i(TAG,"onValueSelected :" + e.toString());
+    }
+
+    @Override
+    public void onNothingSelected() {
+        Log.i(TAG,"onNothingSelected ");
+    }
+
+    //    public ArrayList<String> values()
+//    {
+//        final ArrayList<String> xAxis = new ArrayList<>();
+//        xAxis.add("January");
+//            xAxis.add("February");
+//            xAxis.add("March");
+//            xAxis.add("April");
+//            xAxis.add("May");
+//            xAxis.add("June");
+//            xAxis.add("July");
+//
+//            return xAxis;
+//    }
     private class sukiencuatoi implements View.OnClickListener
     {
         @Override
@@ -434,11 +676,11 @@ public class tranghienthi extends Activity
         {
             if(view.equals(btnmdkk))
             {
-                ax3();
+               ax3();
             }
             if(view.equals(btnMDBui))
             {
-               ax4();
+              ax4();
             }
         }
     }
@@ -477,12 +719,12 @@ public class tranghienthi extends Activity
             @Override
             public void onClick(View v)
             {
-                DataExcel(Filename,Nameexcel);
+               // DataExcel(Filename,Nameexcel);
             }
         });
         dialog.show();
     }
-    private void DataExcel(EditText edttenfile,EditText noidung)
+    private void DataExcel(EditText edttenfile, EditText noidung)
     {
         try {
 
@@ -590,7 +832,7 @@ public class tranghienthi extends Activity
             arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
         }
         barDataSet = new BarDataSet(arrayList3, " " + time + "            ");
-        int kqmau = t > 300 ? 0xfffe0000: t >= 201 ? 0xfffe0000:t >= 101 ? 0xffffbe00: t >= 51 ? 0xffffff01:0xff01b0f1;
+       int kqmau = t > 300 ? 0xfffe0000: t >= 201 ? 0xfffe0000:t >= 101 ? 0xffffbe00: t >= 51 ? 0xffffff01:0xff01b0f1;
 
         barDataSet.setColors(kqmau);
         barDataSet.setValueTextSize(8f);
@@ -664,13 +906,13 @@ public class tranghienthi extends Activity
                 :bui >= 40.5 ? "PM 2.5 :  Affects sensitive groups \n"
                 :bui >= 15.5 ? "PM 2.5 : Medium \n"
                 :"PM 2.5: Good \n";
-        int kqhinh = (bui >= 350.5) || (kk > 300) ? drawable.rattt
-                :(bui >= 250.5) || (kk >= 201) ? drawable.rattt
-                :(bui >= 150.5) || (kk >= 101) ? drawable.rattoite
-                :(bui >= 65.5) || (kk >= 101) ? drawable.rattoite
-                :(bui >= 40.5) || (kk >= 51) ? drawable.boy
-                :(bui >= 15.5) ? drawable.userfuny
-                : drawable.userfuny;
+        int kqhinh = (bui >= 350.5) || (kk > 300) ? R.drawable.rattt
+                :(bui >= 250.5) || (kk >= 201) ? R.drawable.rattt
+                :(bui >= 150.5) || (kk >= 101) ? R.drawable.rattoite
+                :(bui >= 65.5) || (kk >= 101) ? R.drawable.rattoite
+                :(bui >= 40.5) || (kk >= 51) ? R.drawable.boy
+                :(bui >= 15.5) ? R.drawable.userfuny
+                : R.drawable.userfuny;
         String dataa = "AQI : " + kk +" "+ kqkk +"\nPm : " + bui + kqmdb;
         sendChannel("Notification",dataa,kqhinh);
         txttt.append(kqmdb);

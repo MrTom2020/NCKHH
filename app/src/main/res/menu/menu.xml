@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/info_about_AQI"
+        android:fontFamily="@font/s"
+        android:title="Info about AQI"/>
+    <item android:id="@+id/info_about_PM"
+        android:fontFamily="@font/s"
+        android:title="Info about PM"/>
     <item android:id="@+id/clear_t"
+        android:fontFamily="@font/s"
         android:title="Erase all data"/>
     <item android:id="@+id/save"
+        android:fontFamily="@font/s"
         android:title="Save information"/>
     <item android:id="@+id/dddl"
+        android:fontFamily="@font/s"
         android:title="List is saved"/>
     <item android:id="@+id/export_data"
+        android:fontFamily="@font/s"
         android:title="Export file Excel"/>
 </menu>

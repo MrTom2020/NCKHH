@@ -439,7 +439,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(this, "Lỗi kết nối: " + connectionResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ERROR : " + connectionResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -474,9 +474,9 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
     public void Askuser() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Address_Us.this, R.style.AlertDialogStyle);
         builder.setIcon(R.drawable.panda);
-        builder.setTitle("Thông báo");
-        builder.setMessage("Bạn có muốn quay lại màn hình chính");
-        builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
+        builder.setTitle("Notification");
+        builder.setMessage("Do you want to go back to home ?");
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Bundle bundle = new Bundle();
@@ -489,7 +489,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
                 finish();
             }
         });
-        builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

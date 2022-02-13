@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,8 @@ import java.util.HashMap;
 
 public class trangcanhan extends AppCompatActivity
 {
-    private EditText edtten,edtmk,edtdc,edtns;
+    private EditText edtten,edtmk,edtdc,edtns,edtsdt;
+    private TextView txtkey;
     private Button btndy,btnluu;
     public Intent intent;
     public Cursor cursor;
@@ -61,6 +63,8 @@ public class trangcanhan extends AppCompatActivity
         edtmk = findViewById(R.id.edtmkcanhan);
         edtdc = findViewById(R.id.edtdiachicanhan);
         edtns = findViewById(R.id.edtngaysinhcanhan);
+        edtsdt = findViewById(R.id.edt_sdtcn);
+        txtkey = findViewById(R.id.txtkey);
         btndy = findViewById(R.id.btndycn);
         btnluu = findViewById(R.id.btnluucanhan);
     }
@@ -105,7 +109,7 @@ public class trangcanhan extends AppCompatActivity
             String ssa = MainActivity.tend;
             arrayList = new ArrayList<>();
             dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
-            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200))");
+            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50),ChuoiBM VARCHAR(500))");
             cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ID='" + ssa + "'");
             if (cursor != null) {
                 while (cursor.moveToNext()) {
@@ -113,7 +117,9 @@ public class trangcanhan extends AppCompatActivity
                     String mk = cursor.getString(2);
                     String ngaysinh = cursor.getString(3);
                     String diachi = cursor.getString(4);
-                    arrayList.add(new thongtinnguoidung(ten, mk, ngaysinh, diachi));
+                    String sdt = cursor.getString(5);
+                    String key_chain = cursor.getString(6);
+                    arrayList.add(new thongtinnguoidung(ten, mk, ngaysinh, diachi,sdt,key_chain));
                     kk = 4;
                 }
             }
@@ -137,6 +143,9 @@ public class trangcanhan extends AppCompatActivity
                 edtmk.setText(arrayList.get(i).getMatkhau());
                 edtns.setText(arrayList.get(i).getNgaysinh());
                 edtdc.setText(arrayList.get(i).getDiachi());
+                edtsdt.setText(arrayList.get(i).getSdt());
+                txtkey.setText(arrayList.get(i).getKey_chain());
+
             }
         }
         catch (Exception e)
@@ -161,17 +170,21 @@ public class trangcanhan extends AppCompatActivity
                         String Mk = snapshot.child("Mật khẩu").getValue().toString();
                         String diachi = snapshot.child("Địa chỉ").getValue().toString();
                         String ngaysinh = snapshot.child("Ngày sinh").getValue().toString();
+                        String _key_chain = snapshot.child("Mã key").getValue().toString();
+                        String _Sdt = snapshot.child("Số điện thoại").getValue().toString();
                     if (kk == 0)
                     {
-                        dl.truyvankhongtrakq("INSERT INTO nguoidung VALUES('" + Ma + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "')");
+                        dl.truyvankhongtrakq("INSERT INTO nguoidung VALUES('" + Ma + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "','"+_Sdt+"','"+_key_chain+"')");
                     }
 
-                    arrayList.add(new thongtinnguoidung(Ten, Mk, ngaysinh, diachi));
+                    arrayList.add(new thongtinnguoidung(Ten, Mk, ngaysinh, diachi,_Sdt,_key_chain));
                     for (int i = 0; i < arrayList.size(); ++i) {
                         edtten.setText(arrayList.get(i).getHoten());
                         edtmk.setText(arrayList.get(i).getMatkhau());
                         edtns.setText(arrayList.get(i).getNgaysinh());
                         edtdc.setText(arrayList.get(i).getDiachi());
+                        edtsdt.setText(arrayList.get(i).getSdt());
+                        txtkey.setText(arrayList.get(i).getKey_chain());
                     }
 
                 }
@@ -199,9 +212,10 @@ public class trangcanhan extends AppCompatActivity
         String mk  = edtmk.getText().toString();
          String ns = edtns.getText().toString();
         String dc = edtdc.getText().toString();
+        String _sdt = edtsdt.getText().toString();
         if(mk.trim().length() < 8 || ns.trim().length() < 5 || dc.trim().length() < 5)
         {
-            Toast.makeText(trangcanhan.this,"Cập nhật thất bại",Toast.LENGTH_SHORT).show();
+            Toast.makeText(trangcanhan.this,"Update failed",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -210,6 +224,7 @@ public class trangcanhan extends AppCompatActivity
             result.put("Mật khẩu",mk);
             result.put("Tên",ten);
             result.put("Địa chỉ",dc);
+            result.put("Số điện thoại",_sdt);
             databaseReference.child(MainActivity.tend).updateChildren(result);
             firebaseUser.updatePassword(mk).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -217,7 +232,7 @@ public class trangcanhan extends AppCompatActivity
                     if(task.isSuccessful())
                     {
                         Toast.makeText(trangcanhan.this,"Change password successfully",Toast.LENGTH_SHORT).show();
-                        dl.truyvankhongtrakq("UPDATE nguoidung SET ten='"+ten+"',matkhau = '"+mk+"',ngaysinh = '"+ns+"',diachi = '"+dc+"' WHERE ID = '"+MainActivity.tend+"'");
+                        dl.truyvankhongtrakq("UPDATE nguoidung SET ten='"+ten+"',matkhau = '"+mk+"',ngaysinh = '"+ns+"',diachi = '"+dc+"',SDT ='"+_sdt+"' WHERE ID = '"+MainActivity.tend+"'");
                     }
                 }
             });

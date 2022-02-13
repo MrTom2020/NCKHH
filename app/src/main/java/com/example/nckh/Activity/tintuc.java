@@ -522,8 +522,8 @@ public class tintuc extends AppCompatActivity {
         Quan_Muoi = A1 + "Quan%20Muoi&state=Ho%20Chi%20Minh%20City" + A2;
         Quan_Muoi_Mot = A1 + "Quan%20Muoi%20Mot&state=Ho%20Chi%20Minh%20City" + A2;
         Address = new String[]{"Bình Thạnh District", "Nhà Bè District", "Cần Giờ District", "Tân Phú District", "Phú Nhuận District",
-                "Thủ Đức District", "Củ Chi District", "Hóc Môn District", "Hồ Chí Minh City", "5 District", "1 District", "2 District", "3 District"
-                , "4 District", "6 District", "7 District", "9 District", "10 District", "11 District"};
+                "Thủ Đức District", "Củ Chi District", "Hóc Môn District", "Hồ Chí Minh City", "Five District", "One District", "Two District", "Three District"
+                , "Four District", "Six District", "Seven District", "Nine District", "Ten District", "Eleven District"};
 
     }
 
@@ -1432,31 +1432,31 @@ public class tintuc extends AppCompatActivity {
                     case "Hồ Chí Minh City":
                         doc(TP_HCM);
                         break;
-                    case "5 District":
+                    case "Five District":
                         doc(Quan_Nam);
                         break;
-                    case "1 District":
+                    case "One District":
                         doc(Quan_Mot);
                         break;
-                    case "2 District":
+                    case "Two District":
                         doc(Quan_Hai);
                         break;
-                    case "3 District":
+                    case "Three District":
                         doc(Quan_Ba);
                         break;
-                    case "4 District":
+                    case "Four District":
                         doc(Quan_Bon);
                         break;
-                    case "6 District":
+                    case "Six District":
                         doc(Quan_Sau);
                         break;
-                    case "9 District":
+                    case "Nine District":
                         doc(Quan_Chin);
                         break;
-                    case "10 District":
+                    case "Ten District":
                         doc(Quan_Muoi);
                         break;
-                    case "11 District":
+                    case "Eleven District":
                         doc(Quan_Muoi_Mot);
                         break;
                     case "Châu Thành District":

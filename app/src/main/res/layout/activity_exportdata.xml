@@ -13,11 +13,13 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="152dp"
         android:text="File Name"
+        android:fontFamily="@font/s"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edttf"
+        android:fontFamily="@font/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -33,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="48dp"
+        android:fontFamily="@font/s"
         android:text="Name Excel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edttf" />
@@ -43,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:ems="10"
+        android:fontFamily="@font/s"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +59,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="92dp"
         android:text="Save"
+        android:fontFamily="@font/s"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edttenexcel" />
 
@@ -64,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="Exit"
+        android:fontFamily="@font/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.221"
         app:layout_constraintStart_toEndOf="@+id/btnluu"
@@ -75,6 +81,7 @@
         android:layout_height="42dp"
         android:layout_marginTop="48dp"
         android:text="EXPORT EXCEL"
+        android:fontFamily="@font/s"
         android:textSize="20dp"
         android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"

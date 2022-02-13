@@ -1,6 +1,7 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 
 android {
     lintOptions {
@@ -15,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,7 +31,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 dependencies
         {
 
@@ -55,6 +59,7 @@ dependencies
     implementation platform('com.google.firebase:firebase-bom:26.6.0')
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.code.gson:gson:2.8.6'
+            implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
             implementation 'com.google.code.gson:gson-parent:2.8.8'
@@ -66,6 +71,12 @@ dependencies
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.5.3'
             implementation fileTree(dir: 'libs', include: ['*.jar'])
             implementation 'org.apache.poi:poi:3.17'
+
+            implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+            implementation 'androidx.cardview:cardview:1.0.0'
+            implementation 'com.github.anastr:speedviewlib:1.1.7'
+            implementation 'com.github.anastr:speedviewlib:1.6.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

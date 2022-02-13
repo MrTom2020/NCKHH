@@ -6,8 +6,10 @@
     <TextView
         android:id="@+id/txttgioluu"
         android:layout_width="77dp"
+        android:fontFamily="@font/s"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtthoigian"
+        android:textStyle="bold|italic"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="23dp" />
@@ -15,10 +17,12 @@
     <TextView
         android:id="@+id/txtthoigian"
         android:layout_width="77dp"
+        android:fontFamily="@font/s"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="19dp"
+        android:textStyle="bold|italic"
         android:layout_marginEnd="21dp" />
 
     <TextView
@@ -26,73 +30,89 @@
         android:layout_width="38dp"
         android:layout_height="15dp"
         android:layout_alignParentStart="true"
+        android:fontFamily="@font/s"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
+        android:textStyle="bold|italic"
         android:layout_marginTop="17dp"
         android:background="@drawable/thermometer" />
 
     <TextView
         android:id="@+id/textView15"
+        android:fontFamily="@font/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
         android:layout_marginTop="11dp"
+        android:textStyle="bold|italic"
         android:background="@drawable/droplets" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/s"
         android:layout_below="@+id/textView15"
         android:layout_alignParentStart="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="25dp"
+        android:textStyle="bold|italic"
         android:text="@string/aqi" />
 
     <TextView
         android:id="@+id/textView17"
+        android:fontFamily="@font/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="23dp"
+        android:textStyle="bold|italic"
         android:layout_toStartOf="@+id/txtthoigian"
         android:text="@string/dt" />
 
     <TextView
         android:id="@+id/textView18"
+        android:fontFamily="@font/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView17"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="31dp"
+        android:textStyle="bold|italic"
         android:layout_toStartOf="@+id/txttgioluu"
         android:text="@string/h" />
 
     <TextView
         android:id="@+id/textView20"
+        android:fontFamily="@font/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView18"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="22dp"
+        android:textStyle="bold|italic"
         android:layout_toStartOf="@+id/txtmdbui"
         android:text="@string/pm" />
 
     <TextView
         android:id="@+id/txtmdbui"
+        android:fontFamily="@font/s"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txttgioluu"
         android:layout_alignParentEnd="true"
+        android:textStyle="bold|italic"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="23dp" />
 
     <TextView
+        android:textStyle="bold|italic"
         android:id="@+id/txtnhietdo"
         android:layout_width="81dp"
+        android:fontFamily="@font/s"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="9dp"
@@ -101,6 +121,8 @@
 
     <TextView
         android:id="@+id/txtdam"
+        android:textStyle="bold|italic"
+        android:fontFamily="@font/s"
         android:layout_width="84dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtnhietdo"
@@ -110,7 +132,9 @@
 
     <TextView
         android:id="@+id/txtclkk"
+        android:textStyle="bold|italic"
         android:layout_width="78dp"
+        android:fontFamily="@font/s"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtdam"
         android:layout_marginStart="22dp"
@@ -120,12 +144,14 @@
     <TextView
         android:id="@+id/textView22"
         android:layout_width="375dp"
+        android:fontFamily="@font/s"
         android:layout_height="9dp"
         android:layout_below="@+id/imageView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="24dp"
         android:layout_marginTop="71dp"
+        android:textStyle="bold|italic"
         android:layout_marginEnd="12dp"
         android:background="@android:color/black"/>
 
@@ -147,7 +173,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="24dp"
         android:layout_marginTop="51dp"
+        android:textStyle="bold|italic"
         android:layout_marginEnd="22dp"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_toEndOf="@+id/imageView"
+        android:fontFamily="@font/s" />
 
 </RelativeLayout>

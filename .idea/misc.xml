@@ -4,19 +4,27 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/NCKH/app/src/main/res/drawable/btn_login.xml" value="0.2703125" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/icon_aqi_pm.xml" value="0.162" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennut3.xml" value="0.13518518518518519" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/tuybn4.xml" value="0.13518518518518519" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_address_us.xml" value="0.25416666666666665" />
-        <entry key="..\:/NCKH/app/src/main/res/layout/activity_danhsachluu.xml" value="0.25416666666666665" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_danhsachluu.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_exportdata.xml" value="0.24818840579710144" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_putnotification.xml" value="0.16304347826086957" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_qmk.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_show_pm.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tintuc.xml" value="0.22554347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangcanhan.xml" value="0.16304347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangdangky.xml" value="0.23550724637681159" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tranghai.xml" value="0.1765625" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tranghienthi.xml" value="0.16304347826086957" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_aqi.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_pm.xml" value="0.1921875" />
         <entry key="..\:/NCKH/app/src/main/res/layout/danhsach.xml" value="0.1765625" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/info_about_aqi_pm.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/pm.xml" value="0.12360688956433637" />
+        <entry key="..\:/NCKH/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
   </component>

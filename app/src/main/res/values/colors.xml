@@ -10,4 +10,10 @@
     <color name="mau1">#efefef</color>
     <color name="mau2">#93cb52</color>
     <color name="mau3">#333333</color>
+    <color name="good">#00fa01</color>
+    <color name="moderate">#fdfa00</color>
+    <color name="unheathy_for_sensitive_groups">#feaa00</color>
+    <color name="unheathy">#ff2602</color>
+    <color name="very_unheathy">#dd267b</color>
+    <color name="hazardous">#961100</color>
 </resources>

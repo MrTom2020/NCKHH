@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,9 @@ public class trangdangky extends AppCompatActivity {
 
     private EditText edtten,edtmk,edtdc,edtns;
     private EditText _EdtSdt;
-    private Button btnthoat,btndy,btn_address;
+    private TextView txt_back;
+    private ImageView img;
+    private Button btndy;//,btn_address;
     private DatabaseReference databaseReference;
     public FirebaseAuth firebaseAuth;
     public FirebaseDatabase firebaseDatabase;
@@ -51,7 +54,7 @@ public class trangdangky extends AppCompatActivity {
     private dulieusqllite dl;
     public ProgressDialog progressDialog;
     private String _KeyPassWord = "";
-    private TextView _txt_List_Password;
+    private EditText _txt_List_Password;
     private Intent intent;
     private String classs1 = "com.mysql.jdbc.Driver";
     private String url1 = "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_236e6eebaa8fa47";
@@ -137,7 +140,7 @@ public class trangdangky extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trangdangky);
+        setContentView(R.layout.activity_signup);
         dangkynut();
         CreateArrayListPassword();
         kiemtra();
@@ -201,17 +204,19 @@ public class trangdangky extends AppCompatActivity {
     }
     private void dangkynut()
     {
-        edtdc = findViewById(R.id.edtdiachi);
-        edtmk = findViewById(R.id.edtmk);
-        edtns = findViewById(R.id.editTextDate);
-        _EdtSdt = findViewById(R.id.edtsdt);
-        edtten = findViewById(R.id.edtten);
-        _txt_List_Password = findViewById(R.id.txtma);
-        btndy = findViewById(R.id.btndd);
-        btn_address = findViewById(R.id.btn_choose_Address);
-        btnthoat = findViewById(R.id.btnthoat);
+        img = findViewById(R.id.img_close);
+        edtdc = findViewById(R.id.edt_address);
+        edtmk = findViewById(R.id.edt_password);
+        edtns = findViewById(R.id.edt_date_of_birth);
+        _EdtSdt = findViewById(R.id.edt_phone_number);
+        edtten = findViewById(R.id.edt_name);
+        txt_back = findViewById(R.id.txt_lg);
+        _txt_List_Password = findViewById(R.id.txt_chain);
+        btndy = findViewById(R.id.btn_register);
+        //btn_address = findViewById(R.id.btn_choose_Address);
+        //btnthoat = findViewById(R.id.btnthoat);
         edtns.setEnabled(false);
-        edtdc.setEnabled(false);
+        edtdc.setFocusable(false);
         _EdtSdt.setEnabled(false);
         edtmk.setEnabled(false);
         btndy.setEnabled(false);
@@ -427,7 +432,7 @@ public class trangdangky extends AppCompatActivity {
                 return false;
             }
         });
-        edtdc.setEnabled(false);
+        //edtdc.setFocusable(true);
         edtns.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
@@ -526,9 +531,11 @@ public class trangdangky extends AppCompatActivity {
     }
     private void dangkysukien()
     {
-        btnthoat.setOnClickListener(new sukiencuatoi());
+        //btnthoat.setOnClickListener(new sukiencuatoi());
         btndy.setOnClickListener(new sukiencuatoi());
-        btn_address.setOnClickListener(new sukiencuatoi());
+        img.setOnClickListener(new sukiencuatoi());
+        edtdc.setOnClickListener(new sukiencuatoi());
+        txt_back.setOnClickListener(new sukiencuatoi());
     }
     private void ax()
     {
@@ -572,11 +579,12 @@ public class trangdangky extends AppCompatActivity {
                     Toast.makeText(trangdangky.this,"You are not select address",Toast.LENGTH_SHORT).show();
                 }
             }
-            if(view.equals(btnthoat))
+
+            if(view.equals(img) || view.equals(txt_back))
             {
                 ax();
             }
-            if(view.equals(btn_address))
+            if(view.equals(edtdc))
             {
                 intent = new Intent(trangdangky.this,Address_Us.class);
                 startActivityForResult(intent,key01);

@@ -62,13 +62,7 @@ public class tranghai extends TabActivity {
         tabSpec.setContent (intent);
         tabHost.addTab (tabSpec);
 
-        tabSpec = tabHost.newTabSpec ("Search");
-        tabSpec.setIndicator ("",getDrawable(R.drawable.search));
-        intent = new Intent (this, tintuc.class);
-        tabSpec.setContent (intent);
-        tabHost.addTab (tabSpec);
-
-        tabHost.setBackgroundColor(0xff2b0000);
+        //tabHost.setBackgroundColor(0xff2b0000);
        tabHost.setCurrentTab(1);
 
     }

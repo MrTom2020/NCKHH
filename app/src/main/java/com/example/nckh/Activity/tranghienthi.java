@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -214,9 +215,9 @@ public class tranghienthi extends Activity implements
                 public void onDataChange(@NonNull DataSnapshot snapshot)
                 {
                     String clkk = snapshot.child("chatluongkk").getValue().toString();
-                    String da= snapshot.child("doam").getValue().toString();
+                    String da= snapshot.child("Humidity").getValue().toString();
                     String mdbui= snapshot.child("matdobui").getValue().toString();
-                    String nd= snapshot.child("nhietdo").getValue().toString();
+                    String nd= snapshot.child("Temperature").getValue().toString();
                     kk = !mdbui.equals("") ? Double.parseDouble(mdbui) : 0;
                     double t = !clkk.equals("") ? Double.parseDouble(clkk) : 0;
                     txtnd.setText(nd + " C ");
@@ -422,6 +423,7 @@ public class tranghienthi extends Activity implements
     {
         btnmdkk.setOnClickListener(new sukiencuatoi());
         btnMDBui.setOnClickListener(new sukiencuatoi());
+        txtmq135.setOnClickListener(new sukiencuatoi());
     }
     private void check()
     {
@@ -669,6 +671,11 @@ public class tranghienthi extends Activity implements
 //
 //            return xAxis;
 //    }
+    private void show_pm()
+    {
+        intent = new Intent(tranghienthi.this,show_PM.class);
+        startActivity(intent);
+    }
     private class sukiencuatoi implements View.OnClickListener
     {
         @Override
@@ -681,6 +688,10 @@ public class tranghienthi extends Activity implements
             if(view.equals(btnMDBui))
             {
               ax4();
+            }
+            if(view.equals(txtmq135))
+            {
+                show_pm();
             }
         }
     }
@@ -702,6 +713,11 @@ public class tranghienthi extends Activity implements
     {
         dialog = new Dialog(this);
         dialog.setContentView(layout.activity_exportdata);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = 1100;
+        lp.height = 1800;
+
         Button btnsv,btnex;
         EditText Filename,Nameexcel;
         Filename = dialog.findViewById(id.edttf);
@@ -719,10 +735,11 @@ public class tranghienthi extends Activity implements
             @Override
             public void onClick(View v)
             {
-               // DataExcel(Filename,Nameexcel);
+                DataExcel(Filename,Nameexcel);
             }
         });
         dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
     private void DataExcel(EditText edttenfile, EditText noidung)
     {

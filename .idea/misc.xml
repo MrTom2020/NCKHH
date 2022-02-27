@@ -3,17 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NCKH/app/src/main/res/drawable-v24/ic_android_black_24dp.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/btn_login.xml" value="0.2703125" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/circle.xml" value="0.177" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/circle_border.xml" value="0.177" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/grad.xml" value="0.177" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/ic_login_bk.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/ic_settings.xml" value="0.177" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/icon_aqi_pm.xml" value="0.162" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/login_button_bk.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/login_shape_bk.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennn.xml" value="0.2035" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennut.xml" value="0.2035" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennut2.xml" value="0.2035" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/tuybiennut3.xml" value="0.13518518518518519" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/tuybienthanh.xml" value="0.2035" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/tuybn4.xml" value="0.13518518518518519" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_address_us.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_danhsachluu.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_exportdata.xml" value="0.24818840579710144" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_putnotification.xml" value="0.16304347826086957" />
-        <entry key="..\:/NCKH/app/src/main/res/layout/activity_qmk.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_qmk.xml" value="0.1308016877637131" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_show_pm.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_signup.xml" value="0.11313868613138686" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_t.xml" value="0.153125" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tintuc.xml" value="0.22554347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangcanhan.xml" value="0.16304347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangdangky.xml" value="0.23550724637681159" />
@@ -22,8 +39,15 @@
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_aqi.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_pm.xml" value="0.1921875" />
         <entry key="..\:/NCKH/app/src/main/res/layout/danhsach.xml" value="0.1765625" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/forgot.xml" value="0.22509057971014493" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/forgot_password.xml" value="0.22509057971014493" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/info.xml" value="0.16621376811594202" />
         <entry key="..\:/NCKH/app/src/main/res/layout/info_about_aqi_pm.xml" value="0.1" />
-        <entry key="..\:/NCKH/app/src/main/res/layout/pm.xml" value="0.12360688956433637" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/layout_info.xml" value="0.25416666666666665" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/layout_login.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/layout_register.xml" value="0.12062256809338522" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/login.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/pm.xml" value="0.2" />
         <entry key="..\:/NCKH/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>

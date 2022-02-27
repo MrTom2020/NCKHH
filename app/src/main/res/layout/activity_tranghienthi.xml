@@ -64,9 +64,7 @@
         android:textColor="@color/mau3"/>
 
     <TextView
-        android:fontFamily="@font/s"
         android:id="@+id/textView9"
-        android:textStyle="italic|bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtda"
@@ -74,7 +72,9 @@
         android:layout_marginBottom="17dp"
         android:layout_toEndOf="@+id/txtnd"
         android:background="@drawable/tuybiennn"
-        android:textColor="@color/mau3"/>
+        android:fontFamily="@font/s"
+        android:textColor="@color/mau3"
+        android:textStyle="italic|bold" />
 
     <ScrollView
 

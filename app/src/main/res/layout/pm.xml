@@ -8,8 +8,8 @@
     <com.github.anastr.speedviewlib.SpeedView
         android:id="@+id/speedView2"
         android:layout_width="300dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,22 +17,11 @@
         app:sv_unit=" " />
 
     <TextView
-        android:id="@+id/txt_pmm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtpmm" />
-
-    <TextView
         android:id="@+id/txtpmm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/s"
         android:gravity="center"
@@ -47,34 +36,37 @@
 
     <CheckBox
         android:id="@+id/c_pm1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/s"
         android:minHeight="48dp"
         android:text="CheckBox"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/speedView2" />
 
     <CheckBox
         android:id="@+id/c_pm2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:fontFamily="@font/s"
         android:minHeight="48dp"
         android:text="CheckBox"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/c_pm1" />
 
     <CheckBox
         android:id="@+id/c_pm3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:minHeight="48dp"
+        android:textStyle="italic|bold"
         android:text="CheckBox"
+        android:fontFamily="@font/s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,34 +74,45 @@
 
     <CheckBox
         android:id="@+id/c_pm4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:fontFamily="@font/s"
         android:minHeight="48dp"
         android:text="CheckBox"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/c_pm2" />
+        app:layout_constraintTop_toBottomOf="@+id/c_pm3" />
 
     <CheckBox
         android:id="@+id/c_pm5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:fontFamily="@font/s"
         android:minHeight="48dp"
         android:text="CheckBox"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/c_pm4" />
 
     <CheckBox
         android:id="@+id/c_pm6"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:fontFamily="@font/s"
         android:minHeight="48dp"
         android:text="CheckBox"
+        android:textStyle="italic|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/c_pm5" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="11dp"
+        android:layout_marginTop="20dp"
+        android:background="#333333"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c_pm6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

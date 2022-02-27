@@ -13,4 +13,22 @@
     <string name="aqi">AQI</string>
     <string name="map_api_key">AIzaSyCCM182LH2JhZbxulRHzrdcwiYIQdwcRns</string>
     <string name="my_app_id">mystitchapp-qwern</string>
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="login_address_hint">Address</string>
+    <string name="login_date_of_birth_hint">Date of birth</string>
+    <string name="login_phone_number_hint">Phone number</string>
+    <string name="login_key_chain_hint">Key chain</string>
+
+    <string name="forgot">FORGOT PASSWORD</string>
+
+    <!-- String for userinfo -->
+    <string name="address">Address</string>
+    <string name="birthday">Birth day</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="keychain">Key chain</string>
 </resources>

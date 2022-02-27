@@ -1,6 +1,8 @@
 package com.example.nckh.Activity;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,9 +11,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
@@ -23,10 +28,12 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends Activity {
 
     private EditText edtName,edtmk;
-    private Button btndn,btndk,btn_qmk;
+    private Button btndn;
+    private TextView btndk,btn_qmk;
     public FirebaseAuth firebaseAuth;
     public Intent intent;
     static String tend,ten1;
+    private ImageView img;
     public Cursor cursor;
     public dulieusqllite dl;
     public int numBer = 0;
@@ -34,7 +41,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         dangkynut();
         check();
         dangkysukien();
@@ -82,6 +89,33 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void Askuser() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle);
+        builder.setIcon(R.drawable.panda);
+        builder.setTitle("Notification");
+        builder.setMessage("Do you want exit ?");
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        Dialog dialog = builder.create();
+//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//        lp.copyFrom(dialog.getWindow().getAttributes());
+//        lp.width = 800;
+//        lp.height = 800;
+        dialog.show();
+        //dialog.getWindow().setAttributes(lp);
+    }
+
+
     @Override
     public boolean dispatchKeyEvent(KeyEvent event)
     {
@@ -98,14 +132,15 @@ public class MainActivity extends Activity {
 
     private void dangkynut()
     {
-        edtName = findViewById(R.id.use);
+        img = findViewById(R.id.img_close);
+        edtName = findViewById(R.id.editTextEmail);
        // int kss = findViewById(KeyEvent.KEYCODE_BACK)
-        edtmk = findViewById(R.id.pass);
+        edtmk = findViewById(R.id.editTextPassword);
         edtName.setText("tomhumchinvn@gmail.com");
-        edtmk.setText("12345678 ");
-        btndn = findViewById(R.id.button);
-        btndk = findViewById(R.id.btndangkytk);
-        btn_qmk = findViewById(R.id.forgot_password);
+        edtmk.setText("12345678");
+        btndn = findViewById(R.id.cirLoginButton);
+        btndk = findViewById(R.id.Btndangkytk);
+        btn_qmk = findViewById(R.id.txt_forgot_password);
         edtName.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
@@ -154,6 +189,7 @@ public class MainActivity extends Activity {
         btndn.setOnClickListener(new sukiencuatoi());
         btndk.setOnClickListener(new sukiencuatoi());
         btn_qmk.setOnClickListener(new sukiencuatoi());
+        img.setOnClickListener(new sukiencuatoi());
     }
     private void ax(String eMail)
     {
@@ -194,6 +230,10 @@ public class MainActivity extends Activity {
           {
               Intent intent = new Intent(MainActivity.this, trangdangky.class);
               startActivity(intent);
+          }
+          if(view.equals(img))
+          {
+              Askuser();
           }
         }
 

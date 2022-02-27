@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +34,11 @@ import java.util.HashMap;
 
 public class trangcanhan extends AppCompatActivity
 {
-    private EditText edtten,edtmk,edtdc,edtns,edtsdt;
-    private TextView txtkey;
-    private Button btndy,btnluu;
+    private EditText edtten,edtmk,edtdc,edtns,edtsdt,txtkey;
+    private TextView txtName,txtAddress;
+    private Button btnluu;
     public Intent intent;
+    private ImageView info_img_close;
     public Cursor cursor;
     private dulieusqllite dl;
     private  int kk = 0;
@@ -48,49 +50,53 @@ public class trangcanhan extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trangcanhan);
+        setContentView(R.layout.info);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("dangnhap");
         dangkynut();
         dangkysukien();
         taodt();
         ax();
-
     }
     private void dangkynut()
     {
-        edtten = findViewById(R.id.edttencanhan);
-        edtmk = findViewById(R.id.edtmkcanhan);
-        edtdc = findViewById(R.id.edtdiachicanhan);
-        edtns = findViewById(R.id.edtngaysinhcanhan);
-        edtsdt = findViewById(R.id.edt_sdtcn);
-        txtkey = findViewById(R.id.txtkey);
-        btndy = findViewById(R.id.btndycn);
-        btnluu = findViewById(R.id.btnluucanhan);
+        txtName = findViewById(R.id.info_tv_name);
+        edtten = findViewById(R.id.info_edt_email);
+        edtmk = findViewById(R.id.info_edt_password);
+        edtdc = findViewById(R.id.info_edt_address);
+        edtns = findViewById(R.id.info_edt_birth_day);
+        edtsdt = findViewById(R.id.info_edt_phone_number);
+        txtkey = findViewById(R.id.info_edt_key_chain);
+        btnluu = findViewById(R.id.info_btn_save);
+        info_img_close = findViewById(R.id.info_img_close);
+        txtAddress = findViewById(R.id.tv_address);
     }
     private void dangkysukien()
     {
         btnluu.setOnClickListener(new sukiencuatoi());
-        btndy.setOnClickListener(new sukiencuatoi());
+        info_img_close.setOnClickListener(new sukiencuatoi());
+        txtName.setOnClickListener(new sukiencuatoi());
     }
     private void sukiendong()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(trangcanhan.this);
-        builder.setTitle ("Notice");
-        builder.setMessage ("Do you want to exit");
-        builder.setPositiveButton ("Yes", new DialogInterface.OnClickListener () {
+        AlertDialog.Builder builder = new AlertDialog.Builder(trangcanhan.this,R.style.AlertDialogStyle);
+        builder.setTitle("Notification");
+        builder.setMessage ("Do you want to exit?");
+        builder.setIcon(R.drawable.panda);
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick (DialogInterface dialog, int which)
+            public void onClick(DialogInterface dialog, int which)
             {
-                firebaseAuth.signOut();
                 finish();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener () {
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick (DialogInterface dialog, int which)
+            public void onClick(DialogInterface dialog, int which)
             {
-                dialog.dismiss ();
+                dialog.dismiss();
             }
         });
         Dialog dialog1 = builder.create();
@@ -145,7 +151,7 @@ public class trangcanhan extends AppCompatActivity
                 edtdc.setText(arrayList.get(i).getDiachi());
                 edtsdt.setText(arrayList.get(i).getSdt());
                 txtkey.setText(arrayList.get(i).getKey_chain());
-
+                txtAddress.setText(arrayList.get(i).getDiachi());
             }
         }
         catch (Exception e)
@@ -245,13 +251,17 @@ public class trangcanhan extends AppCompatActivity
         @Override
         public void onClick(View view)
         {
-            if(view.equals(btndy))
-            {
-                sukiendong();
-            }
             if(view.equals(btnluu))
             {
                 capnhatdl();
+            }
+            if(view.equals(info_img_close))
+            {
+                sukiendong();
+            }
+            if(view.equals(txtName))
+            {
+
             }
         }
     }

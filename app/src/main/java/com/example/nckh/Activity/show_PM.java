@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nckh.Adapter.info_pm;
 import com.example.nckh.R;
-import com.example.nckh.model.info_about_aqi_pm;
+import com.example.nckh.model.pm;
 import com.github.anastr.speedviewlib.SpeedView;
 
 import java.util.ArrayList;
@@ -22,15 +22,15 @@ public class show_PM extends AppCompatActivity {
     private TextView txt;
     private SpeedView speedView;
     private ListView lst;
-    private info_pm pm;
-    private ArrayList<info_about_aqi_pm> arrayList = new ArrayList<>();
+    private info_pm pm1;
+    private ArrayList<pm> arrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_pm);
         addControl();
         addEvent();
-        createSpeed();
+        createSpeed("100");
 //        txt = findViewById(R.id.txtPM);
 //        //anyChartView = findViewById(R.id.any_chart);
 //        //setupPieChart();
@@ -66,12 +66,12 @@ public class show_PM extends AppCompatActivity {
     {
         lst = findViewById(R.id.ls_pm);
     }
-    private void createSpeed()
+    private void createSpeed(String value_pm)
     {
-        arrayList.add(new info_about_aqi_pm(R.drawable.good,"30"));
-        arrayList.add(new info_about_aqi_pm(R.drawable.good,"10"));
-        pm = new info_pm(show_PM.this,R.layout.pm,arrayList);
-        lst.setAdapter(pm);
+        arrayList.add(new pm("PM 2.5",value_pm,R.drawable.good,"0","0"));
+        arrayList.add(new pm("PM 10",value_pm,R.drawable.good,"0","0"));
+        pm1 = new info_pm(show_PM.this,R.layout.pm,arrayList);
+        lst.setAdapter(pm1);
     }
     private void addEvent()
     {

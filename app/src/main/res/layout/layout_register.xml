@@ -68,7 +68,7 @@
                 android:id="@+id/edt_date_of_birth"
                 style="@style/modifiedEditText"
                 android:hint="@string/login_date_of_birth_hint"
-                android:inputType="textPassword"
+                android:inputType="numberDecimal"
                 android:maxLines="1"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,8 +92,9 @@
                 android:id="@+id/txt_chain"
                 style="@style/modifiedEditText"
                 android:hint="@string/login_key_chain_hint"
-                android:inputType="text"
-                android:maxLines="10"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:gravity="top"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
         <Button

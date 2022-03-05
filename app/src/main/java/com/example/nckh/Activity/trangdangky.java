@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -45,11 +44,11 @@ public class trangdangky extends AppCompatActivity {
     private EditText _EdtSdt;
     private TextView txt_back;
     private ImageView img;
-    private Button btndy;//,btn_address;
+    private Button btndy;
     private DatabaseReference databaseReference;
     public FirebaseAuth firebaseAuth;
     public FirebaseDatabase firebaseDatabase;
-    public int key01;
+    public int key01 = 01;
     private Cursor cursor;
     private dulieusqllite dl;
     public ProgressDialog progressDialog;
@@ -61,6 +60,7 @@ public class trangdangky extends AppCompatActivity {
     private String un1 = "b37c4a464e7dbf";
     private String password1 = "8a49de4d";
     private Statement st;
+    private String Name = "Name";
     private ResultSet rs;
     private String dcx,dcy;
     private ResultSetMetaData rsmd;
@@ -169,36 +169,28 @@ public class trangdangky extends AppCompatActivity {
 
         }
     }
-    private void Readdata(String id,String name,String diachi,String sdt,String chuoiBM,String password,String friends,String brithday,String td,String mt)
+    private void Readdata(String id,String Email,String name,String diachi,String sdt,String chuoiBM,String password,String friends,String brithday,String td,String mt)
     {
         try {
             st = conn1.createStatement();
-            String l ="4234";
-            String kk = "0a";
-            //Cái này tôi lại làm kỷ niệm
-            String chuoi = "insert into user" + "(iduser,user_name,Dia_Chi,Sdt,ChuoiBM,Password,friends,brithday) values"+"(?,?,?,?,?,?,?,?)";
-            //Cái này tôi lại làm kỷ niệm
             String chuoi2 = "Call signupUser"+"(?,?,?,?,?,?,?,?,?,?)";
-            // st.executeUpdate("insert into user(iduser,user_name,Dia_Chi,Sdt,ChuoiBM,Password,friends,brithday) values('"+l+"','"+l+"'','"+l+"','"+l+"','"+l+"','"+l+"','0','"+kk+"')");
             PreparedStatement prepStatement = (PreparedStatement) conn1.prepareStatement(chuoi2);
             prepStatement.setString(1, id);
-            prepStatement.setString(2, name);
-            prepStatement.setString(3, diachi);
-            prepStatement.setString(4, sdt);
-            prepStatement.setString(5, chuoiBM);
-            prepStatement.setString(6, password);
-            prepStatement.setString(7, friends);
-            prepStatement.setString(8, brithday);
-            prepStatement.setString(9, td);
-            prepStatement.setString(10, mt);
+            prepStatement.setString(2, Email);
+            prepStatement.setString(3, name);
+            prepStatement.setString(4, diachi);
+            prepStatement.setString(5, sdt);
+            prepStatement.setString(6, chuoiBM);
+            prepStatement.setString(7, password);
+            prepStatement.setString(8, friends);
+            prepStatement.setString(9, brithday);
+            prepStatement.setString(10, td);
+            prepStatement.setString(11, mt);
             prepStatement .executeUpdate();
             prepStatement.close();
-            //Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
-
         } catch (SQLException e)
         {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-            Log.d("DDDD",e.toString());
             e.printStackTrace();
         }
     }
@@ -213,8 +205,6 @@ public class trangdangky extends AppCompatActivity {
         txt_back = findViewById(R.id.txt_lg);
         _txt_List_Password = findViewById(R.id.txt_chain);
         btndy = findViewById(R.id.btn_register);
-        //btn_address = findViewById(R.id.btn_choose_Address);
-        //btnthoat = findViewById(R.id.btnthoat);
         edtns.setEnabled(false);
         edtdc.setFocusable(false);
         _EdtSdt.setEnabled(false);
@@ -432,7 +422,6 @@ public class trangdangky extends AppCompatActivity {
                 return false;
             }
         });
-        //edtdc.setFocusable(true);
         edtns.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
@@ -500,8 +489,9 @@ public class trangdangky extends AppCompatActivity {
                     databaseReference2.child("Số điện thoại").setValue(_EdtSdt.getText().toString());
                     databaseReference2.child("Mã key").setValue(_txt_List_Password.getText().toString());
                     databaseReference2.child("Tình trạng").setValue(false);
+                    databaseReference2.child("Name").setValue(Name);
                     String td = dcx + ","+ dcy;
-                    Readdata(k,taikhoan,edtdc.getText().toString(),_EdtSdt.getText().toString(),_txt_List_Password.getText().toString(),mk,"0",edtns.getText().toString(),td,"...");
+                    Readdata(k,Name,taikhoan,edtdc.getText().toString(),_EdtSdt.getText().toString(),_txt_List_Password.getText().toString(),mk,"0",edtns.getText().toString(),td,"...");
                     taodt(k);
                     progressDialog.dismiss ();
                     finish();
@@ -518,20 +508,19 @@ public class trangdangky extends AppCompatActivity {
     {
         try {
             dl = new dulieusqllite(trangdangky.this, "dulieunguoidung.sqlite", null, 1);
-            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50),ChuoiBM VARCHAR(500))");
-            dl.truyvancoketqua("INSERT INTO nguoidung VALUES('"+id+"','"+edtten.getText().toString()+"','"+edtmk.getText().toString()+"','"+edtns.getText().toString()+"','"+edtdc.getText().toString()+"','"+_EdtSdt.getText().toString()+"','"+_txt_List_Password.getText().toString()+"')");
+            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS user(ID VARCHAR(50) PRIMARY KEY,Email VARCHAR(50),ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50),ChuoiBM VARCHAR(500))");
+            dl.truyvankhongtrakq("DELETE table nguoidung");
+           // dl.truyvancoketqua("INSERT INTO nguoidung VALUES('"+id+"','"+edtten.getText().toString()+"','"+edtmk.getText().toString()+"','"+edtns.getText().toString()+"','"+edtdc.getText().toString()+"','"+_EdtSdt.getText().toString()+"','"+_txt_List_Password.getText().toString()+"')");
         }
         catch (Exception e)
         {
             Toast.makeText(trangdangky.this,"Error! An error occurred. Please try again later",Toast.LENGTH_SHORT).show();
-            Log.d("AAAAAAAAAAAAAAAAAAA",e.toString());
             Intent intent = new Intent(trangdangky.this,MainActivity.class);
             startActivity(intent);
         }
     }
     private void dangkysukien()
     {
-        //btnthoat.setOnClickListener(new sukiencuatoi());
         btndy.setOnClickListener(new sukiencuatoi());
         img.setOnClickListener(new sukiencuatoi());
         edtdc.setOnClickListener(new sukiencuatoi());

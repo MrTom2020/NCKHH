@@ -54,8 +54,8 @@
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
-            android:text="Name"
             android:fontFamily="@font/s"
+            android:text="Name"
             android:textColor="@color/white"
             android:textSize="32sp" />
 

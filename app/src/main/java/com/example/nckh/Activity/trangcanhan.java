@@ -1,11 +1,14 @@
 package com.example.nckh.Activity;
 
+
+
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,7 +45,8 @@ public class trangcanhan extends AppCompatActivity
     private ImageView info_img_close;
     public Cursor cursor;
     private dulieusqllite dl;
-    private  int kk = 0;
+    private int kk = 0;
+    private int key02 = 02;
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
     public FirebaseAuth firebaseAuth =   FirebaseAuth.getInstance();
@@ -70,18 +75,20 @@ public class trangcanhan extends AppCompatActivity
         btnluu = findViewById(R.id.info_btn_save);
         info_img_close = findViewById(R.id.info_img_close);
         txtAddress = findViewById(R.id.tv_address);
+        edtdc.setFocusable(false);
     }
     private void dangkysukien()
     {
         btnluu.setOnClickListener(new sukiencuatoi());
         info_img_close.setOnClickListener(new sukiencuatoi());
         txtName.setOnClickListener(new sukiencuatoi());
+        edtdc.setOnClickListener(new sukiencuatoi());
     }
     private void sukiendong()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(trangcanhan.this,R.style.AlertDialogStyle);
         builder.setTitle("Notification");
-        builder.setMessage ("Do you want to exit?");
+        builder.setMessage ("Do you want to exit ?");
         builder.setIcon(R.drawable.panda);
         builder.setPositiveButton("Có", new DialogInterface.OnClickListener()
         {
@@ -106,6 +113,33 @@ public class trangcanhan extends AppCompatActivity
     public void onBackPressed()
     {
         super.onBackPressed();
+    }
+
+    private void Askuser()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(trangcanhan.this,R.style.AlertDialogStyle);
+        builder.setTitle("Notification");
+        builder.setMessage ("Do you want update address ?");
+        builder.setIcon(R.drawable.panda);
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                intent = new Intent(trangcanhan.this,Address_Us.class);
+                startActivityForResult(intent, key02);
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        Dialog dialog1 = builder.create();
+        dialog1.show();
     }
 
     private void taodt()
@@ -246,6 +280,19 @@ public class trangcanhan extends AppCompatActivity
 
 
     }
+    public void ExportFileExcel()
+    {
+        Dialog dialog;
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.alertdialog_setname);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = 1100;
+        lp.height = 800;
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
     private class sukiencuatoi implements View.OnClickListener
     {
         @Override
@@ -261,8 +308,23 @@ public class trangcanhan extends AppCompatActivity
             }
             if(view.equals(txtName))
             {
-
+                ExportFileExcel();
+            }
+            if(view.equals(edtdc))
+            {
+                Askuser();
             }
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        if(requestCode == key02 && resultCode == RESULT_OK && data != null)
+        {
+            Bundle bundle = data.getBundleExtra("dcc");
+            String dc = bundle.getString("dcn");
+            edtdc.setText(dc);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

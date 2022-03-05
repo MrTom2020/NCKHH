@@ -98,8 +98,9 @@
                 android:id="@+id/info_edt_key_chain"
                 style="@style/modifiedEditText"
                 android:hint="@string/keychain"
-                android:inputType="text"
-                android:maxLines="1"
+                android:inputType="textMultiLine"
+                android:lines="10"
+                android:gravity="top"
                 android:fontFamily="@font/s"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>

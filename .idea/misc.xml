@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/NCKH/app/src/main/res/drawable-v24/ic_android_black_24dp.xml" value="0.1" />
+        <entry key="..\:/NCKH/app/src/main/res/drawable/br_info.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/btn_login.xml" value="0.2703125" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/circle.xml" value="0.177" />
         <entry key="..\:/NCKH/app/src/main/res/drawable/circle_border.xml" value="0.177" />
@@ -24,12 +25,12 @@
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_address_us.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_danhsachluu.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_exportdata.xml" value="0.24818840579710144" />
-        <entry key="..\:/NCKH/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_putnotification.xml" value="0.16304347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_qmk.xml" value="0.1308016877637131" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_show_pm.xml" value="0.1" />
-        <entry key="..\:/NCKH/app/src/main/res/layout/activity_signup.xml" value="0.11313868613138686" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/activity_signup.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_t.xml" value="0.153125" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tintuc.xml" value="0.22554347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_trangcanhan.xml" value="0.16304347826086957" />
@@ -38,6 +39,7 @@
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tranghienthi.xml" value="0.16304347826086957" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_aqi.xml" value="0.1" />
         <entry key="..\:/NCKH/app/src/main/res/layout/activity_tutorial_pm.xml" value="0.1921875" />
+        <entry key="..\:/NCKH/app/src/main/res/layout/alertdialog_setname.xml" value="0.23357664233576642" />
         <entry key="..\:/NCKH/app/src/main/res/layout/danhsach.xml" value="0.1765625" />
         <entry key="..\:/NCKH/app/src/main/res/layout/forgot.xml" value="0.22509057971014493" />
         <entry key="..\:/NCKH/app/src/main/res/layout/forgot_password.xml" value="0.22509057971014493" />

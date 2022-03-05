@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.tintuc"
-    android:background="@drawable/tuybiennut3">
+    android:background="#969494">
 
     <RelativeLayout
         android:id="@+id/rs"
@@ -51,10 +51,10 @@
             android:layout_height="125dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
-            android:textStyle="italic|bold"
-            android:fontFamily="@font/s"
             android:layout_marginTop="24dp"
-            android:layout_toEndOf="@+id/txtaqi" />
+            android:layout_toEndOf="@+id/txtaqi"
+            android:fontFamily="@font/s"
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/txtndtt"
@@ -62,10 +62,10 @@
             android:layout_height="62dp"
             android:layout_below="@+id/imgtt"
             android:layout_marginStart="8dp"
-            android:textStyle="italic|bold"
             android:layout_marginTop="-64dp"
+            android:layout_toEndOf="@+id/imgtt"
             android:fontFamily="@font/s"
-            android:layout_toEndOf="@+id/imgtt" />
+            android:textStyle="italic|bold" />
 
         <TextView
             android:id="@+id/txtdamtt"
@@ -93,8 +93,6 @@
             android:id="@+id/txtthongtin"
             android:layout_width="323dp"
             android:layout_height="147dp"
-            android:fontFamily="@font/s"
-            android:textStyle="italic|bold"
             android:layout_below="@+id/txtndtt"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -102,7 +100,9 @@
             android:layout_marginTop="44dp"
             android:layout_marginEnd="10dp"
             android:background="#333333"
-            android:textColor="#FFFACD" />
+            android:fontFamily="@font/s"
+            android:textColor="#FFFACD"
+            android:textStyle="italic|bold" />
 
         <ImageView
             android:id="@+id/imgttt"

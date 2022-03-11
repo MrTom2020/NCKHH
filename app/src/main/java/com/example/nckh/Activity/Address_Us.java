@@ -66,7 +66,6 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map2);
         mapFragment.getMapAsync(this);
         if (checkPlayServices()) {
-            // Building the GoogleApi client
             buildGoogleApiClient();
         }
         addcontrol();
@@ -79,7 +78,6 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
 
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Kiểm tra quyền hạn
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
         } else {
@@ -94,8 +92,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
                 // Hiển thị
                 Toast.makeText(this, latitude + ", " + longitude, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "(Không thể hiển thị vị trí. " +
-                        "Bạn đã kích hoạt location trên thiết bị chưa?)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "(Location cannot be displayed. Have you enabled location on the device?)", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -106,7 +103,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this, 1000).show();
             } else {
-                Toast.makeText(this, "Thiết bị này không hỗ trợ.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "This device is not supported.", Toast.LENGTH_LONG).show();
                 finish();
             }
             return false;
@@ -136,7 +133,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     protected void onStop() {
-        gac.disconnect();
+        //gac.disconnect();
         super.onStop();
     }
 

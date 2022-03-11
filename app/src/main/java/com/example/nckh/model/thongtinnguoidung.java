@@ -2,20 +2,28 @@ package com.example.nckh.model;
 
 public class thongtinnguoidung
 {
+    private String Email;
     private String hoten;
     private String matkhau;
     private String ngaysinh;
     private String diachi;
     private String sdt;
-    private String key_chain;
 
-    public thongtinnguoidung(String hoten, String matkhau, String ngaysinh, String diachi, String sdt, String key_chain) {
+    public thongtinnguoidung(String email, String hoten, String matkhau, String ngaysinh, String diachi, String sdt) {
+        Email = email;
         this.hoten = hoten;
         this.matkhau = matkhau;
         this.ngaysinh = ngaysinh;
         this.diachi = diachi;
         this.sdt = sdt;
-        this.key_chain = key_chain;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 
     public String getHoten() {
@@ -56,13 +64,5 @@ public class thongtinnguoidung
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
-    }
-
-    public String getKey_chain() {
-        return key_chain;
-    }
-
-    public void setKey_chain(String key_chain) {
-        this.key_chain = key_chain;
     }
 }

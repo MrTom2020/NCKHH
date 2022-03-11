@@ -1,7 +1,6 @@
 package com.example.nckh.Activity;
 
 
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +37,7 @@ import java.util.HashMap;
 
 public class trangcanhan extends AppCompatActivity
 {
-    private EditText edtten,edtmk,edtdc,edtns,edtsdt,txtkey;
+    private EditText edtten,edtmk,edtdc,edtns,edtsdt;
     private TextView txtName,txtAddress;
     private Button btnluu;
     public Intent intent;
@@ -48,6 +47,8 @@ public class trangcanhan extends AppCompatActivity
     private int kk = 0;
     private int key02 = 02;
     public FirebaseDatabase firebaseDatabase;
+    private Button btn_change;
+    private EditText edt_new_Name;
     public DatabaseReference databaseReference;
     public FirebaseAuth firebaseAuth =   FirebaseAuth.getInstance();
     public FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -71,7 +72,6 @@ public class trangcanhan extends AppCompatActivity
         edtdc = findViewById(R.id.info_edt_address);
         edtns = findViewById(R.id.info_edt_birth_day);
         edtsdt = findViewById(R.id.info_edt_phone_number);
-        txtkey = findViewById(R.id.info_edt_key_chain);
         btnluu = findViewById(R.id.info_btn_save);
         info_img_close = findViewById(R.id.info_img_close);
         txtAddress = findViewById(R.id.tv_address);
@@ -148,18 +148,18 @@ public class trangcanhan extends AppCompatActivity
 
             String ssa = MainActivity.tend;
             arrayList = new ArrayList<>();
-            dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
-            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS nguoidung(ID VARCHAR(50) PRIMARY KEY,ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50),ChuoiBM VARCHAR(500))");
-            cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ID='" + ssa + "'");
+            dl = new dulieusqllite(trangcanhan.this, "Users2.sqlite", null, 1);
+            dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS user(ID VARCHAR(50) PRIMARY KEY,Email VARCHAR(50),ten VARCHAR(50),matkhau VARCHAR(100),ngaysinh VARCHAR(20),diachi VARCHAR(200),SDT varchar(50))");
+            cursor = dl.truyvancoketqua("SELECT * FROM user WHERE ID='" + ssa + "'");
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    String ten = cursor.getString(1);
-                    String mk = cursor.getString(2);
-                    String ngaysinh = cursor.getString(3);
-                    String diachi = cursor.getString(4);
-                    String sdt = cursor.getString(5);
-                    String key_chain = cursor.getString(6);
-                    arrayList.add(new thongtinnguoidung(ten, mk, ngaysinh, diachi,sdt,key_chain));
+                    String Email = cursor.getString(1);
+                    String ten = cursor.getString(2);
+                    String mk = cursor.getString(3);
+                    String ngaysinh = cursor.getString(4);
+                    String diachi = cursor.getString(5);
+                    String sdt = cursor.getString(6);
+                    arrayList.add(new thongtinnguoidung(Email,ten, mk, ngaysinh, diachi,sdt));
                     kk = 4;
                 }
             }
@@ -179,12 +179,12 @@ public class trangcanhan extends AppCompatActivity
         try {
 
             for (int i = 0; i < arrayList.size(); ++i) {
+                txtName.setText(arrayList.get(i).getEmail());
                 edtten.setText(arrayList.get(i).getHoten());
                 edtmk.setText(arrayList.get(i).getMatkhau());
                 edtns.setText(arrayList.get(i).getNgaysinh());
                 edtdc.setText(arrayList.get(i).getDiachi());
                 edtsdt.setText(arrayList.get(i).getSdt());
-                txtkey.setText(arrayList.get(i).getKey_chain());
                 txtAddress.setText(arrayList.get(i).getDiachi());
             }
         }
@@ -206,25 +206,25 @@ public class trangcanhan extends AppCompatActivity
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String Ma = snapshot.getKey();
+                        String Name = snapshot.child("Name").getValue().toString();
                         String Ten = snapshot.child("Tên").getValue().toString();
                         String Mk = snapshot.child("Mật khẩu").getValue().toString();
                         String diachi = snapshot.child("Địa chỉ").getValue().toString();
                         String ngaysinh = snapshot.child("Ngày sinh").getValue().toString();
-                        String _key_chain = snapshot.child("Mã key").getValue().toString();
                         String _Sdt = snapshot.child("Số điện thoại").getValue().toString();
                     if (kk == 0)
                     {
-                        dl.truyvankhongtrakq("INSERT INTO nguoidung VALUES('" + Ma + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "','"+_Sdt+"','"+_key_chain+"')");
+                        dl.truyvankhongtrakq("INSERT INTO user VALUES('" + Ma + "','" + Name + "','" + Ten + "','" + Mk + "','" + ngaysinh + "','" + diachi + "','"+_Sdt+"')");
                     }
 
-                    arrayList.add(new thongtinnguoidung(Ten, Mk, ngaysinh, diachi,_Sdt,_key_chain));
+                    arrayList.add(new thongtinnguoidung(Name,Ten, Mk, ngaysinh, diachi,_Sdt));
                     for (int i = 0; i < arrayList.size(); ++i) {
+                        txtName.setText(arrayList.get(i).getEmail());
                         edtten.setText(arrayList.get(i).getHoten());
                         edtmk.setText(arrayList.get(i).getMatkhau());
                         edtns.setText(arrayList.get(i).getNgaysinh());
                         edtdc.setText(arrayList.get(i).getDiachi());
                         edtsdt.setText(arrayList.get(i).getSdt());
-                        txtkey.setText(arrayList.get(i).getKey_chain());
                     }
 
                 }
@@ -246,13 +246,14 @@ public class trangcanhan extends AppCompatActivity
     }
     private void capnhatdl()
     {
-        dl = new dulieusqllite(trangcanhan.this, "dulieunguoidung.sqlite", null, 1);
+        dl = new dulieusqllite(trangcanhan.this, "Users2.sqlite", null, 1);
         firebaseUser = firebaseAuth.getCurrentUser();
          String ten =  edtten.getText().toString();
         String mk  = edtmk.getText().toString();
          String ns = edtns.getText().toString();
         String dc = edtdc.getText().toString();
         String _sdt = edtsdt.getText().toString();
+        String _name = txtName.getText().toString();
         if(mk.trim().length() < 8 || ns.trim().length() < 5 || dc.trim().length() < 5)
         {
             Toast.makeText(trangcanhan.this,"Update failed",Toast.LENGTH_SHORT).show();
@@ -262,6 +263,7 @@ public class trangcanhan extends AppCompatActivity
             HashMap<String,Object> result = new HashMap<>();
             result.put("Ngày sinh",ns);
             result.put("Mật khẩu",mk);
+            result.put("Name",_name);
             result.put("Tên",ten);
             result.put("Địa chỉ",dc);
             result.put("Số điện thoại",_sdt);
@@ -272,7 +274,7 @@ public class trangcanhan extends AppCompatActivity
                     if(task.isSuccessful())
                     {
                         Toast.makeText(trangcanhan.this,"Change password successfully",Toast.LENGTH_SHORT).show();
-                        dl.truyvankhongtrakq("UPDATE nguoidung SET ten='"+ten+"',matkhau = '"+mk+"',ngaysinh = '"+ns+"',diachi = '"+dc+"',SDT ='"+_sdt+"' WHERE ID = '"+MainActivity.tend+"'");
+                        dl.truyvankhongtrakq("UPDATE user SET Email ='"+_name+"',matkhau = '"+mk+"',ngaysinh = '"+ns+"',diachi = '"+dc+"',SDT ='"+_sdt+"' WHERE ten = '"+ten+"'");
                     }
                 }
             });
@@ -285,11 +287,22 @@ public class trangcanhan extends AppCompatActivity
         Dialog dialog;
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.alertdialog_setname);
+        btn_change = dialog.findViewById(R.id.btn_info_setName);
+        edt_new_Name =dialog.findViewById(R.id.edt_newName);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = 1100;
         lp.height = 800;
-
+        btn_change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(edt_new_Name.getText().toString().trim().length() != 0)
+                {
+                    txtName.setText(edt_new_Name.getText().toString());
+                    dialog.dismiss();
+                }
+            }
+        });
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }

@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".Activity.tranghienthi"
     android:id="@+id/rl"
-    android:background="@color/mau3">
+    android:background="@drawable/br">
 
-<!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
 <!--        android:id="@+id/bc"-->
 <!--        android:layout_width="393dp"-->
 <!--        android:layout_height="299dp"-->
@@ -20,56 +20,83 @@
 <!--        android:layout_marginEnd="12dp"-->
 <!--        android:layout_marginBottom="133dp"-->
 <!--        android:background="#dadad9" />-->
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/bc"
-        android:layout_width="393dp"
-        android:layout_height="299dp"
+<!--    <com.github.mikephil.charting.charts.BarChart-->
+<!--        android:id="@+id/bc"-->
+<!--        android:layout_width="393dp"-->
+<!--        android:layout_height="299dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:layout_marginBottom="133dp"-->
+<!--        android:background="#dadad9"-->
+<!--        android:fontFamily="@font/s"-->
+<!--        android:textStyle="italic|bold" />-->
+
+    <com.github.anastr.speedviewlib.SpeedView
+        android:id="@+id/speedView5"
+        android:layout_width="159dp"
+        android:layout_height="169dp"
+        android:layout_below="@+id/txtttht"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:sv_unit=" " />
+
+    <com.github.anastr.speedviewlib.SpeedView
+        android:id="@+id/speedView4"
+        android:layout_width="159dp"
+        android:layout_height="169dp"
+        android:layout_below="@+id/txtttht"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="133dp"
-        android:fontFamily="@font/s"
-        android:background="#dadad9"
-        android:textStyle="italic|bold"/>
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="53dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:sv_unit=" "
+        app:sv_unitTextColor="#F1CB0C" />
 
     <TextView
-        android:fontFamily="@font/s"
         android:id="@+id/txtnd"
         android:layout_width="141dp"
         android:layout_height="133dp"
-        android:layout_above="@+id/bc"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="107dp"
         android:background="@drawable/tuybiennn"
+        android:fontFamily="@font/s"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/mau3"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:fontFamily="@font/s"
         android:id="@+id/txtda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bc"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="17dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="24dp"
-        android:textStyle="italic|bold"
-        android:layout_marginBottom="97dp"
         android:layout_toEndOf="@+id/txtnd"
         android:background="@drawable/tuybiennn"
-        android:textColor="@color/mau3"/>
+        android:fontFamily="@font/s"
+        android:textColor="@color/mau3"
+        android:textStyle="italic|bold" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/txtda"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="15dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="133dp"
         android:layout_toEndOf="@+id/txtnd"
         android:background="@drawable/tuybiennn"
         android:fontFamily="@font/s"
@@ -95,12 +122,12 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:fontFamily="@font/s"
                 android:id="@+id/c1"
-                android:textColor="#2b0000"
-                android:textStyle="italic|bold"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/s"
+                android:textColor="#2b0000"
+                android:textStyle="italic|bold" />
 
             <CheckBox
                 android:fontFamily="@font/s"
@@ -182,26 +209,24 @@
         android:id="@+id/imageView2"
         android:layout_width="113dp"
         android:layout_height="111dp"
-        android:layout_above="@+id/txtttht"
         android:layout_below="@+id/imageButton"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="59dp"
         android:layout_toEndOf="@+id/textView9"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtttht"
-        android:fontFamily="@font/s"
         android:layout_width="183dp"
         android:layout_height="53dp"
-        android:layout_above="@+id/bc"
+        android:layout_below="@+id/imageView2"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
-        android:textStyle="bold|italic"
-        android:layout_marginBottom="11dp"
         android:background="@drawable/tuybiennn"
-        android:textColor="@color/mau3" />
+        android:fontFamily="@font/s"
+        android:textColor="@color/mau3"
+        android:textStyle="bold|italic" />
 
     <ImageButton
         android:id="@+id/imageButton"

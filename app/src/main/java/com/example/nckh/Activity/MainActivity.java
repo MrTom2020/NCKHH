@@ -66,8 +66,8 @@ public class MainActivity extends Activity {
     private void IsCheck()
     {
         try {
-            dl = new dulieusqllite(MainActivity.this, "dulieunguoidung.sqlite", null, 1);
-            cursor = dl.truyvancoketqua("SELECT * FROM nguoidung WHERE ten='" + edtName.getText().toString().trim() + "' AND matkhau='" + edtmk.getText().toString().trim() + "'");
+            dl = new dulieusqllite(MainActivity.this, "Users2.sqlite", null, 1);
+            cursor = dl.truyvancoketqua("SELECT * FROM user WHERE ten='" + edtName.getText().toString().trim() + "' AND matkhau='" + edtmk.getText().toString().trim() + "'");
             if (cursor != null)
             {
                if(cursor.getCount() == 0)
@@ -107,12 +107,7 @@ public class MainActivity extends Activity {
             }
         });
         Dialog dialog = builder.create();
-//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//        lp.copyFrom(dialog.getWindow().getAttributes());
-//        lp.width = 800;
-//        lp.height = 800;
         dialog.show();
-        //dialog.getWindow().setAttributes(lp);
     }
 
 
@@ -134,7 +129,6 @@ public class MainActivity extends Activity {
     {
         img = findViewById(R.id.img_close);
         edtName = findViewById(R.id.editTextEmail);
-       // int kss = findViewById(KeyEvent.KEYCODE_BACK)
         edtmk = findViewById(R.id.editTextPassword);
         edtName.setText("tomhumchinvn@gmail.com");
         edtmk.setText("12345678");
@@ -171,7 +165,6 @@ public class MainActivity extends Activity {
                     {
                         btndn.setEnabled(false);
                        edtmk.setBackgroundColor(0xffffffff);
-                       Log.d("AAAAAAAAAAAAAAA",String.valueOf(event.getAction()));
                     }
                     else
                     {
@@ -182,7 +175,6 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-
     }
     private void dangkysukien()
     {

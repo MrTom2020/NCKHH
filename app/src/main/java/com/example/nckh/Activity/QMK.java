@@ -3,7 +3,6 @@ package com.example.nckh.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,13 +20,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class QMK extends AppCompatActivity {
 
     private EditText edt_tl,edt_PassWord;
@@ -36,22 +28,13 @@ public class QMK extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ArrayAdapter<String> arrayAdapter;
     private String k = "";
-    private String classs1 = "com.mysql.jdbc.Driver";
-    private String url1 = "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_236e6eebaa8fa47";
-    private String un1 = "b37c4a464e7dbf";
-    private String password1 = "8a49de4d";
-    private Statement st;
-    private ResultSet rs;
-    private ResultSetMetaData rsmd;
-    private Connection conn1 = null;
-    private String[] ch = {"Email login","Key chain"};
+    private String[] ch = {"Email login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qmk);
         AddConTrol();
         AddEvent();
-        Connect1();
     }
     private void AddConTrol()
     {
@@ -63,28 +46,6 @@ public class QMK extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(QMK.this, android.R.layout.simple_spinner_item,ch);
         arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spn_ch.setAdapter(arrayAdapter);
-    }
-    private void Connect1()
-    {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        try {
-
-            Class.forName(classs1);
-
-            conn1 = DriverManager.getConnection(url1, un1,password1);
-
-            //Toast.makeText(this, "Connect Successfull!", Toast.LENGTH_SHORT).show();
-
-
-        } catch (ClassNotFoundException e) {
-            Toast.makeText(this, "ERROR 1", Toast.LENGTH_SHORT).show();
-        } catch (SQLException e) {
-            Toast.makeText(this, "ERROR 2" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            System.out.println("ERROR: " + e.getMessage());
-
-        }
     }
     private void AddEvent()
     {
@@ -101,24 +62,6 @@ public class QMK extends AppCompatActivity {
 
             }
         });
-    }
-    private void RestartPasswordWithString()
-    {
-        try {
-            String chuoi = edt_tl.getText().toString();
-            st = conn1.createStatement();
-            rs = st.executeQuery("Call RestartPasswordWithString('"+chuoi+"')");
-            rsmd = rs.getMetaData();
-
-            while (rs.next())
-            {
-                edt_PassWord.setText(rs.getString(1));
-                // Toast.makeText(this, rsmd.getColumnName(1) + ": " + rs.getString(1)  , Toast.LENGTH_SHORT).show();
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
     private void RestartPasswordWithEmail()
     {
@@ -158,11 +101,9 @@ public class QMK extends AppCompatActivity {
                     switch (k)
                     {
                         case "Email login":
-                            // Toast.makeText(QMK.this,"123",Toast.LENGTH_SHORT).show();
                             RestartPasswordWithEmail();
                             break;
                         case "Key chain":
-                            RestartPasswordWithString();
                             break;
                     }
                 }

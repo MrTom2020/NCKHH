@@ -35,16 +35,16 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.nckh.Adapter.info_pm;
 import com.example.nckh.Adapter.trangAdp;
 import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
 import com.example.nckh.Service.ConnectionReceiver;
+import com.example.nckh.model.pm;
 import com.example.nckh.model.thongtin;
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.anastr.speedviewlib.SpeedView;
+import com.github.anastr.speedviewlib.components.Section;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
@@ -83,18 +83,23 @@ public class tranghienthi extends Activity implements
     private Intent intent;
     public DatabaseReference databaseReference,databaseReference1;
     public String tt ="";
+    private SpeedView sp1,sp2;
     public int nn = 1;
     private Double kk;
     public dulieusqllite dl;
-    public BarData barData = new BarData();
-    private BarDataSet barDataSet;
+    private TextView txt;
+    private SpeedView speedView;
+    private ListView lst;
+    private info_pm pm1;
+    private ArrayList<pm> arrayList = new ArrayList<>();
+   // public BarData barData = new BarData();
+   // private BarDataSet barDataSet;
     public Cursor cursor;
     public Dialog dialog;
-    public ArrayList<BarEntry> arrayList = new ArrayList<>();
+    //public ArrayList<BarEntry> arrayList = new ArrayList<>();
     //private LineDataSet lineDataSet;
-    private BarChart barChart;
+   // private BarChart barChart;
     private ArrayList<Entry> entryArrayList = new ArrayList<>();
-   // private ArrayList<ILineDataSet> dataSets = new ArrayList<>();
     public ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
     public NotificationManagerCompat notificationManagerCompat;
     public trangAdp adapter;
@@ -105,6 +110,7 @@ public class tranghienthi extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_tranghienthi);
        dangkynut();
+        createSpeed("100");
        // notificationManagerCompat =NotificationManagerCompat.from(this);
      //  ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
        // check();
@@ -112,16 +118,9 @@ public class tranghienthi extends Activity implements
        ax3();
         registerForContextMenu(imageButton2);
         dangkysukien();
-       // LineChart_AQI();
     }
     private void dangkynut()
     {
-//        lineChart = findViewById(id.bc);
-//        lineChart.setOnChartGestureListener(tranghienthi.this);
-//       lineChart.setOnChartValueSelectedListener(tranghienthi.this);
-//        lineChart.setDragEnabled(true);
-//        lineChart.setSaveEnabled(false);
-        barChart = findViewById(id.bc);
         c1 = findViewById(id.c1);
         c2 = findViewById(id.c2);
         c3 = findViewById(id.c3);
@@ -132,6 +131,8 @@ public class tranghienthi extends Activity implements
         txtnd = findViewById(id.txtnd);
         txtda = findViewById(id.txtda);
         btnMDBui = findViewById(id.btnmdbui);
+        sp1 = findViewById(id.speedView4);
+        sp2 = findViewById(id.speedView5);
         btnmdkk = findViewById(id.btnmdkk);
         imageButton2 = findViewById(id.imageButton);
         txtnd.setTextSize(13f);
@@ -148,10 +149,25 @@ public class tranghienthi extends Activity implements
     }
     private void taodt()
     {
-        dl = new dulieusqllite(this,"dulieunguoidung.sqlite",null,1);
+        dl = new dulieusqllite(this,"Users2.sqlite",null,1);
         dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS ThongTin(ID INTEGER PRIMARY KEY AUTOINCREMENT,nhietdo VARCHAR(50),doam VARCHAR(50),mq135 VARCHAR(50),density VARCHAR(50),time VARCHAR(50),date VARCHAR(50))");
     }
-
+    private void createSpeed(String value_pm)
+    {
+        addData(sp1);
+        addData(sp2);
+    }
+    private void addData(SpeedView speedView)
+    {
+       speedView.getSections().clear();
+        speedView.addSections(new Section(0f, .15f,0xff00fa01,  speedView.dpTOpx(30f))
+                , new Section(.15f, .3f, 0xfffefb02, speedView.dpTOpx(30f))
+                , new Section(.3f, .45f, 0xfffeaa00, speedView.dpTOpx(30f))
+                , new Section(.45f, .6f, 0xffff2700, speedView.dpTOpx(30f))
+                , new Section(.6f, 0.75f, 0xffdd2779, speedView.dpTOpx(30f))
+                , new Section(0.75f, 1.f, 0xff961100,  speedView.dpTOpx(30f)));
+        speedView.speedTo(Integer.parseInt("50"));
+    }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -208,8 +224,6 @@ public class tranghienthi extends Activity implements
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference("lichsu");
             databaseReference1 = database.getReference();
-            // barChart.clear();
-            // barData.clearValues();
             databaseReference1.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
@@ -249,11 +263,7 @@ public class tranghienthi extends Activity implements
                     {
                         nn = 1;
                     }
-                    doc3(kkk,clkk,tg,dd);
-//                    int vt = tg.indexOf(" ");
-//                    String time = tg.substring(vt);
-//                    String date = tg.substring(0,vt);
-//                    arrayList5.add(new thongtin(kkk, nd, da, clkk, mdb, time, date));
+                  //  doc3(kkk,clkk,tg,dd);
                 }
 
                 @Override
@@ -293,98 +303,6 @@ public class tranghienthi extends Activity implements
         c5.setText (D);
     }
     @SuppressLint("SetTextI18n")
-    public void ax4()
-    {
-        arrayList = new ArrayList<>();
-        database = FirebaseDatabase.getInstance();
-        databaseReference1 = database.getReference();
-        databaseReference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                String clkk = snapshot.child("chatluongkk").getValue().toString();
-                String da= snapshot.child("doam").getValue().toString();
-                String mdbui= snapshot.child("matdobui").getValue().toString();
-                String nd= snapshot.child("nhietdo").getValue().toString();
-                kk = mdbui != "" ? Double.parseDouble(mdbui) : 0;
-                double t = clkk != "" ? Double.parseDouble(clkk) : 0;
-                txtnd.setText(nd + " C ");
-                txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
-                txtda.setText(" : " + da + " % ");
-                txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
-                txtmq135.setText(" AQI  " + clkk);
-                GetRults(t,kk);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        databaseReference = database.getReference("lichsu");
-        barChart.clear();
-        barData.clearValues();
-        databaseReference.limitToLast(5).addChildEventListener(new ChildEventListener()
-        {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName)
-            {
-                String kkk = String.valueOf(nn);
-                String nd = snapshot.child("nhietdo").getValue().toString();
-                String da= snapshot.child("doam").getValue().toString();
-                String tg= snapshot.child("Thoigian").getValue().toString();
-                String clkk= snapshot.child("chatluongkk").getValue().toString();
-                String mdb= snapshot.child("matdobui").getValue().toString();
-                double dd = Double.parseDouble(mdb);
-                nn++;
-                if(nn > 5)
-                {
-                    nn = 1;
-                }
-                doc4(kkk, mdb, tg, dd);
-                int vt = tg.indexOf(" ");
-                String time = tg.substring(vt);
-                String date = tg.substring(0,vt);
-                arrayList5.add(new thongtin(kkk, nd, da, clkk, mdb, time, date));
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName)
-            {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-
-            }
-        });
-        c1.setBackgroundColor(0xff01b0f1);
-        c2.setBackgroundColor(0xffffff01);
-        c3.setBackgroundColor(0xffffbe00);
-        c4.setBackgroundColor(0xfffe0000);
-        c5.setBackgroundColor(0xffcc9900);
-        c6.setBackgroundColor(0xffff0000);
-        c7.setBackgroundColor(0xffa60331);
-        c1.setText ("Good");
-        c2.setText ("Average");
-        c3.setText ("Affect sensitive groups");
-        c4.setText ("Adverse to health");
-        c5.setText ("Very bad impact on health");
-        c6.setText ("Dangerous");
-        c7.setText ("Very dangerous");
-    }
     private void ClearAllData()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -453,161 +371,6 @@ public class tranghienthi extends Activity implements
         check();
         super.onStart();
     }
-
-//    private void LineChart_AQI()
-//    {
-//        LimitLine limitLineT = new LimitLine(65f,"Danger");
-//        limitLineT.setLineWidth(4f);
-//        limitLineT.enableDashedLine(10f,10f,0f);
-//        limitLineT.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-//        limitLineT.setTextSize(15f);
-//
-//        LimitLine limitLineB = new LimitLine(35f,"Too Low");
-//        limitLineB.setLineWidth(4f);
-//        limitLineB.enableDashedLine(10f,10f,10f);
-//        limitLineB.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-//        limitLineB.setTextSize(15f);
-//
-//        YAxis leftAxis = lineChart.getAxisLeft();
-//        leftAxis.removeAllLimitLines();
-//        leftAxis.addLimitLine(limitLineT);
-//        leftAxis.addLimitLine(limitLineB);
-//        //leftAxis.removeAllLimitLines();Xóa các đường line
-//        leftAxis.setAxisMaximum(100f);
-//        leftAxis.setAxisMinimum(25f);
-//        leftAxis.enableGridDashedLine(10f,10f,0);
-//        leftAxis.setDrawLimitLinesBehindData(true);
-//
-//        lineChart.getAxisRight().setEnabled(false);
-//        entryArrayList.add(new Entry(0,60f));
-//        entryArrayList.add(new Entry(1,50f));
-//        entryArrayList.add(new Entry(2,70f));
-//        entryArrayList.add(new Entry(3,30f));
-//        entryArrayList.add(new Entry(4,50f));
-//        entryArrayList.add(new Entry(5,60f));
-//        entryArrayList.add(new Entry(6,70f));
-//        lineDataSet = new LineDataSet(entryArrayList,"Demo");
-//        lineDataSet.setFillAlpha(130);
-//        lineDataSet.setLineWidth(3f);
-//        lineDataSet.setColor(0xff2b0000);
-//        lineDataSet.setValueTextSize(10f);
-//        lineDataSet.setValueTextColor(0xfff0f0f0);
-//        dataSets.add(lineDataSet);
-//        LineData data = new LineData(dataSets);
-//
-//        lineChart.setData(data);
-//
-//        String[]values = new String[]{"January","February","March", "April", "May", "June",
-//                "July"};//, "August", "September", "October", "November", "December"};
-//
-//
-//        XAxis xAxis = lineChart.getXAxis();
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(values));
-//        xAxis.setGranularity(1);
-//
-//        c1.setBackgroundColor(0xff00E400);
-//        c2.setBackgroundColor(0xffFFFF00);
-//        c3.setBackgroundColor(0xffFF7E00);
-//        c4.setBackgroundColor(0xffFF0000);
-//        c5.setBackgroundColor(0xff8F3F97);
-//        c6.setBackgroundColor(0xff7E0023);
-//
-//        String gd = "Good";
-//        String Av = "Medium";
-//        String P = "Least";
-//        String B = "Bad";
-//        String VB = "Very bad";
-//        String D = "Dengoures";
-//
-//        c1.setText (gd);
-//        c2.setText (Av);
-//        c3.setText (P);
-//        c4.setText (B);
-//        c5.setText (VB);
-//        c6.setText(D);
-//        //lineChart.
-//       // lineChart.getXAxis().setEnabled(false);
-//
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
-//    }
-
-//    private void LineChart_PM()
-//    {
-//        LimitLine limitLineT = new LimitLine(65f,"Danger");
-//        limitLineT.setLineWidth(4f);
-//        limitLineT.enableDashedLine(10f,10f,0f);
-//        limitLineT.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-//        limitLineT.setTextSize(15f);
-//
-//        LimitLine limitLineB = new LimitLine(35f,"Too Low");
-//        limitLineB.setLineWidth(4f);
-//        limitLineB.enableDashedLine(10f,10f,10f);
-//        limitLineB.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-//        limitLineB.setTextSize(15f);
-//
-//        YAxis leftAxis = lineChart.getAxisLeft();
-//        leftAxis.removeAllLimitLines();
-//        leftAxis.addLimitLine(limitLineT);
-//        leftAxis.addLimitLine(limitLineB);
-//        //leftAxis.removeAllLimitLines();Xóa các đường line
-//        leftAxis.setAxisMaximum(100f);
-//        leftAxis.setAxisMinimum(25f);
-//        leftAxis.enableGridDashedLine(10f,10f,0);
-//        leftAxis.setDrawLimitLinesBehindData(true);
-//
-//        lineChart.getAxisRight().setEnabled(false);
-//        entryArrayList.add(new Entry(0,60f));
-//        entryArrayList.add(new Entry(1,50f));
-//        entryArrayList.add(new Entry(2,70f));
-//        entryArrayList.add(new Entry(3,30f));
-//        entryArrayList.add(new Entry(4,50f));
-//        entryArrayList.add(new Entry(5,60f));
-//        entryArrayList.add(new Entry(6,70f));
-//        lineDataSet = new LineDataSet(entryArrayList,"Demo");
-//        lineDataSet.setFillAlpha(130);
-//        lineDataSet.setLineWidth(3f);
-//        lineDataSet.setColor(0xff2b0000);
-//        lineDataSet.setValueTextSize(10f);
-//        lineDataSet.setValueTextColor(0xfff0f0f0);
-//        dataSets.add(lineDataSet);
-//        LineData data = new LineData(dataSets);
-//
-//        lineChart.setData(data);
-//
-//        String[]values = new String[]{"January","February","March", "April", "May", "June",
-//                "July"};//, "August", "September", "October", "November", "December"};
-//
-//
-//        XAxis xAxis = lineChart.getXAxis();
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(values));
-//        xAxis.setGranularity(1);
-//
-//        c1.setBackgroundColor(0xff00E400);
-//        c2.setBackgroundColor(0xffFFFF00);
-//        c3.setBackgroundColor(0xffFF7E00);
-//        c4.setBackgroundColor(0xffFF0000);
-//        c5.setBackgroundColor(0xff8F3F97);
-//        c6.setBackgroundColor(0xff7E0023);
-//
-//        String gd = "Good";
-//        String Av = "Medium";
-//        String P = "Least";
-//        String B = "Bad";
-//        String VB = "Very bad";
-//        String D = "Dengoures";
-//
-//        c1.setText (gd);
-//        c2.setText (Av);
-//        c3.setText (P);
-//        c4.setText (B);
-//        c5.setText (VB);
-//        c6.setText(D);
-//        //lineChart.
-//        // lineChart.getXAxis().setEnabled(false);
-//
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
-//    }
-
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG,"onChartGestureStart X:" + me.getX() + "Y:" + me.getY());
@@ -657,20 +420,6 @@ public class tranghienthi extends Activity implements
     public void onNothingSelected() {
         Log.i(TAG,"onNothingSelected ");
     }
-
-    //    public ArrayList<String> values()
-//    {
-//        final ArrayList<String> xAxis = new ArrayList<>();
-//        xAxis.add("January");
-//            xAxis.add("February");
-//            xAxis.add("March");
-//            xAxis.add("April");
-//            xAxis.add("May");
-//            xAxis.add("June");
-//            xAxis.add("July");
-//
-//            return xAxis;
-//    }
     private void show_pm()
     {
         intent = new Intent(tranghienthi.this,show_PM.class);
@@ -687,7 +436,7 @@ public class tranghienthi extends Activity implements
             }
             if(view.equals(btnMDBui))
             {
-              ax4();
+             // ax4();
             }
             if(view.equals(txtmq135))
             {
@@ -830,82 +579,6 @@ public class tranghienthi extends Activity implements
              arrayListtt.add(new thongtin(id,nhietdo,doam,mq135,density,time,date));
             }
         }
-    }
-    private void doc3(String key,String clkk,String tg,double t)
-    {
-        ArrayList<BarEntry> arrayList3 = new ArrayList<>();
-        int vt = tg.indexOf(" ");
-        String time = tg.substring(vt);
-        if(nn > 5)
-        {
-            int vtt = nn - 5;
-            key = String.valueOf(vtt);
-            barDataSet.setColor(0xffffffff);
-            Toast.makeText(tranghienthi.this,String.valueOf(vtt),Toast.LENGTH_SHORT).show();
-            arrayList3.set(vtt,new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
-        }
-        else
-        {
-            arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(clkk)));
-        }
-        barDataSet = new BarDataSet(arrayList3, " " + time + "            ");
-       int kqmau = t > 300 ? 0xfffe0000: t >= 201 ? 0xfffe0000:t >= 101 ? 0xffffbe00: t >= 51 ? 0xffffff01:0xff01b0f1;
-
-        barDataSet.setColors(kqmau);
-        barDataSet.setValueTextSize(8f);
-        barDataSet.setValueTextColor(0xff93ab52);
-        barData.addDataSet(barDataSet);
-        barChart.setData(barData);
-        barChart.setBackgroundColor(0xff333333);
-        barChart.getAxisRight().setEnabled(false);
-        barChart.getLegend().setXEntrySpace(19f);
-        barChart.getXAxis().setEnabled(false);
-        barChart.getLegend().setTextColor(0xff93ab52);
-        barChart.getAxisLeft().setTextColor(0xff93ab52);
-        barChart.getDescription().setText("AQI");
-        barChart.invalidate();
-    }
-    private void doc4(String key,String mdbui,String tg,double t)
-    {
-        ArrayList<BarEntry> arrayList3 = new ArrayList<>();
-        int vt = tg.indexOf(" ");
-        String time = tg.substring(vt);
-        arrayList5 = new ArrayList<>();
-        if(nn > 5)
-        {
-            int vtt = nn - 5;
-            key = String.valueOf(vtt);
-            barDataSet.setColor(0xffffffff);
-            Toast.makeText(tranghienthi.this,String.valueOf(vtt),Toast.LENGTH_SHORT).show();
-            arrayList3.set(vtt,new BarEntry(Float.parseFloat(key), Float.parseFloat(mdbui)));
-        }
-        else
-        {
-           // key = String.valueOf(nn);
-            arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(mdbui)));
-        }
-        //arrayList3.add(new BarEntry(Float.parseFloat(key), Float.parseFloat(mdbui)));
-        barDataSet = new BarDataSet(arrayList3, " " + time + " \t\t\t\t\t           ");
-        int kqmau = t >= 350.5 ? 0xffa60331
-                :t >= 250.5 ? 0xffff0000
-                :t >= 150.5 ? 0xffcc9900
-                :t >= 65.5 ? 0xfffe0000
-                :t >= 40.5 ? 0xffffbe00
-                :t >= 15.5 ? 0xffffff01
-                :0xff01b0f1;
-        barDataSet.setColors(kqmau);
-        barDataSet.setValueTextSize(8f);
-        barDataSet.setValueTextColor(0xff93ab52);
-        barData.addDataSet(barDataSet);
-        barChart.setData(barData);
-        barChart.setBackgroundColor(0xff333333);
-        barChart.getAxisRight().setEnabled(false);
-        barChart.getLegend().setXEntrySpace(19f);
-        barChart.getLegend().setTextColor(0xff93ab52);
-        barChart.getAxisLeft().setTextColor(0xff93ab52);
-        barChart.getXAxis().setEnabled(false);
-        barChart.getDescription().setText("AQI");
-        barChart.invalidate();
     }
     private void GetRults(double kk, double bui)
     {

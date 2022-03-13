@@ -145,11 +145,6 @@ public class MainActivity extends Activity {
                     if(edtName.getText().toString().trim().length() < 1)
                     {
                         btndn.setEnabled(false);
-                        edtName.setBackgroundColor(0xffffffff);
-                    }
-                    else
-                    {
-                        edtName.setBackgroundColor(0xfffff000);
                     }
                 }
                 return false;
@@ -164,11 +159,9 @@ public class MainActivity extends Activity {
                     if(edtmk.getText().toString().trim().length() < 1)
                     {
                         btndn.setEnabled(false);
-                       edtmk.setBackgroundColor(0xffffffff);
                     }
                     else
                     {
-                        edtmk.setBackgroundColor(0xfffff000);
                         btndn.setEnabled(true);
                     }
                 }

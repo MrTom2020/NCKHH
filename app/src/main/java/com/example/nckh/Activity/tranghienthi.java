@@ -4,6 +4,7 @@ import static com.example.nckh.R.id;
 import static com.example.nckh.R.layout;
 import static com.example.nckh.model.WifiApp.cb;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -74,8 +76,7 @@ public class tranghienthi extends Activity implements
 {
     private static final String TAG = "MainActivity";
     private LineChart lineChart;
-    private CheckBox c1,c2,c3,c4,c5,c6,c7;
-    private Button btnMDBui,btnmdkk;
+    private Button btnmdkk;
     private TextView txtnd,txtda,txtmq135,txttt;
     private ImageView imageView;
     private ImageButton imageButton2;
@@ -92,13 +93,8 @@ public class tranghienthi extends Activity implements
     private ListView lst;
     private info_pm pm1;
     private ArrayList<pm> arrayList = new ArrayList<>();
-   // public BarData barData = new BarData();
-   // private BarDataSet barDataSet;
     public Cursor cursor;
     public Dialog dialog;
-    //public ArrayList<BarEntry> arrayList = new ArrayList<>();
-    //private LineDataSet lineDataSet;
-   // private BarChart barChart;
     private ArrayList<Entry> entryArrayList = new ArrayList<>();
     public ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
     public NotificationManagerCompat notificationManagerCompat;
@@ -110,9 +106,8 @@ public class tranghienthi extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_tranghienthi);
        dangkynut();
-        createSpeed("100");
-       // notificationManagerCompat =NotificationManagerCompat.from(this);
-     //  ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+       notificationManagerCompat =NotificationManagerCompat.from(this);
+       ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
        // check();
         taodt();
        ax3();
@@ -121,16 +116,8 @@ public class tranghienthi extends Activity implements
     }
     private void dangkynut()
     {
-        c1 = findViewById(id.c1);
-        c2 = findViewById(id.c2);
-        c3 = findViewById(id.c3);
-        c4 = findViewById(id.c4);
-        c5 = findViewById(id.c5);
-        c6 = findViewById(id.c6);
-        c7 = findViewById(id.c7);
         txtnd = findViewById(id.txtnd);
         txtda = findViewById(id.txtda);
-        btnMDBui = findViewById(id.btnmdbui);
         sp1 = findViewById(id.speedView4);
         sp2 = findViewById(id.speedView5);
         btnmdkk = findViewById(id.btnmdkk);
@@ -139,26 +126,15 @@ public class tranghienthi extends Activity implements
         txttt = findViewById(id.txtttht);
         imageView = findViewById(id.imageView2);
         txtmq135 = findViewById(id.textView9);
-        c1.setEnabled(false);
-        c2.setEnabled(false);
-        c3.setEnabled(false);
-        c4.setEnabled(false);
-        c5.setEnabled(false);
-        c6.setEnabled(false);
-        c7.setEnabled(false);
     }
     private void taodt()
     {
         dl = new dulieusqllite(this,"Users2.sqlite",null,1);
         dl.truyvankhongtrakq("CREATE TABLE IF NOT EXISTS ThongTin(ID INTEGER PRIMARY KEY AUTOINCREMENT,nhietdo VARCHAR(50),doam VARCHAR(50),mq135 VARCHAR(50),density VARCHAR(50),time VARCHAR(50),date VARCHAR(50))");
     }
-    private void createSpeed(String value_pm)
+    private void addData(SpeedView speedView,String pm)
     {
-        addData(sp1);
-        addData(sp2);
-    }
-    private void addData(SpeedView speedView)
-    {
+        speedView.setMaxSpeed(500);
        speedView.getSections().clear();
         speedView.addSections(new Section(0f, .15f,0xff00fa01,  speedView.dpTOpx(30f))
                 , new Section(.15f, .3f, 0xfffefb02, speedView.dpTOpx(30f))
@@ -166,7 +142,8 @@ public class tranghienthi extends Activity implements
                 , new Section(.45f, .6f, 0xffff2700, speedView.dpTOpx(30f))
                 , new Section(.6f, 0.75f, 0xffdd2779, speedView.dpTOpx(30f))
                 , new Section(0.75f, 1.f, 0xff961100,  speedView.dpTOpx(30f)));
-        speedView.speedTo(Integer.parseInt("50"));
+        speedView.speedTo(Integer.parseInt(pm));
+        speedView.setWithTremble(false);
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
@@ -214,8 +191,7 @@ public class tranghienthi extends Activity implements
                 .setColor(0xfffff000)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build()
-                ;
+                .build();
         notificationManagerCompat.notify(1,notification);
     }
     public void ax3()
@@ -228,13 +204,15 @@ public class tranghienthi extends Activity implements
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
                 {
-                    String clkk = snapshot.child("chatluongkk").getValue().toString();
+                    String clkk = snapshot.child("PM2,5").getValue().toString();
                     String da= snapshot.child("Humidity").getValue().toString();
                     String mdbui= snapshot.child("matdobui").getValue().toString();
                     String nd= snapshot.child("Temperature").getValue().toString();
                     kk = !mdbui.equals("") ? Double.parseDouble(mdbui) : 0;
                     double t = !clkk.equals("") ? Double.parseDouble(clkk) : 0;
                     txtnd.setText(nd + " C ");
+                    addData(sp1,snapshot.child("PM10,0").getValue().toString());
+                    addData(sp2,snapshot.child("PM2,5").getValue().toString());
                     txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                     txtda.setText(" : " + da + " % ");
                     txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
@@ -263,7 +241,6 @@ public class tranghienthi extends Activity implements
                     {
                         nn = 1;
                     }
-                  //  doc3(kkk,clkk,tg,dd);
                 }
 
                 @Override
@@ -286,21 +263,6 @@ public class tranghienthi extends Activity implements
 
                 }
             });
-        c1.setBackgroundColor(0xff01b0f1);
-        c2.setBackgroundColor(0xffffff01);
-        c3.setBackgroundColor(0xffffbe00);
-        c4.setBackgroundColor(0xfffe0000);
-        c5.setBackgroundColor(0xffcc9900);
-        String gd = "Good";
-        String Av = "Average";
-        String P = "Poor";
-        String B = "Bad";
-        String D = "Dangerous";
-        c1.setText (gd);
-        c2.setText (Av);
-        c3.setText (P);
-        c4.setText (B);
-        c5.setText (D);
     }
     @SuppressLint("SetTextI18n")
     private void ClearAllData()
@@ -340,7 +302,6 @@ public class tranghienthi extends Activity implements
     private void dangkysukien()
     {
         btnmdkk.setOnClickListener(new sukiencuatoi());
-        btnMDBui.setOnClickListener(new sukiencuatoi());
         txtmq135.setOnClickListener(new sukiencuatoi());
     }
     private void check()
@@ -352,14 +313,12 @@ public class tranghienthi extends Activity implements
             ms = "The device has an Internet connection and can be done online";
             tt = "ok";
             btnmdkk.setEnabled(true);
-            btnMDBui.setEnabled(true);
         }
         else
         {
             ms = "The device does not have an Internet connection and can be performed offline";
             tt = "ko";
             btnmdkk.setEnabled(false);
-            btnMDBui.setEnabled(false);
         }
         Toast.makeText(tranghienthi.this,ms,Toast.LENGTH_SHORT).show();
     }
@@ -433,10 +392,6 @@ public class tranghienthi extends Activity implements
             if(view.equals(btnmdkk))
             {
                ax3();
-            }
-            if(view.equals(btnMDBui))
-            {
-             // ax4();
             }
             if(view.equals(txtmq135))
             {

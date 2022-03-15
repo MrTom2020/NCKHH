@@ -22,27 +22,6 @@
         android:theme="@style/Theme.NCKH"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.t"
-            android:exported="true" >
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-
-
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".Activity.show_PM"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
             android:name=".Activity.Tutorial_PM"
             android:exported="false" />
         <activity

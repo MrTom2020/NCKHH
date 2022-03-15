@@ -64,7 +64,6 @@ public class info_about_pm_aqi extends BaseAdapter {
         viewholer.txt.setWidth(WindowManager.LayoutParams.FLAG_FULLSCREEN - (WindowManager.LayoutParams.FLAG_FULLSCREEN)/4);
 
         viewholer.txt.setText(info.getInfo());
-//        TextViewCompat.setAutoSizeTextTypeWithDefaults(viewholer.txt,TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         viewholer.img.setBackgroundResource(info.getImg());
         return convertView;
     }

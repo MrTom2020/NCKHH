@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -41,7 +40,6 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,9 +53,6 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
     private Intent intent;
     private double x = 10.985024982399338, y = 106.68258440446365;//10.985024982399338, 106.68258440446365
     private String Address_u = "";
-    private ArrayList<Point> x_y = new ArrayList<>();
-    private ArrayList<Point> x_y2 = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +84,6 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 ax(x, y);
-                // Hiển thị
                 Toast.makeText(this, latitude + ", " + longitude, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "(Location cannot be displayed. Have you enabled location on the device?)", Toast.LENGTH_SHORT).show();
@@ -133,7 +127,7 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     protected void onStop() {
-        //gac.disconnect();
+        gac.disconnect();
         super.onStop();
     }
 
@@ -141,7 +135,6 @@ public class Address_Us extends AppCompatActivity implements OnMapReadyCallback,
         DecimalFormat df = new DecimalFormat("#.###");
         Double x3 = ((double) Math.floor(x2 * 1000000) / 1000000) - 0.005367;
         Double y3 = ((double) Math.floor(y2 * 1000000) / 1000000) - 0.006348;
-        //btn.setText("x3" + String.valueOf(x3) + ":y3" + String.valueOf(y3));
         LatLng latLng = new LatLng(x3, y3);
         int w = 60;
         int h = 60;

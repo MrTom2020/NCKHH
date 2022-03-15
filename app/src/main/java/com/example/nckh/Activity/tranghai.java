@@ -62,7 +62,6 @@ public class tranghai extends TabActivity {
         tabSpec.setContent (intent);
         tabHost.addTab (tabSpec);
 
-        //tabHost.setBackgroundColor(0xff2b0000);
        tabHost.setCurrentTab(1);
 
     }

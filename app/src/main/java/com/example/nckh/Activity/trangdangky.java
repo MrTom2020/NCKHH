@@ -28,10 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-
 public class trangdangky extends AppCompatActivity {
 
     private EditText edtten,edtmk,edtdc,edtns;
@@ -48,10 +44,7 @@ public class trangdangky extends AppCompatActivity {
     public ProgressDialog progressDialog;
     private Intent intent;
     private String Name = "Name";
-    private ResultSet rs;
     private String dcx,dcy;
-    private ResultSetMetaData rsmd;
-    private Connection conn1 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

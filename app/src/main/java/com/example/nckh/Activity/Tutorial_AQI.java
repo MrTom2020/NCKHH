@@ -1,7 +1,6 @@
 package com.example.nckh.Activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.TextViewCompat;
 
 import com.example.nckh.Adapter.info_about_pm_aqi;
 import com.example.nckh.R;
@@ -24,7 +22,6 @@ public class Tutorial_AQI extends AppCompatActivity {
     private ListView lst;
     private info_about_pm_aqi info_about_pm_aqi;
     private ArrayList<info_about_aqi_pm> info_about_aqi_pms = new ArrayList<>();
-    private ArrayList<String> test = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,19 +50,5 @@ public class Tutorial_AQI extends AppCompatActivity {
         lst.setAdapter(info_about_pm_aqi);
         constraintLayout.addView(txt);
         constraintLayout.addView(lst);
-
-
-    }
-    private void addEvent()
-    {
-
-    }
-    private class MyEvent implements View.OnClickListener
-    {
-        @Override
-        public void onClick(View view)
-        {
-
-        }
     }
 }

@@ -110,7 +110,6 @@ public class MainActivity extends Activity {
         dialog.show();
     }
 
-
     @Override
     public boolean dispatchKeyEvent(KeyEvent event)
     {
@@ -221,13 +220,11 @@ public class MainActivity extends Activity {
               Askuser();
           }
         }
-
     }
 
     private void dangnhap()
     {
         try {
-
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setMessage("Please wait a moment");
             progressDialog.show();

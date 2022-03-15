@@ -37,7 +37,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.nckh.Adapter.info_pm;
 import com.example.nckh.Adapter.trangAdp;
 import com.example.nckh.R;
 import com.example.nckh.SQL.dulieusqllite;
@@ -88,14 +87,9 @@ public class tranghienthi extends Activity implements
     public int nn = 1;
     private Double kk;
     public dulieusqllite dl;
-    private TextView txt;
-    private SpeedView speedView;
-    private ListView lst;
-    private info_pm pm1;
     private ArrayList<pm> arrayList = new ArrayList<>();
     public Cursor cursor;
     public Dialog dialog;
-    private ArrayList<Entry> entryArrayList = new ArrayList<>();
     public ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
     public NotificationManagerCompat notificationManagerCompat;
     public trangAdp adapter;
@@ -379,11 +373,6 @@ public class tranghienthi extends Activity implements
     public void onNothingSelected() {
         Log.i(TAG,"onNothingSelected ");
     }
-    private void show_pm()
-    {
-        intent = new Intent(tranghienthi.this,show_PM.class);
-        startActivity(intent);
-    }
     private class sukiencuatoi implements View.OnClickListener
     {
         @Override
@@ -392,10 +381,6 @@ public class tranghienthi extends Activity implements
             if(view.equals(btnmdkk))
             {
                ax3();
-            }
-            if(view.equals(txtmq135))
-            {
-                show_pm();
             }
         }
     }

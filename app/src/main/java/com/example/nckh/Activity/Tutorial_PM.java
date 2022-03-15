@@ -29,7 +29,6 @@ public class Tutorial_PM extends AppCompatActivity {
     private int h = 0;
     private com.example.nckh.Adapter.info_about_pm_aqi info_about_pm_aqi;
     private ArrayList<info_about_aqi_pm> info_about_aqi_pms = new ArrayList<>();
-    private ArrayList<String> test = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,10 +95,6 @@ public class Tutorial_PM extends AppCompatActivity {
         constraintLayout.addView(lst);
 
         //EPA (The U.S. Environmental Protection Agency – Cơ Quan Bảo Vệ Môi Trường Hoa Kỳ)
-    }
-    private void addEvent()
-    {
-
     }
     private void clearItem(int i,CardView cardView)
     {
@@ -174,13 +169,5 @@ public class Tutorial_PM extends AppCompatActivity {
         }
         view.addView(txt);
         txt.setY(50);
-    }
-    private class MyEvent implements View.OnClickListener
-    {
-        @Override
-        public void onClick(View view)
-        {
-
-        }
     }
 }

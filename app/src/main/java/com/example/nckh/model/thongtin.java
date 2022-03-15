@@ -7,19 +7,21 @@ public class thongtin
     private String doam;
     private String mq135;
     private String density;
+    private String pm10;
     private String time;
     private String date;
 
-    public thongtin(String id, String nhietdo, String doam, String mq135, String density, String time, String date) {
+
+    public thongtin(String id, String nhietdo, String doam, String mq135, String density, String pm10, String time, String date) {
         this.id = id;
         this.nhietdo = nhietdo;
         this.doam = doam;
         this.mq135 = mq135;
         this.density = density;
+        this.pm10 = pm10;
         this.time = time;
         this.date = date;
     }
-
 
     public String getId() {
         return id;
@@ -59,6 +61,14 @@ public class thongtin
 
     public void setDensity(String density) {
         this.density = density;
+    }
+
+    public String getPm10() {
+        return pm10;
+    }
+
+    public void setPm10(String pm10) {
+        this.pm10 = pm10;
     }
 
     public String getTime() {

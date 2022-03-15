@@ -70,7 +70,7 @@
                 android:id="@+id/info_edt_birth_day"
                 style="@style/modifiedEditText"
                 android:hint="@string/birthday"
-                android:inputType="text"
+                android:inputType="date"
                 android:maxLines="1"
                 android:fontFamily="@font/s"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -84,7 +84,7 @@
                 android:id="@+id/info_edt_phone_number"
                 style="@style/modifiedEditText"
                 android:hint="@string/phonenumber"
-                android:inputType="text"
+                android:inputType="phone"
                 android:fontFamily="@font/s"
                 android:maxLines="1"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />

@@ -32,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -45,13 +44,11 @@ import com.example.nckh.model.pm;
 import com.example.nckh.model.thongtin;
 import com.github.anastr.speedviewlib.SpeedView;
 import com.github.anastr.speedviewlib.components.Section;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,13 +65,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class tranghienthi extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener
 {
     private static final String TAG = "MainActivity";
-    private LineChart lineChart;
+    private String _Collectdata = "Collect data";
     private Button btnmdkk;
     private TextView txtnd,txtda,txtmq135,txttt;
     private ImageView imageView;
@@ -143,12 +139,14 @@ public class tranghienthi extends Activity implements
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         getMenuInflater().inflate(R.menu.menu,menu);
+        menu.findItem(id.Collectdata).setTitle(_Collectdata);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item)
     {
+
         switch (item.getItemId())
         {
             case id.info_about_PM:
@@ -168,8 +166,16 @@ public class tranghienthi extends Activity implements
             case id.save:
                 GetAskUser();
                 break;
-            case id.export_data:
-                ExportFileExcel();
+            case id.Collectdata:
+                if(_Collectdata != "Collect data")
+                {
+                    _Collectdata = "Collect data";
+                   Stopcollectingdata();
+                }
+                else
+                {
+                    _Collectdata = "Collecting data";
+                }
                 break;
         }
         return super.onContextItemSelected(item);
@@ -199,9 +205,10 @@ public class tranghienthi extends Activity implements
                 public void onDataChange(@NonNull DataSnapshot snapshot)
                 {
                     String clkk = snapshot.child("PM2,5").getValue().toString();
-                    String da= snapshot.child("Humidity").getValue().toString();
-                    String mdbui= snapshot.child("matdobui").getValue().toString();
-                    String nd= snapshot.child("Temperature").getValue().toString();
+                    String da = snapshot.child("Humidity").getValue().toString();
+                    String mdbui= snapshot.child("PM2,5").getValue().toString();
+                    String nd = snapshot.child("Temperature").getValue().toString();
+                    String pm10 = snapshot.child("PM10,0").getValue().toString();
                     kk = !mdbui.equals("") ? Double.parseDouble(mdbui) : 0;
                     double t = !clkk.equals("") ? Double.parseDouble(clkk) : 0;
                     txtnd.setText(nd + " C ");
@@ -212,44 +219,10 @@ public class tranghienthi extends Activity implements
                     txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
                     txtmq135.setText(" PM  " + mdbui + "μg/m3");
                     GetRults(t,kk);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-            databaseReference.limitToLast(5).addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName)
-                {
-                    String kkk = String.valueOf(nn);
-                    String nd = snapshot.child("nhietdo").getValue().toString();
-                    String da= snapshot.child("doam").getValue().toString();
-                    String tg= snapshot.child("Thoigian").getValue().toString();
-                    String clkk= Objects.requireNonNull(snapshot.child("chatluongkk").getValue()).toString();
-                    String mdb= Objects.requireNonNull(snapshot.child("matdobui").getValue()).toString();
-                    double dd = Double.parseDouble(clkk);
-                    nn++;
-                    if(nn > 5)
+                    if(_Collectdata == "Collecting data")
                     {
-                        nn = 1;
+                        arrayList5.add(new thongtin("1",nd,da,clkk,mdbui,"","1","1"));
                     }
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
                 }
 
                 @Override
@@ -284,7 +257,32 @@ public class tranghienthi extends Activity implements
         Dialog dialog2 = builder.create();
         dialog2.show();
     }
-
+    private void Stopcollectingdata()
+    {
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(tranghienthi.this,R.style.AlertDialogStyle);
+        builder.setTitle("Notification");
+        builder.setMessage ("Do you want to stop collecting data ?");
+        builder.setIcon(R.drawable.panda);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                ExportFileExcel();
+                _Collectdata = "Collect data";
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
+            }
+        });
+        Dialog dialog1 = builder.create();
+        dialog1.show();
+    }
     @Override
     protected void onResume()
     {
@@ -453,6 +451,9 @@ public class tranghienthi extends Activity implements
             cell.setCellValue("PM 2.5");
 
             cell = row.createCell(4);
+            cell.setCellValue("PM 10");
+
+            cell = row.createCell(5);
             cell.setCellValue("AQI");
 
             for(int i = 1; i < arrayList5.size();i++)
@@ -471,7 +472,11 @@ public class tranghienthi extends Activity implements
                 cell.setCellValue(arrayList5.get(i).getDensity());
 
                 cell = row1.createCell(4);
+                cell.setCellValue(arrayList5.get(i).getPm10());
+
+                cell = row1.createCell(5);
                 cell.setCellValue(arrayList5.get(i).getMq135());
+
             }
 
             sheet.setColumnWidth(0, (3000));
@@ -516,7 +521,6 @@ public class tranghienthi extends Activity implements
                String density =cursor.getString(4);
                String time = cursor.getString(5);
                String date = cursor.getString(6);
-             arrayListtt.add(new thongtin(id,nhietdo,doam,mq135,density,time,date));
             }
         }
     }

@@ -65,6 +65,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class tranghienthi extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener
@@ -77,16 +78,18 @@ public class tranghienthi extends Activity implements
     private ImageButton imageButton2;
     private FirebaseDatabase database;
     private Intent intent;
-    public DatabaseReference databaseReference,databaseReference1;
+    private TextView txt_pm10;
+    private Button btn_load;
+    public DatabaseReference databaseReference1;
     public String tt ="";
     private SpeedView sp1,sp2;
-    public int nn = 1;
     private Double kk;
     public dulieusqllite dl;
     private ArrayList<pm> arrayList = new ArrayList<>();
     public Cursor cursor;
     public Dialog dialog;
-    public ArrayList<thongtin> arrayList5 = new ArrayList<>(),arrayListtt = new ArrayList<>();
+    public ArrayList<thongtin> arrayList5 = new ArrayList<>();
+    public ArrayList<thongtin> arrayListtt = new ArrayList<>();
     public NotificationManagerCompat notificationManagerCompat;
     public trangAdp adapter;
 
@@ -106,10 +109,12 @@ public class tranghienthi extends Activity implements
     }
     private void dangkynut()
     {
+        txt_pm10 = findViewById(id.txt_pm10);
         txtnd = findViewById(id.txtnd);
         txtda = findViewById(id.txtda);
         sp1 = findViewById(id.speedView4);
         sp2 = findViewById(id.speedView5);
+        btn_load = findViewById(R.id.btnmdkk);
         btnmdkk = findViewById(id.btnmdkk);
         imageButton2 = findViewById(id.imageButton);
         txtnd.setTextSize(13f);
@@ -196,32 +201,35 @@ public class tranghienthi extends Activity implements
     }
     public void ax3()
     {
+        Random r1 = new Random();
+        Random r2 = new Random();
         arrayList = new ArrayList<>();
             database = FirebaseDatabase.getInstance();
-            databaseReference = database.getReference("lichsu");
             databaseReference1 = database.getReference();
             databaseReference1.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot)
                 {
-                    String clkk = snapshot.child("PM2,5").getValue().toString();
+                    String n = String.valueOf(r1.nextInt(50000)) + String.valueOf(r2.nextInt(50000));
+                    String PM10 = snapshot.child("PM10,0").getValue().toString();
                     String da = snapshot.child("Humidity").getValue().toString();
                     String mdbui= snapshot.child("PM2,5").getValue().toString();
                     String nd = snapshot.child("Temperature").getValue().toString();
-                    String pm10 = snapshot.child("PM10,0").getValue().toString();
                     kk = !mdbui.equals("") ? Double.parseDouble(mdbui) : 0;
-                    double t = !clkk.equals("") ? Double.parseDouble(clkk) : 0;
+                    double t = !PM10.equals("") ? Double.parseDouble(PM10) : 0;
                     txtnd.setText(nd + " C ");
                     addData(sp1,snapshot.child("PM10,0").getValue().toString());
                     addData(sp2,snapshot.child("PM2,5").getValue().toString());
                     txtnd.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thermometer, 0, 0, 0);
                     txtda.setText(" : " + da + " % ");
+                    txt_pm10.setText(" PM 10 : " + PM10 + "μg/m3");
                     txtda.setCompoundDrawablesWithIntrinsicBounds(R.drawable.droplets, 0, 0, 0);
-                    txtmq135.setText(" PM  " + mdbui + "μg/m3");
+                    txtmq135.setText(" PM 2.5 : " + mdbui + "μg/m3");
                     GetRults(t,kk);
+                    arrayListtt.add(new thongtin(n,nd,da,PM10,mdbui,PM10,"1","1"));
                     if(_Collectdata == "Collecting data")
                     {
-                        arrayList5.add(new thongtin("1",nd,da,clkk,mdbui,"","1","1"));
+                        arrayList5.add(new thongtin("1",nd,da,PM10,mdbui,"","1","1"));
                     }
                 }
 
@@ -243,6 +251,7 @@ public class tranghienthi extends Activity implements
             public void onClick(DialogInterface dialog, int which)
             {
                 dl.truyvankhongtrakq("delete FROM ThongTin");
+                ax3();
                 Toast.makeText(tranghienthi.this,"The data was successfully deleted",Toast.LENGTH_SHORT).show();
             }
         });
@@ -293,8 +302,7 @@ public class tranghienthi extends Activity implements
 
     private void dangkysukien()
     {
-        btnmdkk.setOnClickListener(new sukiencuatoi());
-        txtmq135.setOnClickListener(new sukiencuatoi());
+        btn_load.setOnClickListener(new sukiencuatoi());
     }
     private void check()
     {
@@ -376,7 +384,7 @@ public class tranghienthi extends Activity implements
         @Override
         public void onClick(View view)
         {
-            if(view.equals(btnmdkk))
+            if(view.equals(btn_load))
             {
                ax3();
             }
@@ -384,6 +392,7 @@ public class tranghienthi extends Activity implements
     }
     private void DialoglistData()
     {
+        arrayListtt = new ArrayList<>();
         dialog = new Dialog(this);
         dialog.setContentView(layout.activity_danhsachluu);
         int w = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -453,9 +462,6 @@ public class tranghienthi extends Activity implements
             cell = row.createCell(4);
             cell.setCellValue("PM 10");
 
-            cell = row.createCell(5);
-            cell.setCellValue("AQI");
-
             for(int i = 1; i < arrayList5.size();i++)
             {
                 Row row1 = sheet.createRow(i);
@@ -473,18 +479,12 @@ public class tranghienthi extends Activity implements
 
                 cell = row1.createCell(4);
                 cell.setCellValue(arrayList5.get(i).getPm10());
-
-                cell = row1.createCell(5);
-                cell.setCellValue(arrayList5.get(i).getMq135());
-
             }
 
             sheet.setColumnWidth(0, (3000));
             sheet.setColumnWidth(1, (3000));
             sheet.setColumnWidth(2, (3000));
             sheet.setColumnWidth(3, (3000));
-            sheet.setColumnWidth(4, (3000));
-
 
             File file = new File(getExternalFilesDir(null), edttenfile.getText().toString()+".xls");
             FileOutputStream fileOutputStream = null;
@@ -514,13 +514,14 @@ public class tranghienthi extends Activity implements
         {
            while (cursor.moveToNext())
             {
-               String id =cursor.getString(0);
+              String id =cursor.getString(0);
                String nhietdo= cursor.getString(1);
-               String doam = cursor.getString(2);
+              String doam = cursor.getString(2);
                String mq135 = cursor.getString(3);
-               String density =cursor.getString(4);
+              String density =cursor.getString(4);
                String time = cursor.getString(5);
-               String date = cursor.getString(6);
+              String date = cursor.getString(6);
+               arrayListtt.add(new thongtin(id,nhietdo,doam,mq135,mq135,density,time,date));
             }
         }
     }
@@ -533,19 +534,19 @@ public class tranghienthi extends Activity implements
                 : kk >= 51 ? "AQI : Sensitive groups should limit out. \n"
                 :"AQI: Clear Air \n";
         txttt.setText(kqkk);
-        String kqmdb = bui >= 350.5 ? "PM 2.5 : Bad effects on health. \n"
-                :bui >= 250.5 ? "PM 2.5 : Danger \n"
-                :bui >= 150.5 ? "PM 2.5 : Bad effects on health. \n"
-                :bui >= 65.5 ? "PM 2.5 : Bad effects on health. \n"
-                :bui >= 40.5 ? "PM 2.5 :  Affects sensitive groups \n"
-                :bui >= 15.5 ? "PM 2.5 : Medium \n"
+        String kqmdb = bui >= 350.5 ? "PM : Bad effects on health. \n"
+                :bui >= 250.5 ? "PM : Danger \n"
+                :bui >= 150.5 ? "PM : Bad effects on health. \n"
+                :bui >= 65.5 ? "PM : Bad effects on health. \n"
+                :bui >= 40.5 ? "PM :  Affects sensitive groups \n"
+                :bui >= 15.5 ? "PM : Medium \n"
                 :"PM 2.5: Good \n";
-        int kqhinh = (bui >= 350.5) || (kk > 300) ? R.drawable.rattt
-                :(bui >= 250.5) || (kk >= 201) ? R.drawable.rattt
-                :(bui >= 150.5) || (kk >= 101) ? R.drawable.rattoite
-                :(bui >= 65.5) || (kk >= 101) ? R.drawable.rattoite
-                :(bui >= 40.5) || (kk >= 51) ? R.drawable.boy
-                :(bui >= 15.5) ? R.drawable.userfuny
+        int kqhinh = (bui >= 350.5) || (kk > 505) ? R.drawable.rattt
+                :(bui >= 250.5) || (kk >= 425) ? R.drawable.rattt
+                :(bui >= 150.5) || (kk >= 355) ? R.drawable.rattoite
+                :(bui >= 65.5) || (kk >= 255) ? R.drawable.rattoite
+                :(bui >= 40.5) || (kk >= 155) ? R.drawable.boy
+                :(bui >= 15.5) || (kk >= 55) ? R.drawable.userfuny
                 : R.drawable.userfuny;
         String dataa = "AQI : " + kk +" "+ kqkk +"\nPm : " + bui + kqmdb;
         sendChannel("Notification",dataa,kqhinh);
@@ -556,21 +557,13 @@ public class tranghienthi extends Activity implements
     {
         try {
             taodt();
+            dl.truyvankhongtrakq("INSERT INTO ThongTin VALUES(null,'" + arrayListtt.get(0).getNhietdo() +
+                    "','" + arrayListtt.get(0).getDoam() + "','"
+                    + arrayListtt.get(0).getPm10() + "','"
+                    + arrayListtt.get(0).getMq135()  + "','" + "" + "','" + "" + "')");
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Waiting please.....");
             progressDialog.show();
-            if (arrayList5.size() > 0) {
-                for (int i = 0; i < arrayList5.size(); ++i) {
-                    String nd = arrayList5.get(i).getNhietdo() + " ";
-                    String da = arrayList5.get(i).getDoam() + " ";
-                    String mq135 = arrayList5.get(i).getMq135() + " ";
-                    String time = arrayList5.get(i).getTime() + " ";
-                    String date = arrayList5.get(i).getDate() + " ";
-                    String density = arrayList5.get(i).getDensity() + " ";
-                    dl.truyvankhongtrakq("INSERT INTO ThongTin VALUES(null,'" + nd + "','" + da + "','" + mq135 + "','" + density + "','" + time + "','" + date + "')");
-                }
-            }
-            arrayList5.clear();
             progressDialog.dismiss();
         }
         catch (Exception e)

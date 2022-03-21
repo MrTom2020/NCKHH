@@ -68,10 +68,10 @@ public class trangAdp extends BaseAdapter
             vh = (viewholer)convertView.getTag();
         }
         thongtin tt = list.get(position);
-        vh.txtthoigian.setText(tt.getTime());
+        vh.txtthoigian.setText("--");
         vh.txtmdbui.setText(tt.getDensity());
         vh.txtnhietdo.setText(tt.getNhietdo()+ "C");
-        vh.txtngay.setText(tt.getDate());
+        vh.txtngay.setText("--");
         vh.txtclkk.setText(tt.getMq135());
         vh.txtdam.setText(tt.getDoam() + "%");
         double d = vh.txtclkk.getText().toString() != "" ? Double.parseDouble(vh.txtclkk.getText().toString()):0;
@@ -88,27 +88,32 @@ public class trangAdp extends BaseAdapter
                 :bui >= 40.5 ? "Dust density:" + "Affect sensitive group \n"
                 :bui >= 15.5 ? "Dust density:" + "Average"
                 :"Dust density : " +"Good \n";
+        int kqhinh = (bui >= 350.5) || (d > 505) ? R.drawable.rattt
+                :(bui >= 250.5) || (d >= 425) ? R.drawable.rattt
+                :(bui >= 150.5) || (d >= 355) ? R.drawable.rattoite
+                :(bui >= 65.5) || (d>= 255) ? R.drawable.rattoite
+                :(bui >= 40.5) || (d >= 155) ? R.drawable.boy
+                :(bui >= 15.5) || (d >= 55) ? R.drawable.userfuny
+                : R.drawable.userfuny;
 
-        int kqhinh = (d > 300) || (bui >= 350.5) ? R.drawable.rattt
-                : (d >= 201) || (bui >= 250.5) ? R.drawable.rattt
-                : (d >= 101) || (bui >= 150.5) ? R.drawable.rattoite
-                : (d >= 51) || (bui >= 65.5) ? R.drawable.boy
-                : (bui >= 40.5) ? R.drawable.boy
-                : (bui >= 15.5) ? R.drawable.boy
-                :R.drawable.userfuny;
 
-        int kqmaukk = (d > 300)  ? 0xffcc9900
-                : (d >= 201) ? 0xfffe0000
-                : (d >= 101)  ? 0xffffbe00
-                : (d >= 51)  ? 0xffffff01
-                :0xff01b0f1;
-        int kqmaubui = (bui >= 350.5) ? 0xffa60331
-                : (bui >= 250.5) ? 0xffff0000
-                : (bui >= 150.5) ? 0xffcc9900
-                : (bui >= 65.5) ? 0xfffe0000
-                : (bui >= 40.5) ? 0xffffbe00
-                : (bui >= 15.5) ? 0xffffff01
-                :0xff01b0f1;
+        int kqmaukk = (d > 505)  ? 0xffdf0a00
+                : (d >= 425) ? 0xffdf0a00
+                : (d >= 355) ? 0xffdf0a00
+                : (d >= 255)  ? 0xffff1820
+                : (d >= 155)  ? 0xffffc51c
+                : (d >= 55) ? 0xfff3ff24
+                :0xff6cef00;
+
+
+
+        int kqmaubui = (bui >= 350.5) ? 0xffdf0a00
+                : (bui >= 250.5) ? 0xffdf0a00
+                : (bui >= 150.5) ? 0xffdf0a00
+                : (bui >= 65.5) ? 0xffff1820
+                : (bui >= 40.5) ? 0xffffc51c
+                : (bui >= 15.5) ? 0xfff3ff24
+                :0xff6cef00;
         vh.txttt.setText(kqttkk);
         vh.txtclkk.setBackgroundColor(kqmaukk);
         vh.txttt.append(kqttbui);
